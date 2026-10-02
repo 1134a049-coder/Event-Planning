@@ -1853,40 +1853,84 @@ body::before {
 .bar-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-  font-size: 0.82rem;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 0.83rem;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.bar-row:hover {
+  background: var(--bg-subtle);
+  transform: translateX(2px);
 }
 
 .bar-label {
   min-width: 120px;
-  max-width: 130px;
+  max-width: 140px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--text-secondary);
+  color: var(--text-main);
+  font-weight: 500;
 }
 
 .bar-track {
   flex: 1;
-  background: var(--bg-subtle);
-  height: 12px;
-  border-radius: 6px;
+  background: #e2e8f0;
+  height: 10px;
+  border-radius: 999px;
   overflow: hidden;
+  position: relative;
+}
+
+[data-theme="dark"] .bar-track {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .bar-fill {
   height: 100%;
-  border-radius: 6px;
-  background: linear-gradient(90deg, var(--color-hsr), var(--color-genshin));
-  transition: width 0.6s ease-out;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.25);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .bar-fill {
+  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+  box-shadow: 0 1px 5px rgba(56, 189, 248, 0.3);
 }
 
 .bar-value {
-  min-width: 30px;
+  min-width: 78px;
   text-align: right;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.bar-vote-num {
   font-weight: 700;
-  color: var(--color-score);
+  color: var(--primary);
+}
+
+.bar-pct {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.donut-track {
+  stroke: #e2e8f0;
+}
+
+[data-theme="dark"] .donut-track {
+  stroke: rgba(255, 255, 255, 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -2582,5 +2626,20 @@ body::before {
     font-size: 0.78rem !important;
     justify-content: center !important;
     height: 36px !important;
+  }
+
+  /* 手機版長條圖比例優化：保留足夠進度條視覺長度 */
+  .bar-row {
+    gap: 8px !important;
+    padding: 5px 4px !important;
+  }
+  .bar-label {
+    min-width: 95px !important;
+    max-width: 115px !important;
+    font-size: 0.8rem !important;
+  }
+  .bar-value {
+    min-width: 72px !important;
+    font-size: 0.78rem !important;
   }
 }

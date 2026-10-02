@@ -5940,7 +5940,7 @@ function renderStatsView() {
                 <div class="bar-track">
                   <div class="bar-fill" style="width: ${pct}%;"></div>
                 </div>
-                <span class="bar-value">${item.count}票 (${pct}%)</span>
+                <span class="bar-value"><span class="bar-vote-num">${item.count} 票</span><span class="bar-pct">(${pct}%)</span></span>
               </div>
             `;
           }).join('')}
@@ -6084,7 +6084,7 @@ function createDonutChartSVG(typeCounts) {
 
   return `
     <svg width="120" height="120" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
-      <circle cx="50" cy="50" r="${r}" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="18" />
+      <circle cx="50" cy="50" r="${r}" fill="transparent" class="donut-track" stroke-width="18" />
       <circle cx="50" cy="50" r="${r}" fill="transparent" stroke="#818cf8" stroke-width="18" stroke-dasharray="${dashCasual} ${c}" stroke-dashoffset="0" />
       <circle cx="50" cy="50" r="${r}" fill="transparent" stroke="#f59e0b" stroke-width="18" stroke-dasharray="${dashScore} ${c}" stroke-dashoffset="${offsetScore}" />
       <circle cx="50" cy="50" r="${r}" fill="transparent" stroke="#ec4899" stroke-width="18" stroke-dasharray="${dashCraft} ${c}" stroke-dashoffset="${offsetCraft}" />
