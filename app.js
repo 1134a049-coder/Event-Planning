@@ -4776,7 +4776,7 @@ function getBookmarkSVG(isMarked) {
     return `<svg class="card-bookmark-svg is-hollow" viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
       <path d="M 5 4.8 C 5 3.8 5.8 3 6.8 3 L 17.2 3 C 18.2 3 19 3.8 19 4.8 L 19 20.2 C 19 21.0 18.1 21.5 17.4 21.0 L 12 17.2 L 6.6 21.0 C 5.9 21.5 5 21.0 5 20.2 Z" 
             fill="none" 
-            stroke="rgba(255, 255, 255, 0.48)" 
+            stroke="currentColor" 
             stroke-width="2.2" 
             stroke-linecap="round" 
             stroke-linejoin="round"/>
@@ -6490,7 +6490,9 @@ function updateModalFavBtn(id) {
   const modalFavBtn = document.getElementById('modalFavBtn');
   if (modalFavBtn) {
     modalFavBtn.classList.toggle('active', isMarked);
-    modalFavBtn.innerHTML = isMarked ? '<span>❤️ 已標記喜歡</span>' : '<span>🤍 標記為喜歡</span>';
+    modalFavBtn.innerHTML = isMarked 
+      ? `<svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="#f43f5e" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg><span>已標記喜歡</span>` 
+      : `<svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg><span>標記喜歡</span>`;
   }
   const modalBookmarkBtnText = document.getElementById('modalBookmarkBtnText');
   if (modalBookmarkBtnText) {

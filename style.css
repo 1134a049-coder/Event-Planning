@@ -1157,28 +1157,68 @@ body::before {
   gap: 4px;
 }
 
-/* 卡片右上角書籤按鈕 */
+/* 卡片右上角書籤收藏按鈕 (未選取=空心外框，選取=實心金粉漸層) */
 .btn-bookmark-toggle {
   background: transparent;
-  border: none;
-  padding: 0;
-  width: 28px;
-  height: 28px;
+  border: 1px solid transparent;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  border-radius: 8px;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
   flex-shrink: 0;
+  color: #94a3b8;
 }
 
 .btn-bookmark-toggle:hover {
   transform: scale(1.15);
 }
 
+/* 白色/亮色頁面：未收藏為清晰有質感的 Slate-400 (#94a3b8)，懸停時呈現琥珀金與柔和背景 */
+[data-theme="light"] .btn-bookmark-toggle {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .btn-bookmark-toggle:hover {
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.22);
+}
+
+/* 深色/暗色頁面：未收藏為清爽半透明白，懸停時轉為明亮金色 */
+[data-theme="dark"] .btn-bookmark-toggle {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .btn-bookmark-toggle:hover {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
 .card-bookmark-svg {
   width: 22px;
   height: 22px;
+  display: block;
+}
+
+.card-bookmark-svg.is-hollow {
+  transition: stroke 0.2s ease;
+}
+
+.card-bookmark-svg.is-solid {
+  filter: drop-shadow(0 2px 6px rgba(244, 114, 182, 0.45));
+}
+
+/* Modal 彈窗內的收藏按鈕高亮狀態 */
+.btn-action.btn-modal-fav.active {
+  background: rgba(244, 114, 182, 0.14);
+  border-color: rgba(244, 114, 182, 0.5);
+  color: #e11d48;
 }
 
 .card-body {
