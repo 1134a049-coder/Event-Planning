@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- 頂部官網風格導航欄 (Navbar，精準比照附圖外觀與配置) -->
+  <!-- 頂部官網風格導航欄 (Navbar) -->
   <header class="navbar">
     <a href="javascript:void(0)" class="navbar-brand" id="navBrandHome">
       <div class="logo-badge">M</div>
@@ -21,11 +21,11 @@
     </a>
 
 
-    <!-- 右側操作：看板切換按鈕與分享活動按鈕 -->
+    <!-- 右側操作：看板切換、分享活動、主題日夜切換 -->
     <div class="navbar-actions">
-      <!-- 切換企劃書庫 / 統計圖表按鈕 (圖二樣式雙向箭頭循環切換，置於分享活動左側) -->
+      <!-- 切換企劃書庫 / 統計圖表按鈕 (雙向箭頭循環切換) -->
       <button class="btn-nav-switch-stats" id="btnMemberStatsToggle" type="button" title="切換企劃書庫 / 統計圖表" aria-label="切換企劃書庫與統計圖表">
-        <svg class="switch-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="switch-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4.5 13.5V9a3.5 3.5 0 0 1 3.5-3.5h11"></path>
           <polyline points="15.5 2 19.5 5.5 15.5 9"></polyline>
           <path d="M19.5 10.5V15a3.5 3.5 0 0 1-3.5 3.5h-11"></path>
@@ -34,16 +34,36 @@
         <span id="statsTabVotesCount" style="display: none;">0人</span>
       </button>
 
-      <!-- 分享活動匯出/匯入專屬膠囊按鈕 (金黃色膠囊外型，點擊或展開選單) -->
+      <!-- 主題切換按鈕 (預設白底 / 切換深色，優雅單色日月圖示) -->
+      <button class="btn-nav-theme-toggle" id="btnThemeToggle" type="button" title="切換淺色 / 深色主題" aria-label="切換淺色 / 深色主題">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- 分享活動匯出/匯入專屬膠囊按鈕 (單色圖標與質感膠囊) -->
       <div class="share-dropdown">
         <button class="btn-share-gold" id="topShareBtn" type="button" title="點擊展開活動分享與匯出入選項">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <polyline points="16 6 12 2 8 6"></polyline>
             <line x1="12" y1="2" x2="12" y2="15"></line>
           </svg>
           <span>分享活動</span>
-          <span class="share-arrow">▼</span>
+          <svg class="share-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </button>
         <div class="share-dropdown-menu">
           <a href="javascript:void(0)" class="share-dropdown-item" id="topNavExportShare">
@@ -77,31 +97,36 @@
     </div>
   </header>
 
-  <main class="container" style="padding-top: 100px;">
+  <main class="container" style="padding-top: 96px;">
     <!-- 企劃書庫儀表橫條 (包含原創 95 份企劃標題) -->
-    <section class="system-intro-bar" id="systemIntroBar" style="display: flex; flex-direction: column; gap: 0;">
-      <!-- 圖二上半部：左上角主標題 與 右上角操作按鈕組 -->
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 14px;">
+    <section class="system-intro-bar" id="systemIntroBar">
+      <!-- 上半部：主標題 與 右側操作按鈕組 -->
+      <div class="system-intro-top-row">
         <div class="system-intro-title">
-          <span class="sparkle-badge">✨ 便利貼卡盒整理系統</span>
+          <span class="sparkle-badge">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6z"></path>
+            </svg>
+            <span>便利貼卡盒整理系統</span>
+          </span>
           <h2 id="systemMainTitle">米哈遊社團活動企劃庫</h2>
         </div>
-        <!-- 圖一內容：放置於圖二右上角位置上 (統計圖表模式時顯現) -->
-        <div class="system-intro-actions" id="systemIntroActions" style="display: none; gap: 10px; align-items: center; flex-wrap: wrap;">
-          <button class="btn-action" onclick="openShareModal()" style="background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);">
-            <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 6px;">
+        <!-- 統計圖表模式右上角切換動作 -->
+        <div class="system-intro-actions" id="systemIntroActions" style="display: none;">
+          <button class="btn-action btn-header-import" onclick="openShareModal()">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
               <polyline points="8 10 12 14 16 10"></polyline>
               <line x1="12" y1="3" x2="12" y2="14"></line>
             </svg>
             <span>匯入代碼</span>
           </button>
-          <button class="btn-action" onclick="handleCategoryTabSwitch('all')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease;">
-            <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 6px;">
+          <button class="btn-action btn-header-back" onclick="handleCategoryTabSwitch('all')">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            <span>返回頁面</span>
+            <span>返回企劃庫</span>
           </button>
         </div>
       </div>
@@ -359,7 +384,7 @@
                   <span>命運抽卡！挑選活動</span>
                 </button>
                 <div class="expand-toggles">
-                  <button class="btn-toggle-collapse" id="btnToggleCollapse" type="button" title="點擊切換卡片展開/收起樣式">
+                  <button class="btn-toggle-collapse active" id="btnToggleCollapse" type="button" title="目前為收起樣式，點擊切換為展開">
                     <svg class="mono-icon" id="toggleCollapseIcon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <polyline points="17 11 12 6 7 11"></polyline>
                       <polyline points="17 18 12 13 7 18"></polyline>
@@ -378,8 +403,8 @@
     <!-- 社員專屬篩選進行中提示橫幅 (點開該社員的篩選內容時浮現) -->
     <div class="active-member-filter-banner" id="activeMemberBanner" style="display: none;"></div>
 
-    <!-- 便利貼卡盒網格主展區 (Cards Grid) -->
-    <section class="cards-grid" id="cardsContainer">
+    <!-- 便利貼卡盒網格主展區 (Cards Grid - 預設為收起模式) -->
+    <section class="cards-grid cards-collapsed" id="cardsContainer">
       <!-- 由 JavaScript (app.js) 動態渲染便利貼方塊 -->
     </section>
 
@@ -415,21 +440,39 @@
 
       <div class="modal-footer">
         <button class="btn-action" id="btnModalNavPrevFooter" type="button">
-          <span>◀ 上一項</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>上一項</span>
         </button>
         <button class="btn-action" id="btnModalNavNextFooter" type="button">
-          <span>下一項 ▶</span>
+          <span>下一項</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </button>
         <button class="btn-action btn-modal-fav" id="modalFavBtn" type="button">
-          <span>❤️ 標記為喜歡</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>標記喜歡</span>
         </button>
         <button class="btn-action" id="modalCopyBtn" type="button">
-          <span>📋 複製 Markdown 企劃書</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>複製 Markdown</span>
         </button>
         <button class="btn-action" onclick="window.print()" type="button">
-          <span>🖨️ 列印企劃手冊</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>列印企劃</span>
         </button>
-        <button class="btn-action" onclick="closeModal()" type="button" style="background: rgba(255,255,255,0.1);">
+        <button class="btn-action btn-modal-close-action" onclick="closeModal()" type="button">
           <span>關閉</span>
         </button>
       </div>
@@ -441,7 +484,7 @@
     <div class="modal-container" style="max-width: 680px;">
       <div class="modal-header">
         <div class="modal-header-text">
-          <h2>📤 社團活動分享與匯入中心</h2>
+          <h2>社團活動分享與匯入中心</h2>
           <p>標記心儀活動為「喜歡」生成專屬分享碼，或在底下貼入社員的分享碼加入統計</p>
         </div>
         <button class="btn-modal-close" id="shareModalClose" type="button" title="關閉">✕</button>
@@ -449,17 +492,24 @@
 
       <div class="modal-content-body" style="padding: 24px;">
         <!-- 區塊 1：匯出分享碼 -->
-        <div class="share-card-block" style="background: rgba(30, 41, 59, 0.5); padding: 18px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.25);">
+        <div class="share-card-block share-block-export">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <h3 style="color: #818cf8; font-size: 1.1rem; display: flex; align-items: center; gap: 6px;">
+            <h3 class="share-block-title" style="display: flex; align-items: center; gap: 6px;">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
               <span>1. 匯出我的喜歡活動企劃</span>
             </h3>
-            <span style="font-size: 0.85rem; color: #f59e0b;">已標記喜歡 <strong id="shareSelectedCount">0</strong> 項企劃</span>
+            <span class="share-count-pill">已標記喜歡 <strong id="shareSelectedCount">0</strong> 項</span>
           </div>
           
           <div style="margin-bottom: 12px;">
-            <label for="shareUserNickname" style="display: block; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 6px;">
-              👤 請輸入您的社員暱稱：
+            <label for="shareUserNickname" style="display: block; font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 6px;">
+              社員暱稱：
             </label>
             <input 
               type="text" 
@@ -470,23 +520,32 @@
             >
           </div>
 
-          <div id="shareSelectedPreview" style="max-height: 120px; overflow-y: auto; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px; font-size: 0.82rem; color: #cbd5e1; margin-bottom: 12px;">
+          <div id="shareSelectedPreview" class="share-preview-box">
             尚未標記任何喜歡的活動，請在卡片右上角標記喜歡！
           </div>
 
           <div style="display: flex; gap: 10px;">
-            <button class="btn-action" id="btnGenerateShareCode" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; font-weight: bold; flex: 1;">
-              <span>✨ 複製我的分享碼</span>
+            <button class="btn-action btn-generate-share" id="btnGenerateShareCode">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>複製我的分享碼</span>
             </button>
           </div>
         </div>
 
         <!-- 區塊 2：匯入社員分享碼 (在分享底下) -->
-        <div class="share-card-block" style="background: rgba(30, 41, 59, 0.5); padding: 18px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.25); margin-top: 20px;">
-          <h3 style="color: #34d399; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+        <div class="share-card-block share-block-import">
+          <h3 class="share-block-title" style="margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
             <span>2. 匯入其他社員的分享碼</span>
           </h3>
-          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 10px;">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
             在下方貼上同學或幹部傳給您的分享碼（以 <code>MYVOTE:</code> 開頭），即可自動匯入並加入全社熱門統計！
           </p>
 
@@ -494,27 +553,47 @@
             id="importShareCodeInput" 
             rows="3" 
             placeholder="貼上社員的分享代碼..." 
-            style="width: 100%; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #fff; padding: 10px 12px; font-size: 0.85rem; resize: vertical; font-family: monospace;"
+            class="share-textarea"
           ></textarea>
 
           <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
-            <button class="btn-action" id="btnConfirmImportCode" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: bold; flex: 1;">
-              <span>📥 解析並匯入社員名單</span>
+            <button class="btn-action btn-confirm-import" id="btnConfirmImportCode">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>解析並匯入社員名單</span>
             </button>
-            <button class="btn-action" id="btnLoadDemoVotes" type="button" style="background: rgba(255,255,255,0.08); font-size: 0.85rem;" title="快速載入阿鐵、悠悠、奇奇的示範投票">
-              <span>👥 載入三位社員示範投票</span>
+            <button class="btn-action btn-load-demo" id="btnLoadDemoVotes" type="button" title="快速載入阿鐵、悠悠、奇奇的示範投票">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>載入三位社員示範投票</span>
             </button>
           </div>
         </div>
 
-        <!-- 區塊 3：已匯入社員投票紀錄管理 (可單人刪除，同步扣除統計計數) -->
-        <div class="share-card-block" style="background: rgba(30, 41, 59, 0.5); padding: 18px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.25); margin-top: 20px;">
+        <!-- 區塊 3：已匯入社員投票紀錄管理 -->
+        <div class="share-card-block share-block-manage">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h3 style="color: #f87171; font-size: 1.05rem; display: flex; align-items: center; gap: 6px;">
+            <h3 class="share-block-title" style="display: flex; align-items: center; gap: 6px;">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
               <span>3. 已匯入社員紀錄管理 (<span id="modalMemberVotesCount">0</span> 人)</span>
             </h3>
-            <button class="btn-text-sm" id="btnClearAllMemberVotes" type="button" style="color: #ef4444; font-size: 0.8rem; background: rgba(239,68,68,0.1); border-radius: 6px; padding: 3px 8px;" title="清空全部社員投票紀錄">
-              🗑️ 清空所有名單
+            <button class="btn-text-sm btn-clear-records" id="btnClearAllMemberVotes" type="button" title="清空全部社員投票紀錄">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>清空所有名單</span>
             </button>
           </div>
           <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">
@@ -533,24 +612,37 @@
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
         <div class="modal-header-text">
-          <h2>📢 注意事項與社團公約說明</h2>
+          <h2 style="display: flex; align-items: center; gap: 8px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span>注意事項與社團公約說明</span>
+          </h2>
           <p>北商ACG研究社 · 米哈遊同好會活動規範</p>
         </div>
         <button class="btn-modal-close" id="noticeModalClose" type="button" title="關閉">✕</button>
       </div>
       <div class="modal-content-body" style="padding: 24px;">
-        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
-          <h3 style="color: #f59e0b; margin-bottom: 8px;">四、 注意事項與說明【能力有限公告】</h3>
-          <p style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">
+        <div class="notice-info-card">
+          <h3 style="color: var(--color-score); margin-bottom: 8px; font-size: 1.05rem;">注意事項與說明【能力有限公告】</h3>
+          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
             因人力與時間限制，社團活動採每週一次形式辦理，每次活動現場會同時安排多款遊戲（星穹鐵道、原神、絕區零），其餘未排入的活動將順延舉行，敬請見諒。
           </p>
-          <div style="margin-top: 14px; padding: 12px; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 4px; color: #fef08a; font-size: 0.9rem;">
-            ✨ 歡迎各位同好一同共襄盛舉！無論你是大佬還是萌新，都能在這裡互相交流疊影、配裝與通關技巧，一起在米遊的世界裡玩得盡興！
+          <div class="notice-highlight-box">
+            歡迎各位同好一同共襄盛舉！無論你是資深老手還是新手萌新，都能在這裡互相交流疊影、配裝與通關技巧，一起在米遊的世界裡玩得盡興！
           </div>
         </div>
-        <div style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
-          <h4 style="color: #38bdf8; margin-bottom: 6px;">📌 場地與器材使用須知</h4>
-          <ul style="color: #cbd5e1; font-size: 0.88rem; padding-left: 18px; line-height: 1.6;">
+        <div class="notice-subcard">
+          <h4 style="color: var(--color-casual); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>場地與器材使用須知</span>
+          </h4>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; padding-left: 18px; line-height: 1.6;">
             <li>活動結束後請社員共同收拾場地，將多媒體線材與投影機搖控器歸位。</li>
             <li>禁止在多媒體設備插座旁放置無蓋含糖飲料，以維護設備安全。</li>
             <li>手作類活動均備有防污桌墊與速乾照燈，請遵從幹部安全引導。</li>
@@ -558,7 +650,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-action" id="noticeModalConfirmBtn" style="margin-left: auto;">我知道了</button>
+        <button class="btn-action btn-modal-confirm" id="noticeModalConfirmBtn" style="margin-left: auto;">我知道了</button>
       </div>
     </div>
   </div>
@@ -568,27 +660,52 @@
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
         <div class="modal-header-text">
-          <h2>🗓️ 三大遊戲更新週期與活動排程參考</h2>
+          <h2 style="display: flex; align-items: center; gap: 8px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>三大遊戲更新週期與活動排程參考</span>
+          </h2>
           <p>掌握重置節點，活動聚會絕不錯過精彩內容！</p>
         </div>
         <button class="btn-modal-close" id="scheduleModalClose" type="button" title="關閉">✕</button>
       </div>
       <div class="modal-content-body" style="padding: 24px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="background: rgba(129, 140, 248, 0.1); border: 1px solid rgba(129, 140, 248, 0.3); border-radius: 10px; padding: 16px;">
-          <h4 style="color: #818cf8; margin-bottom: 4px;">🚂 崩壞：星穹鐵道 (Honkai: Star Rail)</h4>
-          <p style="color: #cbd5e1; font-size: 0.88rem;">• <strong>混沌回憶 / 虛構敘事 / 末日幻影</strong>：每兩週輪替更新，重置當週為高難排軸切磋最佳時機。</p>
+        <div class="schedule-game-card game-hsr">
+          <h4 style="color: var(--color-hsr); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span>崩壞：星穹鐵道 (Honkai: Star Rail)</span>
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem;">• <strong>混沌回憶 / 虛構敘事 / 末日幻影</strong>：每兩週輪替更新，重置當週為高難排軸切磋最佳時機。</p>
         </div>
-        <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
-          <h4 style="color: #38bdf8; margin-bottom: 4px;">⚔️ 原神 (Genshin Impact)</h4>
-          <p style="color: #cbd5e1; font-size: 0.88rem;">• <strong>深境螺旋 & 幻想真境劇詩</strong>：每月 1 號及 16 號結算重置，適合安排無傷競速與陣容盲盒交流。</p>
+        <div class="schedule-game-card game-genshin">
+          <h4 style="color: var(--color-genshin); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <span>原神 (Genshin Impact)</span>
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem;">• <strong>深境螺旋 & 幻想真境劇詩</strong>：每月 1 號及 16 號結算重置，適合安排無傷競速與陣容盲盒交流。</p>
         </div>
-        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 16px;">
-          <h4 style="color: #f59e0b; margin-bottom: 4px;">⚡ 絕區零 (Zenless Zone Zero)</h4>
-          <p style="color: #cbd5e1; font-size: 0.88rem;">• <strong>式輿防衛戰 & 零號空洞</strong>：每兩週劇變節點重置，作為社團極限連刀與評級對抗賽最佳檔期。</p>
+        <div class="schedule-game-card game-zzz">
+          <h4 style="color: var(--color-zzz); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>絕區零 (Zenless Zone Zero)</span>
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem;">• <strong>式輿防衛戰 & 零號空洞</strong>：每兩週劇變節點重置，作為社團極限連刀與評級對抗賽最佳檔期。</p>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-action" id="scheduleModalConfirmBtn" style="margin-left: auto;">關閉</button>
+        <button class="btn-action btn-modal-confirm" id="scheduleModalConfirmBtn" style="margin-left: auto;">關閉</button>
       </div>
     </div>
   </div>
@@ -596,7 +713,11 @@
   <!-- 命運抽卡 (Gacha Wheel Animation) 專用視窗 -->
   <div class="gacha-overlay" id="gachaOverlay">
     <div class="gacha-box">
-      <div class="gacha-beam">⭐</div>
+      <div class="gacha-beam">
+        <svg class="mono-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6z"></path>
+        </svg>
+      </div>
       <h2 class="gacha-title" id="gachaResultText">祈願進行中...</h2>
       <div class="gacha-subtitle" id="gachaResultDetail">命運的齒輪正在為社員轉動</div>
     </div>

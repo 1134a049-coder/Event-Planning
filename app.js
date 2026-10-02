@@ -4650,7 +4650,48 @@ function resetAllFilters() {
 }
 
 // 初始化入口
+
+// ==========================================================================
+// 主題管理系統 (預設白底主題 light，支援暗夜主題 dark 切換與記憶)
+// ==========================================================================
+function initTheme() {
+  const savedTheme = localStorage.getItem('site_theme') || 'light';
+  applyTheme(savedTheme);
+
+  const btnThemeToggle = document.getElementById('btnThemeToggle');
+  if (btnThemeToggle) {
+    btnThemeToggle.addEventListener('click', toggleTheme);
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const sunIcon = document.querySelector('.theme-icon-sun');
+  const moonIcon = document.querySelector('.theme-icon-moon');
+  if (sunIcon && moonIcon) {
+    if (theme === 'dark') {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'inline-block';
+    } else {
+      sunIcon.style.display = 'inline-block';
+      moonIcon.style.display = 'none';
+    }
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  localStorage.setItem('site_theme', next);
+  showToast(next === 'light' ? '已切換為純淨白底主題 ☀️' : '已切換為暗夜星空主題 🌙');
+}
+window.initTheme = initTheme;
+window.applyTheme = applyTheme;
+window.toggleTheme = toggleTheme;
+
 document.addEventListener('DOMContentLoaded', async () => {
+  initTheme();
   loadStoredState();
   await loadActivitiesData();
   restoreSavedUIState();
@@ -4954,8 +4995,9 @@ function switchToAllSubTypes() {
 
 // ==========================================================================
 // 卡片展開 / 收起模式引擎 (true = 附圖極簡便簽樣式, false = 目前完整詳細區塊樣式)
+// 進入時預設為收起狀態 (極簡便簽樣式)
 // ==========================================================================
-let isCardsCollapsed = localStorage.getItem('cards_collapsed_mode') === 'true';
+let isCardsCollapsed = true;
 
 function setCardsCollapsedMode(collapsed) {
   isCardsCollapsed = Boolean(collapsed);
@@ -6270,14 +6312,14 @@ function createCardHTML(act) {
 
   let statusBadgeHTML = '';
   if (status === 'wish') {
-    statusBadgeHTML = `<span class="badge-status badge-wish" title="標記為想參加">🟣 想參加</span>`;
+    statusBadgeHTML = `<span class="badge-status badge-wish" title="標記為想參加"><span class="status-dot dot-wish"></span>想參加</span>`;
   } else if (status === 'planned') {
-    statusBadgeHTML = `<span class="badge-status badge-planned" title="標記為籌備中">🟡 籌備中</span>`;
+    statusBadgeHTML = `<span class="badge-status badge-planned" title="標記為籌備中"><span class="status-dot dot-planned"></span>籌備中</span>`;
   } else if (status === 'completed') {
-    statusBadgeHTML = `<span class="badge-status badge-completed" title="標記為已舉辦">🟢 已舉辦</span>`;
+    statusBadgeHTML = `<span class="badge-status badge-completed" title="標記為已舉辦"><span class="status-dot dot-completed"></span>已舉辦</span>`;
   }
 
-  const noteBadgeHTML = hasNote ? `<span class="badge-note-tag" title="有自訂幹部備忘筆記">📝 備忘</span>` : '';
+  const noteBadgeHTML = hasNote ? `<span class="badge-note-tag" title="有自訂幹部備忘筆記"><svg class="mono-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> 備忘</span>` : '';
 
   const notesList = (act.extraNotes || []).map(note => `<li>${note}</li>`).join('');
 
@@ -6331,8 +6373,11 @@ function createCardHTML(act) {
         <div class="accordion-container">
           <div class="accordion-item">
             <button class="accordion-toggle" type="button">
-              <span>📌 額外附註與備註 (${(act.extraNotes || []).length} 條)</span>
-              <span class="accordion-arrow">▼</span>
+              <span class="accordion-toggle-title">
+                <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"></line><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path></svg>
+                <span>額外附註與備註 (${(act.extraNotes || []).length} 條)</span>
+              </span>
+              <svg class="accordion-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             <div class="accordion-content">
               <ul class="notes-list">${notesList}</ul>
@@ -6341,8 +6386,11 @@ function createCardHTML(act) {
 
           <div class="accordion-item">
             <button class="accordion-toggle" type="button">
-              <span>🗓️ 活動時程安排 (${(act.schedule || []).length} 階段)</span>
-              <span class="accordion-arrow">▼</span>
+              <span class="accordion-toggle-title">
+                <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>活動時程安排 (${(act.schedule || []).length} 階段)</span>
+              </span>
+              <svg class="accordion-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             <div class="accordion-content">
               <div class="schedule-list">${scheduleRows}</div>
@@ -6351,11 +6399,14 @@ function createCardHTML(act) {
 
           <div class="accordion-item">
             <button class="accordion-toggle" type="button">
-              <span>🎒 物資清單與預算預估</span>
-              <span class="accordion-arrow">▼</span>
+              <span class="accordion-toggle-title">
+                <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span>物資清單與預算預估</span>
+              </span>
+              <svg class="accordion-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             <div class="accordion-content">
-              <p style="margin-bottom: 6px; color: #f59e0b; font-weight: 600;">💰 預估預算：${act.budget}</p>
+              <p style="margin-bottom: 6px; color: var(--color-score); font-weight: 600;">預估預算：${act.budget}</p>
               <div class="tag-pills-wrap">${supplyPills}</div>
             </div>
           </div>
@@ -6364,10 +6415,11 @@ function createCardHTML(act) {
 
       <div class="card-footer">
         <button class="btn-card-detail" data-id="${act.id}" type="button">
-          <span>📖 查看完整企劃書</span>
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <span>查看完整企劃書</span>
         </button>
         <button class="btn-copy-card" data-id="${act.id}" title="複製企劃摘要發給幹部群" type="button">
-          📋
+          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
         </button>
       </div>
     </article>
@@ -6442,7 +6494,7 @@ function updateModalFavBtn(id) {
   }
   const modalBookmarkBtnText = document.getElementById('modalBookmarkBtnText');
   if (modalBookmarkBtnText) {
-    modalBookmarkBtnText.textContent = isMarked ? '已標記為喜歡 ❤️' : '標記此活動為喜歡 🤍';
+    modalBookmarkBtnText.textContent = isMarked ? '已標記為喜歡' : '標記此活動為喜歡';
   }
   const modalBookmarkIcon = document.getElementById('modalBookmarkIcon');
   if (modalBookmarkIcon) {
@@ -6504,7 +6556,7 @@ function openDetailModal(act) {
     <!-- 本機狀態追蹤與喜歡標記 (LocalStorage) -->
     <div class="modal-section" style="background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-        <div class="modal-section-title" style="margin-bottom: 0;">🚩 活動籌備與喜歡標記 (本機自動儲存)</div>
+        <div class="modal-section-title" style="margin-bottom: 0;">活動籌備與喜歡標記 (本機自動儲存)</div>
         <div style="display: flex; align-items: center; gap: 10px;">
           <!-- 彈窗內快速標記喜歡 (未標記=空心，已標記=實心) -->
           <button 
@@ -6515,22 +6567,22 @@ function openDetailModal(act) {
             style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; font-size: 0.85rem; font-weight: 700; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(244, 114, 182, 0.35); color: #fbcfe8; cursor: pointer;"
           >
             <span id="modalBookmarkIcon" style="display: inline-flex; align-items: center;">${getBookmarkSVG(isSelected)}</span>
-            <span id="modalBookmarkBtnText">${isSelected ? '已標記為喜歡 ❤️' : '標記此活動為喜歡 🤍'}</span>
+            <span id="modalBookmarkBtnText">${isSelected ? '已標記為喜歡' : '標記此活動為喜歡'}</span>
           </button>
-          <span style="font-size: 0.8rem; color: #10b981;">💾 自動同步</span>
+          <span style="font-size: 0.8rem; color: #10b981;">自動同步</span>
         </div>
       </div>
       
-      <div class="status-btn-group" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
-        <button type="button" class="btn-status-toggle ${currentStatus === 'none' ? 'active' : ''}" data-status="none">⚪ 未安排</button>
-        <button type="button" class="btn-status-toggle ${currentStatus === 'wish' ? 'active' : ''}" data-status="wish">🟣 想參加 🙋</button>
-        <button type="button" class="btn-status-toggle ${currentStatus === 'planned' ? 'active' : ''}" data-status="planned">🟡 籌備中 📝</button>
-        <button type="button" class="btn-status-toggle ${currentStatus === 'completed' ? 'active' : ''}" data-status="completed">🟢 已舉辦 ✅</button>
+      <div class="status-btn-group">
+        <button type="button" class="btn-status-toggle ${currentStatus === 'none' ? 'active' : ''}" data-status="none"><span class="status-dot"></span>未安排</button>
+        <button type="button" class="btn-status-toggle ${currentStatus === 'wish' ? 'active' : ''}" data-status="wish"><span class="status-dot dot-wish"></span>想參加</button>
+        <button type="button" class="btn-status-toggle ${currentStatus === 'planned' ? 'active' : ''}" data-status="planned"><span class="status-dot dot-planned"></span>籌備中</button>
+        <button type="button" class="btn-status-toggle ${currentStatus === 'completed' ? 'active' : ''}" data-status="completed"><span class="status-dot dot-completed"></span>已舉辦</button>
       </div>
 
       <div style="margin-top: 10px;">
         <label for="actPersonalNote" style="display: block; font-size: 0.88rem; color: #cbd5e1; font-weight: 600; margin-bottom: 6px;">
-          📝 幹部/個人私房備忘錄：
+          幹部 / 個人私房備忘錄：
         </label>
         <textarea 
           id="actPersonalNote" 
@@ -6545,17 +6597,17 @@ function openDetailModal(act) {
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">📌 活動基本資訊</div>
+      <div class="modal-section-title">活動基本資訊</div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 8px;">
-        <div>👥 <strong>人數規模：</strong>${act.participants}</div>
-        <div>⏱️ <strong>預估耗時：</strong>${act.duration}</div>
-        <div>📍 <strong>建議地點：</strong>${act.location}</div>
-        <div>💰 <strong>預算預估：</strong>${act.budget}</div>
+        <div><strong>人數規模：</strong>${act.participants}</div>
+        <div><strong>預估耗時：</strong>${act.duration}</div>
+        <div><strong>建議地點：</strong>${act.location}</div>
+        <div><strong>預算預估：</strong>${act.budget}</div>
       </div>
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">🎯 企劃目標與核心概念</div>
+      <div class="modal-section-title">企劃目標與核心概念</div>
       <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">${act.summary}</p>
       <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 4px; color: #fef08a; margin-top: 6px;">
         <strong>特色亮點：</strong>${act.highlight}
@@ -6563,31 +6615,31 @@ function openDetailModal(act) {
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">⏱️ 完整活動時程表</div>
+      <div class="modal-section-title">完整活動時程表</div>
       <div>${scheduleHTML}</div>
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">📜 規則公約與注意事項</div>
+      <div class="modal-section-title">規則公約與注意事項</div>
       <pre style="white-space: pre-wrap; font-family: inherit; color: #cbd5e1; background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6;">${act.rules}</pre>
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">🎒 必備物資與器材清單</div>
+      <div class="modal-section-title">必備物資與器材清單</div>
       <ul style="padding-left: 20px; color: #cbd5e1;">${suppliesHTML}</ul>
     </div>
 
     <div class="modal-section">
-      <div class="modal-section-title">💡 幹部專用額外附註與備註說明</div>
+      <div class="modal-section-title">幹部專用額外附註與備註說明</div>
       <ul style="padding-left: 20px; color: #f472b6;">${notesHTML}</ul>
     </div>
 
     <!-- 三位社員交叉對比點評區塊 -->
     <div class="modal-section">
-      <div class="modal-section-title">👥 三位社員交叉對比點評與審查反饋</div>
+      <div class="modal-section-title">三位社員交叉對比點評與審查反饋</div>
       <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.28); padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
         <div style="border-left: 3px solid #38bdf8; padding-left: 10px;">
-          <strong style="color: #38bdf8;">⚔️ 阿鐵 (硬核深淵技術黨)：</strong>
+          <strong style="color: #38bdf8;">阿鐵 (硬核深淵技術黨)：</strong>
           <span style="color: #e2e8f0; font-size: 0.9rem;">
             ${((act.subType === '競技' || act.subType === '衝分')) ? '⭐⭐⭐⭐⭐【本命戰場】極限壓輪、無傷走位與四星逆襲最考驗實力，規則公平且充滿熱血！' :
               (act.subType === '休閒') ? '【精神回血】不拼極限數值，大家同屏抽卡開盲盒氣氛極好，深淵打累後的最佳放鬆！' :
@@ -6595,7 +6647,7 @@ function openDetailModal(act) {
           </span>
         </div>
         <div style="border-left: 3px solid #c084fc; padding-left: 10px;">
-          <strong style="color: #c084fc;">☕ 悠悠 (佛系休閒氛圍黨)：</strong>
+          <strong style="color: #c084fc;">悠悠 (佛系休閒氛圍黨)：</strong>
           <span style="color: #e2e8f0; font-size: 0.9rem;">
             ${(act.subType === '休閒') ? '⭐⭐⭐⭐⭐【滿分推薦】徹底告別劇本殺與上台簡報！零社恐、零尷尬，喝奶茶吃炸雞聊天超快樂！' :
               ((act.subType === '競技' || act.subType === '衝分')) ? '【被照顧到了】不用擔心自己練度不夠，現場設有觀戰競猜席與雙人手把賽，看神仙打架也超爽！' :
@@ -6603,7 +6655,7 @@ function openDetailModal(act) {
           </span>
         </div>
         <div style="border-left: 3px solid #fbbf24; padding-left: 10px;">
-          <strong style="color: #fbbf24;">🎨 奇奇 (文創手作生活黨)：</strong>
+          <strong style="color: #fbbf24;">奇奇 (文創手作生活黨)：</strong>
           <span style="color: #e2e8f0; font-size: 0.9rem;">
             ${((act.subType === '手作' || act.subType === '動手製作')) ? '⭐⭐⭐⭐⭐【文創核心】無毒材料、嚴格控制在 90 分鐘內完工，100% 把精緻實體周邊帶回家！' :
               (act.subType === '休閒') ? '【儀式感拉滿】零食盲測評分與盲盒互換很有社交溫度，拍照紀錄發社刊超級好看！' :
@@ -6767,9 +6819,9 @@ ${(act.supplies || []).map(s => `- ${s}`).join('\n')}
 ${(act.extraNotes || []).map(n => `- ${n}`).join('\n')}
 
 ## 六、三位社員交叉對比審查評語
-- **⚔️ 阿鐵 (硬核深淵技術黨)**：${((act.subType === '競技' || act.subType === '衝分')) ? '⭐⭐⭐⭐⭐ 極限壓輪、無傷走位與四星逆襲最考驗實力，規則公平且充滿熱血！' : (act.subType === '休閒') ? '不拼極限數值，大家同屏抽卡開盲盒氣氛極好，深淵打累後的最佳放鬆！' : '原以為手殘做不出來，但配備預製模具與速乾燈，連我這種只會按鍵盤的人都能一次成功！'}
-- **☕ 悠悠 (佛系休閒氛圍黨)**：${(act.subType === '休閒') ? '⭐⭐⭐⭐⭐ 徹底告別劇本殺與上台簡報！零社恐、零尷尬，喝奶茶吃炸雞聊天超快樂！' : ((act.subType === '競技' || act.subType === '衝分')) ? '不用擔心自己練度不夠，現場設有觀戰競猜席與雙人手把賽，看神仙打架也超爽！' : '邊播原聲帶音樂邊動手捏周邊，完成後拍照發限動超級吸睛，完全沒時間壓力！'}
-- **🎨 奇奇 (文創手作生活黨)**：${((act.subType === '手作' || act.subType === '動手製作')) ? '⭐⭐⭐⭐⭐ 無毒材料、嚴格控制在 90 分鐘內完工，100% 把精緻實體周邊帶回家！' : (act.subType === '休閒') ? '零食盲測評分與盲盒互換很有社交溫度，拍照紀錄發社刊超級好看！' : '賽後頒發手作專屬壓克力獎牌，並設有「手殘抽象搞笑獎」，人人有獎！'}
+- **阿鐵 (硬核深淵技術黨)**：${((act.subType === '競技' || act.subType === '衝分')) ? '⭐⭐⭐⭐⭐ 極限壓輪、無傷走位與四星逆襲最考驗實力，規則公平且充滿熱血！' : (act.subType === '休閒') ? '不拼極限數值，大家同屏抽卡開盲盒氣氛極好，深淵打累後的最佳放鬆！' : '原以為手殘做不出來，但配備預製模具與速乾燈，連我這種只會按鍵盤的人都能一次成功！'}
+- **悠悠 (佛系休閒氛圍黨)**：${(act.subType === '休閒') ? '⭐⭐⭐⭐⭐ 徹底告別劇本殺與上台簡報！零社恐、零尷尬，喝奶茶吃炸雞聊天超快樂！' : ((act.subType === '競技' || act.subType === '衝分')) ? '不用擔心自己練度不夠，現場設有觀戰競猜席與雙人手把賽，看神仙打架也超爽！' : '邊播原聲帶音樂邊動手捏周邊，完成後拍照發限動超級吸睛，完全沒時間壓力！'}
+- **奇奇 (文創手作生活黨)**：${((act.subType === '手作' || act.subType === '動手製作')) ? '⭐⭐⭐⭐⭐ 無毒材料、嚴格控制在 90 分鐘內完工，100% 把精緻實體周邊帶回家！' : (act.subType === '休閒') ? '零食盲測評分與盲盒互換很有社交溫度，拍照紀錄發社刊超級好看！' : '賽後頒發手作專屬壓克力獎牌，並設有「手殘抽象搞笑獎」，人人有獎！'}
 `;
   navigator.clipboard.writeText(text).then(() => {
     showToast(`已複製完整「${act.title}」企劃書 Markdown！`);
