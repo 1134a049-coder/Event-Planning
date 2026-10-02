@@ -5856,50 +5856,50 @@ function renderStatsView() {
 
   const statCard1 = isMemberMode
     ? `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(129, 140, 248, 0.4); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">👤 當前篩選社員</span>
-        <div style="font-size: 1.5rem; font-weight: 800; color: #38bdf8; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${targetMember.name}</div>
+      <div class="stat-metric-card is-member-highlight">
+        <span class="stat-label">👤 當前社員</span>
+        <div class="stat-val stat-val-sky" style="font-size: 1.25rem;">${targetMember.name}</div>
       </div>
     `
     : `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">👥 已參與社員</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">${memberVotes.length} 位</div>
+      <div class="stat-metric-card">
+        <span class="stat-label">👥 已參社員</span>
+        <div class="stat-val stat-val-sky">${memberVotes.length} 位</div>
       </div>
     `;
 
   const statCard2 = isMemberMode
     ? `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(129, 140, 248, 0.4); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🎟️ 該社員心願項目</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #10b981; margin-top: 4px;">${rankedActivities.length} 項</div>
+      <div class="stat-metric-card is-member-highlight">
+        <span class="stat-label">🎟️ 心願項目</span>
+        <div class="stat-val stat-val-emerald">${rankedActivities.length} 項</div>
       </div>
     `
     : `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🎟️ 累計總選票數</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #10b981; margin-top: 4px;">${totalVotesCast} 票</div>
+      <div class="stat-metric-card">
+        <span class="stat-label">🎟️ 累積票數</span>
+        <div class="stat-val stat-val-emerald">${totalVotesCast} 票</div>
       </div>
     `;
 
   const statCard3 = isMemberMode
     ? `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(129, 140, 248, 0.4); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🔥 所選最高人氣 (全社)</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #f59e0b; margin-top: 4px;">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
+      <div class="stat-metric-card is-member-highlight">
+        <span class="stat-label">🔥 熱門活動</span>
+        <div class="stat-val stat-val-amber">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
       </div>
     `
     : `
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🔥 最熱門活動票數</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #f59e0b; margin-top: 4px;">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
+      <div class="stat-metric-card">
+        <span class="stat-label">🔥 熱門活動</span>
+        <div class="stat-val stat-val-amber">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
       </div>
     `;
 
   const statCard4 = `
-    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-      <span style="font-size: 0.85rem; color: #94a3b8;">${isMemberMode ? '🏆 該社員首選人氣企劃' : '🏆 最高人氣企劃'}</span>
-      <div style="font-size: 0.95rem; font-weight: 700; color: #fbbf24; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}">
+    <div class="stat-metric-card stat-card-wide">
+      <span class="stat-label">${isMemberMode ? '🏆 該社員首選人氣企劃' : '🏆 最高人氣企劃'}</span>
+      <div class="stat-val-highlight" title="${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}">
         ${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}
       </div>
     </div>
@@ -5972,11 +5972,13 @@ function renderStatsView() {
       </div>
     </div>
 
-    <!-- 概覽看板 (四項核心指標卡) -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-      ${statCard1}
-      ${statCard2}
-      ${statCard3}
+    <!-- 概覽看板 (前三項指標同高同排，第四項大卡置底) -->
+    <div class="stats-overview-grid">
+      <div class="stats-metrics-trio">
+        ${statCard1}
+        ${statCard2}
+        ${statCard3}
+      </div>
       ${statCard4}
     </div>
 
@@ -6024,15 +6026,12 @@ function renderStatsView() {
         ${memberVotes.map(vote => {
           const isSelected = isMemberMode && vote.id === targetMember.id;
           const acts = (vote.selectedIds || []).map(id => activitiesData.find(a => a.id === id)).filter(Boolean);
-          const borderStyle = isSelected 
-            ? 'border: 2px solid #f59e0b; box-shadow: 0 0 16px rgba(245, 158, 11, 0.35); background: rgba(30, 41, 59, 0.95);' 
-            : '';
           return `
-            <div class="member-box-card" style="${borderStyle}">
+            <div class="member-box-card ${isSelected ? 'is-selected' : ''}">
               <div class="member-box-header">
                 <div class="member-name">
                   <span>👤 ${vote.name}</span>
-                  ${isSelected ? '<span style="background: rgba(245, 158, 11, 0.25); border: 1px solid #f59e0b; color: #fbbf24; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: 6px;">圖表顯示中</span>' : ''}
+                  ${isSelected ? '<span class="member-badge-active">圖表顯示中</span>' : ''}
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <button class="btn-filter-member-card ${isSelected ? 'active' : ''}" onclick="filterByMember('${vote.id}')" title="點擊在上方圖表中顯示社員「${vote.name}」的心願活動">
@@ -6046,14 +6045,14 @@ function renderStatsView() {
                   <button onclick="deleteMemberVote('${vote.id}')" style="background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem; padding: 2px 4px;" title="刪除此紀錄">✕</button>
                 </div>
               </div>
-              <div style="font-size: 0.75rem; color: #64748b;">匯入時間：${vote.time}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">匯入時間：${vote.time}</div>
 
               <!-- 底下顯示該社員選擇的活動內容 -->
               <div class="member-activities-list">
                 ${acts.map(act => `
                   <div class="member-activity-chip" onclick="openDetailModalById('${act.id}', 'member-${vote.id}')" title="點擊預覽此活動">
                     <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;">${act.title}</span>
-                    <span style="font-size: 0.7rem; color: #94a3b8;">${act.subType || ''}</span>
+                    <span style="font-size: 0.7rem; color: var(--text-dim);">${act.subType || ''}</span>
                   </div>
                 `).join('')}
               </div>
@@ -6541,14 +6540,14 @@ function openDetailModal(act) {
   }
 
   const scheduleHTML = (act.schedule || []).map(s => `
-    <div style="display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px dashed rgba(255,255,255,0.06);">
-      <strong style="color: #38bdf8; min-width: 100px;">${s.time}</strong>
-      <span>${s.item}</span>
+    <div class="schedule-item">
+      <strong class="schedule-time">${s.time}</strong>
+      <span class="schedule-desc">${s.item}</span>
     </div>
   `).join('');
 
-  const notesHTML = (act.extraNotes || []).map(n => `<li style="margin-bottom: 6px;">${n}</li>`).join('');
-  const suppliesHTML = (act.supplies || []).map(s => `<li style="margin-bottom: 4px;">${s}</li>`).join('');
+  const notesHTML = (act.extraNotes || []).map(n => `<li>${n}</li>`).join('');
+  const suppliesHTML = (act.supplies || []).map(s => `<li>${s}</li>`).join('');
   
   const currentStatus = activityStatuses[act.id] || 'none';
   const savedNote = activityNotes[act.id] || '';
@@ -6556,22 +6555,21 @@ function openDetailModal(act) {
 
   modalBody.innerHTML = `
     <!-- 本機狀態追蹤與喜歡標記 (LocalStorage) -->
-    <div class="modal-section" style="background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-        <div class="modal-section-title" style="margin-bottom: 0;">活動籌備與喜歡標記 (本機自動儲存)</div>
-        <div style="display: flex; align-items: center; gap: 10px;">
+    <div class="modal-prep-card">
+      <div class="modal-prep-header">
+        <div class="modal-prep-title">活動籌備與喜歡標記 (本機自動儲存)</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
           <!-- 彈窗內快速標記喜歡 (未標記=空心，已標記=實心) -->
           <button 
             type="button" 
             id="modalBookmarkBtnWrap"
             class="btn-action btn-modal-bookmark-toggle ${isSelected ? 'active' : ''}" 
             onclick="toggleUnifiedBookmark('${act.id}')"
-            style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; font-size: 0.85rem; font-weight: 700; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(244, 114, 182, 0.35); color: #fbcfe8; cursor: pointer;"
           >
             <span id="modalBookmarkIcon" style="display: inline-flex; align-items: center;">${getBookmarkSVG(isSelected)}</span>
             <span id="modalBookmarkBtnText">${isSelected ? '已標記為喜歡' : '標記此活動為喜歡'}</span>
           </button>
-          <span style="font-size: 0.8rem; color: #10b981;">自動同步</span>
+          <span class="modal-prep-sync">自動同步</span>
         </div>
       </div>
       
@@ -6582,17 +6580,17 @@ function openDetailModal(act) {
         <button type="button" class="btn-status-toggle ${currentStatus === 'completed' ? 'active' : ''}" data-status="completed"><span class="status-dot dot-completed"></span>已舉辦</button>
       </div>
 
-      <div style="margin-top: 10px;">
-        <label for="actPersonalNote" style="display: block; font-size: 0.88rem; color: #cbd5e1; font-weight: 600; margin-bottom: 6px;">
+      <div class="modal-note-wrap">
+        <label for="actPersonalNote" class="modal-note-label">
           幹部 / 個人私房備忘錄：
         </label>
         <textarea 
           id="actPersonalNote" 
           rows="2" 
           placeholder="例如：預計第6週週五舉辦、請副社長向學校借投影機、預計點5份韓式炸雞...（輸入即刻自動儲存）"
-          style="width: 100%; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #fff; padding: 10px 12px; font-size: 0.9rem; resize: vertical; font-family: inherit;"
+          class="modal-note-textarea"
         >${savedNote}</textarea>
-        <div id="noteSaveStatus" style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">
+        <div id="noteSaveStatus" class="modal-note-status">
           ${savedNote ? '✅ 備忘內容已存於本機' : '💡 輸入任何內容均會自動儲存於本機瀏覽器'}
         </div>
       </div>
@@ -6600,7 +6598,7 @@ function openDetailModal(act) {
 
     <div class="modal-section">
       <div class="modal-section-title">活動基本資訊</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 8px;">
+      <div class="modal-info-grid">
         <div><strong>人數規模：</strong>${act.participants}</div>
         <div><strong>預估耗時：</strong>${act.duration}</div>
         <div><strong>建議地點：</strong>${act.location}</div>
@@ -6610,8 +6608,8 @@ function openDetailModal(act) {
 
     <div class="modal-section">
       <div class="modal-section-title">企劃目標與核心概念</div>
-      <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">${act.summary}</p>
-      <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 4px; color: #fef08a; margin-top: 6px;">
+      <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">${act.summary}</p>
+      <div class="modal-highlight-box">
         <strong>特色亮點：</strong>${act.highlight}
       </div>
     </div>
@@ -6623,42 +6621,42 @@ function openDetailModal(act) {
 
     <div class="modal-section">
       <div class="modal-section-title">規則公約與注意事項</div>
-      <pre style="white-space: pre-wrap; font-family: inherit; color: #cbd5e1; background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6;">${act.rules}</pre>
+      <pre class="modal-rules-box">${act.rules}</pre>
     </div>
 
     <div class="modal-section">
       <div class="modal-section-title">必備物資與器材清單</div>
-      <ul style="padding-left: 20px; color: #cbd5e1;">${suppliesHTML}</ul>
+      <ul class="modal-supplies-list">${suppliesHTML}</ul>
     </div>
 
     <div class="modal-section">
       <div class="modal-section-title">幹部專用額外附註與備註說明</div>
-      <ul style="padding-left: 20px; color: #f472b6;">${notesHTML}</ul>
+      <ul class="modal-notes-list">${notesHTML}</ul>
     </div>
 
     <!-- 三位社員交叉對比點評區塊 -->
     <div class="modal-section">
       <div class="modal-section-title">三位社員交叉對比點評與審查反饋</div>
-      <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.28); padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
-        <div style="border-left: 3px solid #38bdf8; padding-left: 10px;">
-          <strong style="color: #38bdf8;">阿鐵 (硬核深淵技術黨)：</strong>
-          <span style="color: #e2e8f0; font-size: 0.9rem;">
+      <div class="modal-reviews-box">
+        <div class="review-item review-item-tie">
+          <strong>阿鐵 (硬核深淵技術黨)：</strong>
+          <span>
             ${((act.subType === '競技' || act.subType === '衝分')) ? '⭐⭐⭐⭐⭐【本命戰場】極限壓輪、無傷走位與四星逆襲最考驗實力，規則公平且充滿熱血！' :
               (act.subType === '休閒') ? '【精神回血】不拼極限數值，大家同屏抽卡開盲盒氣氛極好，深淵打累後的最佳放鬆！' :
               '【手殘救星】原以為手殘做不出來，但配備預製模具與速乾燈，連我這種只會按鍵盤的人都能一次成功！'}
           </span>
         </div>
-        <div style="border-left: 3px solid #c084fc; padding-left: 10px;">
-          <strong style="color: #c084fc;">悠悠 (佛系休閒氛圍黨)：</strong>
-          <span style="color: #e2e8f0; font-size: 0.9rem;">
+        <div class="review-item review-item-you">
+          <strong>悠悠 (佛系休閒氛圍黨)：</strong>
+          <span>
             ${(act.subType === '休閒') ? '⭐⭐⭐⭐⭐【滿分推薦】徹底告別劇本殺與上台簡報！零社恐、零尷尬，喝奶茶吃炸雞聊天超快樂！' :
               ((act.subType === '競技' || act.subType === '衝分')) ? '【被照顧到了】不用擔心自己練度不夠，現場設有觀戰競猜席與雙人手把賽，看神仙打架也超爽！' :
               '【超級治癒】邊播原聲帶音樂邊動手捏周邊，完成後拍照發限動超級吸睛，完全沒時間壓力！'}
           </span>
         </div>
-        <div style="border-left: 3px solid #fbbf24; padding-left: 10px;">
-          <strong style="color: #fbbf24;">奇奇 (文創手作生活黨)：</strong>
-          <span style="color: #e2e8f0; font-size: 0.9rem;">
+        <div class="review-item review-item-qi">
+          <strong>奇奇 (文創手作生活黨)：</strong>
+          <span>
             ${((act.subType === '手作' || act.subType === '動手製作')) ? '⭐⭐⭐⭐⭐【文創核心】無毒材料、嚴格控制在 90 分鐘內完工，100% 把精緻實體周邊帶回家！' :
               (act.subType === '休閒') ? '【儀式感拉滿】零食盲測評分與盲盒互換很有社交溫度，拍照紀錄發社刊超級好看！' :
               '【榮譽感滿分】賽後頒發手作專屬壓克力獎牌，並設有「手殘抽象搞笑獎」，人人有獎！'}

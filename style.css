@@ -751,6 +751,7 @@ body::before {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   opacity: 0.82;
+  z-index: 1;
 }
 
 .filter-btn.app-icon-btn:hover {
@@ -758,12 +759,14 @@ body::before {
   transform: translateY(-2px) scale(1.04);
   border-color: var(--border-focus);
   box-shadow: var(--shadow-card);
+  z-index: 6;
 }
 
 .filter-btn.app-icon-btn.active {
   opacity: 1;
   border-color: var(--border-focus);
   box-shadow: 0 0 0 2px var(--border-focus), var(--shadow-card);
+  z-index: 5;
 }
 
 /* ALL 按鈕：淺色白底時為深岩灰標牌，深色時為暖暗金 */
@@ -800,16 +803,26 @@ body::before {
 
 .app-corner-badge {
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: -5px;
+  right: -5px;
   background: #ef4444;
   color: #ffffff;
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 1px 6px;
+  padding: 0 5px;
+  height: 18px;
+  min-width: 18px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border-radius: 999px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   border: 2px solid var(--bg-card);
+  z-index: 12;
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
 .app-hover-name {
@@ -831,16 +844,19 @@ body::before {
   cursor: pointer;
   transition: var(--transition);
   opacity: 0.85;
+  z-index: 1;
 }
 
 .filter-btn.app-icon-fav:hover {
   opacity: 1;
   transform: translateY(-2px) scale(1.06);
+  z-index: 6;
 }
 
 .filter-btn.app-icon-fav.active {
   opacity: 1;
   transform: scale(1.05);
+  z-index: 5;
 }
 
 .app-bookmark-svg {
@@ -1353,19 +1369,54 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 12px;
   background: var(--bg-modal);
+}
+
+.modal-header-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .modal-header-text h2 {
   font-size: 1.35rem;
   color: var(--text-main);
   font-weight: 700;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  word-break: break-word;
 }
 
 .modal-header-text p {
   color: var(--text-muted);
   font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.modal-nav-counter {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+[data-theme="dark"] .modal-nav-counter {
+  background: rgba(99, 102, 241, 0.25);
+  color: #c7d2fe;
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .btn-modal-close {
@@ -1381,6 +1432,7 @@ body::before {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .btn-modal-close:hover {
@@ -1412,6 +1464,243 @@ body::before {
   gap: 8px;
   border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 6px;
+}
+
+/* 活動籌備與喜歡標記卡片方框 */
+.modal-prep-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-prep-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modal-prep-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.btn-modal-bookmark-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+
+.btn-modal-bookmark-toggle:hover {
+  border-color: #f59e0b;
+  color: #d97706;
+}
+
+.btn-modal-bookmark-toggle.active {
+  background: rgba(244, 114, 182, 0.12);
+  border-color: #f472b6;
+  color: #e11d48;
+}
+
+.modal-prep-sync {
+  font-size: 0.78rem;
+  color: #059669;
+  font-weight: 600;
+}
+[data-theme="dark"] .modal-prep-sync {
+  color: #10b981;
+}
+
+/* 備忘錄輸入框修復：100% 寬度自適應、絕不超出容器 */
+.modal-note-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.modal-note-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.modal-note-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 68px;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.modal-note-textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.modal-note-status {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* 活動基本資訊方框 */
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+@media (max-width: 480px) {
+  .modal-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 特色亮點方框 */
+.modal-highlight-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-left: 4px solid #f59e0b;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  color: #b45309;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+[data-theme="dark"] .modal-highlight-box {
+  color: #fef08a;
+}
+
+/* 完整活動時程條目 */
+.schedule-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  font-size: 0.88rem;
+}
+.schedule-time {
+  color: #0284c7;
+  font-weight: 700;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .schedule-time {
+  color: #38bdf8;
+}
+.schedule-desc {
+  color: var(--text-main);
+  flex: 1;
+}
+
+/* 規則公約方框 */
+.modal-rules-box {
+  white-space: pre-wrap;
+  font-family: inherit;
+  color: var(--text-main);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* 物資與器材清單 */
+.modal-supplies-list {
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* 幹部備註說明 */
+.modal-notes-list {
+  padding-left: 20px;
+  color: #db2777;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+[data-theme="dark"] .modal-notes-list {
+  color: #f472b6;
+}
+
+/* 三位社員交叉對比點評方框 */
+.modal-reviews-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-subtle);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.review-item {
+  padding-left: 10px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-main);
+}
+.review-item-tie {
+  border-left: 3px solid #0284c7;
+}
+.review-item-tie strong {
+  color: #0284c7;
+}
+[data-theme="dark"] .review-item-tie strong {
+  color: #38bdf8;
+}
+
+.review-item-you {
+  border-left: 3px solid #7c3aed;
+}
+.review-item-you strong {
+  color: #7c3aed;
+}
+[data-theme="dark"] .review-item-you strong {
+  color: #c084fc;
+}
+
+.review-item-qi {
+  border-left: 3px solid #d97706;
+}
+.review-item-qi strong {
+  color: #d97706;
+}
+[data-theme="dark"] .review-item-qi strong {
+  color: #fbbf24;
 }
 
 .modal-footer {
@@ -1600,18 +1889,240 @@ body::before {
   color: var(--color-score);
 }
 
+/* --------------------------------------------------------------------------
+   統計看板概覽指標卡 (問題 2 & 3: 已參社員、累積票數、熱門活動同高排版)
+   -------------------------------------------------------------------------- */
+.stats-overview-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stats-metrics-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 6px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.stat-metric-card.is-member-highlight {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.stat-card-wide {
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stat-val {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.stat-val-sky {
+  color: #0284c7;
+}
+[data-theme="dark"] .stat-val-sky {
+  color: #38bdf8;
+}
+
+.stat-val-emerald {
+  color: #059669;
+}
+[data-theme="dark"] .stat-val-emerald {
+  color: #10b981;
+}
+
+.stat-val-amber {
+  color: #d97706;
+}
+[data-theme="dark"] .stat-val-amber {
+  color: #f59e0b;
+}
+
+.stat-val-highlight {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #d97706;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+[data-theme="dark"] .stat-val-highlight {
+  color: #fbbf24;
+}
+
+/* 電腦版排版：四指標卡展開為 4 欄一列 */
+@media (min-width: 769px) {
+  .stats-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .stats-metrics-trio {
+    display: contents;
+  }
+  .stat-metric-card {
+    padding: 16px 12px;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+  }
+  .stat-val {
+    font-size: 1.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   已匯入社員心願卡盒方框區塊 (問題 1: 採用獨立方框表示，避免文字浮現)
+   -------------------------------------------------------------------------- */
 .member-boxes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
+.member-box-card,
 .member-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.member-box-card:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 當前在圖表中選中之社員卡片高亮方框 */
+.member-box-card.is-selected {
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25) !important;
+}
+
+[data-theme="light"] .member-box-card.is-selected {
+  background: rgba(245, 158, 11, 0.05) !important;
+}
+
+[data-theme="dark"] .member-box-card.is-selected {
+  background: rgba(30, 41, 59, 0.95) !important;
+}
+
+.member-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.member-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.member-badge-active {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid #f59e0b;
+  color: #d97706;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+[data-theme="dark"] .member-badge-active {
+  color: #fbbf24;
+}
+
+.btn-filter-member-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.btn-filter-member-card:hover {
+  background: var(--bg-subtle-hover);
+  color: var(--text-main);
+  border-color: var(--border-focus);
+}
+
+.btn-filter-member-card.active {
+  background: #f59e0b;
+  color: #ffffff;
+  border-color: #f59e0b;
+}
+
+.member-activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.member-activity-chip {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.member-activity-chip:hover {
+  background: var(--bg-subtle-hover);
+  border-color: var(--border-focus);
+  color: var(--border-focus);
+  transform: translateX(2px);
 }
 
 .btn-member-filter-chip {
@@ -1867,8 +2378,10 @@ body::before {
   /* 遊戲標籤在手機端橫向平滑滑動，不換行破版 */
   .game-app-tabs {
     overflow-x: auto;
+    overflow-y: visible;
     flex-wrap: nowrap;
-    padding-bottom: 4px;
+    padding: 10px 10px 8px 6px; /* 保留充足餘裕，防止數字角標與 focus ring 邊框被裁切 */
+    margin: -6px 0 -2px 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -1884,24 +2397,48 @@ body::before {
     height: 52px;
   }
 
+  /* 選取中的 App 圖標圖層置頂，確保放大及邊框焦點不被相鄰圖標遮擋 */
+  .filter-btn.app-icon-btn.active,
+  .filter-btn.app-icon-fav.active {
+    z-index: 10 !important;
+  }
+
+  .filter-btn.app-icon-btn:hover,
+  .filter-btn.app-icon-fav:hover {
+    z-index: 11 !important;
+  }
+
+  /* 手機版角標定位與圖層 */
+  .app-corner-badge {
+    top: -5px;
+    right: -5px;
+    z-index: 15 !important;
+    font-size: 0.66rem;
+    height: 18px;
+    min-width: 18px;
+    line-height: 18px;
+    padding: 0 5px;
+  }
+
   .app-bookmark-svg {
     width: 48px;
     height: 48px;
   }
 
-  /* 小分類標籤橫向滑動 */
+  /* 小分類標籤（全部、休閒、競技、手作）：無須顯示 icon，緊湊填滿方框內 */
   .sub-filter-row {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 12px;
   }
 
   .sub-filter-pills {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    display: flex !important;
+    width: 100% !important;
+    overflow-x: visible !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    padding: 0 !important;
   }
 
   .sub-filter-pills::-webkit-scrollbar {
@@ -1909,16 +2446,44 @@ body::before {
   }
 
   .sub-pill-btn {
-    flex-shrink: 0;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    padding: 0 4px !important;
+    height: 32px !important;
+    font-size: 0.78rem !important;
+    gap: 3px !important;
+    white-space: nowrap !important;
   }
 
+  /* 手機版本性質標籤無須顯示 icon */
+  .sub-pill-btn .mono-icon,
+  .sub-filter-pills .mono-icon,
+  .sub-pill-btn svg {
+    display: none !important;
+  }
+
+  .sub-pill-btn .pill-badge {
+    padding: 1px 5px !important;
+    font-size: 0.7rem !important;
+    margin-left: 2px !important;
+  }
+
+  /* 命運抽卡與收起按鈕列：上方增加分割線以清晰區分區域 (如搜尋框與APP圖標的分割位置) */
   .toolbar-bottom {
-    justify-content: space-between;
-    width: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-top: 4px !important;
+    padding-top: 14px !important;
+    border-top: 1px solid var(--border-color) !important;
   }
 
   .filter-tools-right {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     justify-content: space-between;
   }
 
@@ -1946,22 +2511,76 @@ body::before {
     margin-top: auto;
   }
 
+  /* 隱藏標頭冗餘的上一項/下一項按鈕，釋放標題與關閉按鈕空間 */
+  .modal-nav-controls {
+    display: none !important;
+  }
+
   .modal-header {
-    padding: 14px 18px;
+    padding: 14px 16px 12px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .modal-header-text h2 {
+    font-size: 1.15rem;
+    line-height: 1.35;
   }
 
   .modal-content-body {
-    padding: 16px 18px;
+    padding: 14px 16px;
+    gap: 14px;
   }
 
-  .modal-footer {
-    padding: 12px 16px;
+  /* 籌備備忘錄卡片手機版緊湊排版 */
+  .modal-prep-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .modal-prep-header {
+    gap: 8px;
+  }
+
+  .modal-prep-title {
+    font-size: 0.88rem;
+  }
+
+  .btn-modal-bookmark-toggle {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+  }
+
+  /* 狀態按鈕組：在手機端以 4 欄或 2x2 整齊排布 */
+  .status-btn-group {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 5px !important;
+  }
+
+  .btn-status-toggle {
     justify-content: center;
+    padding: 6px 2px;
+    font-size: 0.75rem;
+    width: 100%;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  /* 手機版彈窗底部操作按鈕：兩欄工整排版，每顆按鈕均等高度與點擊區域 */
+  .modal-footer {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 10px 14px !important;
   }
 
   .modal-footer .btn-action {
-    flex: 1;
-    min-width: 130px;
-    justify-content: center;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 6px !important;
+    font-size: 0.78rem !important;
+    justify-content: center !important;
+    height: 36px !important;
   }
 }
