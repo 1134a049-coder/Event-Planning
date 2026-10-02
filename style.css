@@ -9,15 +9,15 @@
 :root {
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 
-  /* ☀️ 預設白底主題 Tokens (Light Mode - 強化對比與層次) */
-  --bg-page: #f1f5f9;
-  --bg-page-gradient: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 160px, #edf2f7 100%);
+  /* ☀️ 預設白底主題 Tokens (Light Mode - 背景底色調暗 1/4 倍，大幅強化對比度) */
+  --bg-page: #dfe5ec;
+  --bg-page-gradient: linear-gradient(180deg, #e5eaf0 0%, #dfe5ec 160px, #d8e0ea 100%);
   --bg-navbar: rgba(255, 255, 255, 0.96);
   --bg-card: #ffffff;
   --bg-card-hover: #ffffff;
   --bg-panel: #ffffff;
-  --bg-subtle: #f8fafc;
-  --bg-subtle-hover: #f1f5f9;
+  --bg-subtle: #f1f5f9;
+  --bg-subtle-hover: #e2e8f0;
   --bg-elevated: #ffffff;
   --bg-modal: #ffffff;
   --bg-modal-backdrop: rgba(15, 23, 42, 0.55);
