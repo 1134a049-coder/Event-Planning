@@ -9,17 +9,15 @@
 :root {
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 
-  /* ☀️ 預設白底主題 Tokens (Light Mode) */
-  --bg-page: #f8fafc;
-  --bg-page-gradient: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.04) 0%, transparent 45%),
-                      radial-gradient(circle at 90% 20%, rgba(236, 72, 153, 0.03) 0%, transparent 45%),
-                      #f8fafc;
-  --bg-navbar: rgba(255, 255, 255, 0.94);
+  /* ☀️ 預設白底主題 Tokens (Light Mode - 強化對比與層次) */
+  --bg-page: #f1f5f9;
+  --bg-page-gradient: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 160px, #edf2f7 100%);
+  --bg-navbar: rgba(255, 255, 255, 0.96);
   --bg-card: #ffffff;
   --bg-card-hover: #ffffff;
   --bg-panel: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-subtle-hover: #e2e8f0;
+  --bg-subtle: #f8fafc;
+  --bg-subtle-hover: #f1f5f9;
   --bg-elevated: #ffffff;
   --bg-modal: #ffffff;
   --bg-modal-backdrop: rgba(15, 23, 42, 0.55);
@@ -30,15 +28,15 @@
   --text-muted: #64748b;
   --text-dim: #94a3b8;
 
-  /* 邊框與分隔線 Tokens */
-  --border-color: #e2e8f0;
-  --border-subtle: #edf2f7;
+  /* 邊框與分隔線 Tokens (加強邊框可見度，拒絕蒼白平塌) */
+  --border-color: #cbd5e1;
+  --border-subtle: #e2e8f0;
   --border-focus: #4f46e5;
 
-  /* 陰影 Tokens (現代微陰影，告別粗糙霓虹光暈) */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 6px 16px -4px rgba(15, 23, 42, 0.04);
-  --shadow-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  /* 陰影 Tokens (自然層次微陰影，為白卡片創造立體浮凸感) */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 2px 8px -2px rgba(15, 23, 42, 0.08), 0 1px 4px -1px rgba(15, 23, 42, 0.05);
+  --shadow-hover: 0 12px 24px -4px rgba(15, 23, 42, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.06);
   --shadow-modal: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
 
   /* 主題遊戲色彩 Tokens (白底清晰對比優化) */
@@ -411,11 +409,12 @@ body::before {
   flex-direction: column;
   gap: 0;
   margin-bottom: 20px;
-  padding: 16px 22px;
+  padding: 18px 24px;
   background: var(--bg-panel);
   border: 1px solid var(--border-color);
+  border-left: 5px solid var(--primary);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-card);
   transition: var(--transition);
 }
 
@@ -514,10 +513,10 @@ body::before {
 
 .control-panel {
   border-radius: var(--radius-lg);
-  padding: 16px 20px;
+  padding: 18px 22px;
   background: var(--bg-panel);
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-card);
   transition: var(--transition);
 }
 
@@ -1056,6 +1055,23 @@ body::before {
   transition: var(--transition);
   overflow: hidden;
   cursor: pointer;
+  border-top: 3.5px solid var(--border-color);
+}
+
+.postit-card.card-cat-genshin {
+  border-top-color: #10b981;
+}
+
+.postit-card.card-cat-hsr {
+  border-top-color: #6366f1;
+}
+
+.postit-card.card-cat-zzz {
+  border-top-color: #f59e0b;
+}
+
+.postit-card.card-cat-other {
+  border-top-color: #ec4899;
 }
 
 .postit-card:hover {
@@ -1088,8 +1104,12 @@ body::before {
 
 .badge-category {
   font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
 }
 
 .badge-subtype {
@@ -1194,15 +1214,17 @@ body::before {
   transform: scale(1.15);
 }
 
-/* 白色/亮色頁面：未收藏為清晰有質感的 Slate-400 (#94a3b8)，懸停時呈現琥珀金與柔和背景 */
+/* 白色/亮色頁面：書籤按鈕提供清晰的微卡槽背景與邊框，觸控感十足 */
 [data-theme="light"] .btn-bookmark-toggle {
-  color: #94a3b8;
+  color: #64748b;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
 }
 
 [data-theme="light"] .btn-bookmark-toggle:hover {
   color: #d97706;
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.22);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.4);
 }
 
 /* 深色/暗色頁面：未收藏為清爽半透明白，懸停時轉為明亮金色 */
@@ -1288,12 +1310,13 @@ body::before {
 .cards-grid.cards-collapsed .postit-card {
   min-height: auto;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-card);
+  border-top-width: 3.5px;
 }
 
 .cards-grid.cards-collapsed .postit-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
   border-color: var(--border-focus);
 }
 

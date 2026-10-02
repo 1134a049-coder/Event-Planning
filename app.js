@@ -6334,7 +6334,7 @@ function createCardHTML(act) {
   `).join('');
 
   return `
-    <article class="postit-card card-${act.subTypeKey || 'casual'}" id="card-${act.id}">
+    <article class="postit-card card-${act.subTypeKey || 'casual'} card-cat-${act.categoryKey || 'other'}" id="card-${act.id}">
       <div class="card-header">
         <div class="card-badges-left">
           <span class="badge-category">${act.category}</span>
