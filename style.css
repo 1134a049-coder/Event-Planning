@@ -268,14 +268,16 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
+  min-width: 36px;
+  width: auto;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 9999px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 0;
+  padding: 0 8px;
+  gap: 5px;
   transition: var(--transition);
   position: relative;
 }
@@ -291,6 +293,51 @@ body::before {
   background: var(--color-hsr-bg);
   border-color: var(--color-hsr);
   color: var(--color-hsr);
+}
+
+.btn-nav-switch-stats #statsTabVotesCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f59e0b;
+  color: #1e1b18;
+  font-size: 0.72rem;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 1px 7px;
+  line-height: 1.2;
+}
+
+/* 社員快篩標籤按鈕 */
+.member-chip-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: var(--transition);
+}
+
+.member-chip-btn:hover {
+  background: var(--bg-subtle-hover);
+  border-color: #f59e0b;
+  transform: translateY(-1px);
+}
+
+.member-chip-btn .chip-count {
+  background: #f59e0b;
+  color: #1e1b18;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 999px;
+  line-height: 1.2;
 }
 
 /* 頂部分享活動膠囊按鈕 */

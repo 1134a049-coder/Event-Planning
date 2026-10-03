@@ -4396,7 +4396,8 @@ const FALLBACK_ACTIVITIES = [
   }
 ];
 
-let activitiesData = [];
+let activitiesData = FALLBACK_ACTIVITIES;
+window.activitiesData = activitiesData;
 
 // ==========================================================================
 // 社團小獎品清單與心願管理系統 (優化指標 8)
@@ -4535,6 +4536,8 @@ const STORAGE_KEYS = {
 };
 
 let favoriteIds = new Set();
+let favoritesSessionPool = new Set();
+let favoritesUnmarkedList = [];
 let selectedActivityIds = new Set();
 let activityStatuses = {}; // { [actId]: 'none' | 'wish' | 'planned' | 'completed' }
 let activityNotes = {};    // { [actId]: string }
@@ -4571,6 +4574,9 @@ function loadStoredState() {
 
     const savedSelected = localStorage.getItem(STORAGE_KEYS.SELECTED);
     if (savedSelected) selectedActivityIds = new Set(JSON.parse(savedSelected));
+    if (selectedActivityIds.size === 0 && favoriteIds.size > 0) {
+      selectedActivityIds = new Set(favoriteIds);
+    }
 
     const savedStatuses = localStorage.getItem(STORAGE_KEYS.STATUSES);
     if (savedStatuses) activityStatuses = JSON.parse(savedStatuses);
@@ -4585,14 +4591,14 @@ function loadStoredState() {
     if (savedVotes) {
       try {
         const parsed = JSON.parse(savedVotes);
-        memberVotes = Array.isArray(parsed) ? parsed.filter(v => v && v.id && !v.id.startsWith('demo-')) : [];
+        memberVotes = Array.isArray(parsed) ? parsed : [];
       } catch (e) {
         memberVotes = [];
       }
     } else {
       memberVotes = [];
     }
-    saveMemberVotes();
+    window.memberVotes = memberVotes;
 
     const savedPrizes = localStorage.getItem('mihoyo_selected_prizes');
     if (savedPrizes) {
@@ -4619,6 +4625,7 @@ function loadStoredState() {
     const nicknameInput = document.getElementById('shareUserNickname');
     if (nicknameInput && savedName) nicknameInput.value = savedName;
 
+    updateVoteBadges();
     console.log('✅ 本機紀錄成功復原：狀態、勾選與統計已同步！');
   } catch (e) {
     console.warn('讀取本機紀錄失敗，使用預設值：', e);
@@ -4664,6 +4671,7 @@ function saveMemberVotes() {
   } catch (e) {
     console.warn('儲存投票失敗：', e);
   }
+  window.memberVotes = memberVotes;
   updateVoteBadges();
 }
 
@@ -4676,10 +4684,39 @@ function updateSelectedCountBadge() {
   if (shareBadge) shareBadge.textContent = count;
 }
 
-// 更新統計頁投票人數徽章
+// 更新統計頁投票人數徽章與分享彈窗紀錄
 function updateVoteBadges() {
   const badge = document.getElementById('statsTabVotesCount');
-  if (badge) badge.textContent = `${memberVotes.length}人`;
+  if (badge) {
+    badge.textContent = `${memberVotes.length}人`;
+    badge.style.display = memberVotes.length > 0 ? 'inline-flex' : 'none';
+  }
+  const modalBadge = document.getElementById('modalMemberVotesCount');
+  if (modalBadge) {
+    modalBadge.textContent = memberVotes.length;
+  }
+  renderShareModalMemberList();
+}
+
+// 渲染分享彈窗內的已匯入社員清單
+function renderShareModalMemberList() {
+  const listEl = document.getElementById('modalMemberVotesList');
+  if (!listEl) return;
+  if (memberVotes.length === 0) {
+    listEl.innerHTML = `<span style="color: #94a3b8; font-size: 0.8rem; padding: 6px 0;">尚無已匯入的社員紀錄。</span>`;
+    return;
+  }
+  listEl.innerHTML = memberVotes.map(v => `
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; font-size: 0.82rem;">
+      <div>
+        <strong style="color: #f1f5f9;">👤 ${v.name}</strong>
+        <span style="color: #38bdf8; font-size: 0.76rem; margin-left: 8px; font-weight: 600;">(投了 ${v.selectedIds ? v.selectedIds.length : 0} 項)</span>
+      </div>
+      <button onclick="deleteMemberVote('${v.id}')" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; cursor: pointer; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px;" title="刪除此紀錄">
+        ✕ 刪除
+      </button>
+    </div>
+  `).join('');
 }
 
 // 勾選/取消勾選活動
@@ -4923,6 +4960,7 @@ function handleCategoryTabSwitch(cat) {
   const btnHeaderBackToLibrary = document.getElementById('btnHeaderBackToLibrary');
   const btnHeaderImportCode = document.getElementById('btnHeaderImportCode');
   const btnOpenPrizeModal = document.getElementById('btnOpenPrizeModal');
+  const memberQuickFilterRow = document.getElementById('memberQuickFilterRow');
 
   if (cat === 'stats') {
     if (systemMainTitle) systemMainTitle.textContent = '社員票選統計圖表';
@@ -4932,6 +4970,9 @@ function handleCategoryTabSwitch(cat) {
     if (subFilterRow) subFilterRow.style.display = 'none';
     if (toolbarBottom) toolbarBottom.style.display = 'none';
     if (panelMemberZone) panelMemberZone.style.display = 'block';
+    if (memberQuickFilterRow) {
+      memberQuickFilterRow.style.display = memberVotes.length > 0 ? 'flex' : 'none';
+    }
     if (btnMemberStatsToggle) {
       btnMemberStatsToggle.classList.add('active');
       btnMemberStatsToggle.title = '返回活動企劃書庫';
@@ -4952,6 +4993,7 @@ function handleCategoryTabSwitch(cat) {
     if (subFilterRow) subFilterRow.style.display = 'flex';
     if (toolbarBottom) toolbarBottom.style.display = 'flex';
     if (panelMemberZone) panelMemberZone.style.display = 'none';
+    if (memberQuickFilterRow) memberQuickFilterRow.style.display = 'none';
     if (btnMemberStatsToggle) {
       btnMemberStatsToggle.classList.remove('active');
       btnMemberStatsToggle.title = '切換至社員投票統計圖表';
@@ -5186,6 +5228,7 @@ function openShareModal() {
   const modal = document.getElementById('shareModalBackdrop');
   if (!modal) return;
   updateSharePreviewList();
+  updateVoteBadges();
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -5200,16 +5243,17 @@ function closeShareModal() {
 function updateSharePreviewList() {
   const previewBox = document.getElementById('shareSelectedPreview');
   const countBadge = document.getElementById('shareSelectedCount');
-  if (countBadge) countBadge.textContent = selectedActivityIds.size;
+  const effectiveSet = selectedActivityIds.size > 0 ? selectedActivityIds : favoriteIds;
+  if (countBadge) countBadge.textContent = effectiveSet.size;
 
   if (!previewBox) return;
 
-  if (selectedActivityIds.size === 0) {
-    previewBox.innerHTML = `<span style="color: #94a3b8;">⚠️ 您目前尚未勾選任何活動，請回到清單勾選卡片上的「☑️ 選取」方框！</span>`;
+  if (effectiveSet.size === 0) {
+    previewBox.innerHTML = `<span style="color: #94a3b8;">⚠️ 您目前尚未收藏任何活動，請回到清單點擊卡片右上角的「❤️ 收藏」方框！</span>`;
     return;
   }
 
-  const list = activitiesData.filter(a => selectedActivityIds.has(a.id));
+  const list = activitiesData.filter(a => effectiveSet.has(a.id));
   previewBox.innerHTML = `
     <div style="display: flex; flex-direction: column; gap: 4px;">
       ${list.map((act, i) => `
@@ -5234,8 +5278,12 @@ function generateAndCopyShareCode() {
   }
   localStorage.setItem(STORAGE_KEYS.USER_NICKNAME, nickname);
 
-  if (selectedActivityIds.size === 0) {
-    alert('您尚未勾選任何活動！請先在卡片上勾選想參加的活動後再匯出。');
+  const effectiveIds = selectedActivityIds.size > 0 
+    ? Array.from(selectedActivityIds) 
+    : Array.from(favoriteIds);
+
+  if (effectiveIds.length === 0) {
+    alert('您尚未收藏任何活動！請先在卡片上標記想參加的活動（點擊卡片右上角愛心）後再匯出。');
     return;
   }
 
@@ -5243,7 +5291,7 @@ function generateAndCopyShareCode() {
     v: 1,
     name: nickname,
     time: new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
-    selectedIds: Array.from(selectedActivityIds)
+    selectedIds: effectiveIds
   };
 
   try {
@@ -5331,13 +5379,8 @@ function importMemberShareCode() {
 
     input.value = '';
     closeShareModal();
-
-    const statsTab = document.getElementById('tabStats');
-    if (statsTab) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      statsTab.classList.add('active');
-      handleCategoryTabSwitch('stats');
-    }
+    updateVoteBadges();
+    handleCategoryTabSwitch('stats');
   } catch (e) {
     alert('分享碼解析失敗，請確認代碼是否完整複製（可包含 MYVOTE:）！');
     console.error('Import error:', e);
@@ -5348,26 +5391,21 @@ function importMemberShareCode() {
 function loadDemoVotesAction() {
   memberVotes = JSON.parse(JSON.stringify(DEMO_VOTES));
   saveMemberVotes();
-    const savedPrizes = localStorage.getItem('mihoyo_selected_prizes');
-    if (savedPrizes) {
-      try {
-        const arr = JSON.parse(savedPrizes);
-        selectedPrizeIds = new Set(Array.isArray(arr) ? arr : []);
-      } catch (e) {
-        selectedPrizeIds = new Set();
-      }
+  const savedPrizes = localStorage.getItem('mihoyo_selected_prizes');
+  if (savedPrizes) {
+    try {
+      const arr = JSON.parse(savedPrizes);
+      selectedPrizeIds = new Set(Array.isArray(arr) ? arr : []);
+    } catch (e) {
+      selectedPrizeIds = new Set();
     }
-    updatePrizeBadge();
+  }
+  updatePrizeBadge();
+  updateVoteBadges();
 
   closeShareModal();
   showToast('已載入三位社員（阿鐵、悠悠、奇奇）示範投票！');
-  
-  const statsTab = document.getElementById('tabStats');
-  if (statsTab) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    statsTab.classList.add('active');
-    handleCategoryTabSwitch('stats');
-  }
+  handleCategoryTabSwitch('stats');
 }
 
 // 刪除個別社員投票紀錄
@@ -5378,6 +5416,7 @@ function deleteMemberVote(voteId) {
 
   memberVotes = memberVotes.filter(v => v.id !== voteId);
   saveMemberVotes();
+  updateVoteBadges();
   renderStatsView();
   showToast(`已移除「${name}」的投票紀錄。`);
 }
@@ -5390,12 +5429,8 @@ function clearAllMemberVotes() {
   }
   if (confirm('確定要清空所有已匯入的社員名單紀錄嗎？清空後統計數據將同步重設。')) {
     memberVotes = [];
-    activeMemberFilter = null;
     saveMemberVotes();
     updateVoteBadges();
-    renderModalMemberVotesList();
-    renderMemberQuickFilterChips();
-    renderActiveMemberBanner();
     if (currentCategory === 'stats') {
       renderStatsView();
     } else {
@@ -5627,7 +5662,7 @@ function renderStatsView() {
         ${memberVotes.map(vote => {
           const acts = (vote.selectedIds || []).map(id => activitiesData.find(a => a.id === id)).filter(Boolean);
           return `
-            <div class="member-box-card">
+            <div class="member-box-card" id="member-card-${vote.id}">
               <div class="member-box-header">
                 <div class="member-name">
                   <span>👤 ${vote.name}</span>
@@ -5654,7 +5689,53 @@ function renderStatsView() {
       </div>
     </div>
   `;
+
+  renderMemberQuickFilterChips();
 }
+
+// 渲染各社員專屬篩選按鈕
+function renderMemberQuickFilterChips() {
+  const containers = document.querySelectorAll('#memberFilterChipsContainer');
+  if (!containers || containers.length === 0) return;
+
+  containers.forEach(container => {
+    if (memberVotes.length === 0) {
+      container.innerHTML = `<span style="font-size: 0.8rem; color: #94a3b8;">目前尚無已匯入社員</span>`;
+      return;
+    }
+
+    container.innerHTML = memberVotes.map(v => {
+      const count = (v.selectedIds || []).length;
+      return `
+        <button 
+          type="button" 
+          class="member-chip-btn" 
+          onclick="scrollToMemberCard('${v.id}')"
+          title="點擊查看「${v.name}」所勾選的 ${count} 項活動"
+        >
+          <span>👤 ${v.name}</span>
+          <span class="chip-count">${count}</span>
+        </button>
+      `;
+    }).join('');
+  });
+}
+
+function scrollToMemberCard(voteId) {
+  const card = document.getElementById(`member-card-${voteId}`);
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+    card.style.borderColor = '#f59e0b';
+    card.style.boxShadow = '0 0 16px rgba(245, 158, 11, 0.5)';
+    setTimeout(() => {
+      card.style.borderColor = '';
+      card.style.boxShadow = '';
+    }, 2000);
+  }
+}
+window.scrollToMemberCard = scrollToMemberCard;
+window.renderMemberQuickFilterChips = renderMemberQuickFilterChips;
 
 // 產生 SVG 圓餅環形圖
 function createDonutChartSVG(typeCounts) {
@@ -5891,10 +5972,12 @@ function toggleUnifiedBookmark(id) {
 
   if (nextMarked) {
     favoriteIds.add(id);
+    selectedActivityIds.add(id);
     if (favoritesSessionPool) favoritesSessionPool.add(id);
     showToast(`已收藏「${title}」至心願清單！❤️`);
   } else {
     favoriteIds.delete(id);
+    selectedActivityIds.delete(id);
     if (currentCategory === 'favorites') {
       if (!favoritesUnmarkedList.includes(id)) {
         favoritesUnmarkedList.push(id);
@@ -5904,7 +5987,9 @@ function toggleUnifiedBookmark(id) {
   }
 
   saveFavorites();
+  saveSelectedActivities();
   updateBookmarkButtons(id, nextMarked);
+  updateSharePreviewList();
 }
 
 // 產生單張卡片 HTML (結合書籤、A540教室、小獎品)
@@ -6352,14 +6437,27 @@ function showToast(message) {
 // ==========================================================================
 // 4. 掛載所有外部呼叫函式至 window (確保 inline HTML 安全呼叫)
 // ==========================================================================
+window.activitiesData = activitiesData;
+window.memberVotes = memberVotes;
+window.favoriteIds = favoriteIds;
+window.selectedActivityIds = selectedActivityIds;
+window.handleCategoryTabSwitch = handleCategoryTabSwitch;
+window.renderStatsView = renderStatsView;
+window.renderCards = renderCards;
+window.importMemberShareCode = importMemberShareCode;
+window.loadDemoVotesAction = loadDemoVotesAction;
+window.deleteMemberVote = deleteMemberVote;
+window.clearAllMemberVotes = clearAllMemberVotes;
+window.generateAndCopyShareCode = generateAndCopyShareCode;
+window.toggleUnifiedBookmark = toggleUnifiedBookmark;
+window.updateVoteBadges = updateVoteBadges;
+
 window.openDetailModalById = openDetailModalById;
 window.openDetailModal = openDetailModal;
 window.closeModal = closeModal;
 window.navigatePrevActivity = navigatePrevActivity;
 window.navigateNextActivity = navigateNextActivity;
 window.toggleSelectActivity = toggleSelectActivity;
-window.deleteMemberVote = deleteMemberVote;
-window.loadDemoVotesAction = loadDemoVotesAction;
 window.openShareModal = openShareModal;
 window.closeShareModal = closeShareModal;
 window.resetAllFilters = resetAllFilters;
