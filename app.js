@@ -4895,10 +4895,12 @@ async function loadActivitiesData() {
     const res = await fetch('./activities.json?t=' + Date.now());
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     activitiesData = await res.json();
+    window.activitiesData = activitiesData;
     console.log(`成功由 activities.json 載入 ${activitiesData.length} 份活動企劃！`);
   } catch (err) {
     console.warn('由 activities.json 載入失敗，啟用內建完整備用資料庫：', err);
     activitiesData = FALLBACK_ACTIVITIES;
+    window.activitiesData = activitiesData;
   }
 }
 
@@ -5852,17 +5854,8 @@ function updateBookmarkButtons(id, isMarked) {
       btn.innerHTML = getBookmarkSVG(isMarked);
     }
   }
-  const modalBookmarkIcon = document.getElementById('modalBookmarkIcon');
-  if (modalBookmarkIcon && currentModalActId === id) {
-    modalBookmarkIcon.innerHTML = getBookmarkSVG(isMarked);
-  }
-  const modalBookmarkBtnText = document.getElementById('modalBookmarkBtnText');
-  if (modalBookmarkBtnText && currentModalActId === id) {
-    modalBookmarkBtnText.textContent = isMarked ? '已標記為想參加心願' : '標記此活動為想參加心願';
-  }
-  const modalBookmarkBtnWrap = document.getElementById('modalBookmarkBtnWrap');
-  if (modalBookmarkBtnWrap && currentModalActId === id) {
-    modalBookmarkBtnWrap.classList.toggle('active', isMarked);
+  if (currentModalActId === id) {
+    updateModalFavBtn(id);
   }
 }
 
@@ -6041,18 +6034,26 @@ function navigateNextActivity() {
   }
 }
 
-// 更新 Modal 彈窗內的喜好按鈕樣式
+// 更新 Modal 彈窗內的喜好按鈕樣式 (右上方放置喜好標籤，採用原有標誌按鍵)
 function updateModalFavBtn(id) {
   if (currentModalActId !== id) return;
-  const modalFavBtn = document.getElementById('modalFavBtn');
-  if (!modalFavBtn) return;
   const isFav = favoriteIds.has(id);
-  if (isFav) {
-    modalFavBtn.classList.add('active');
-    modalFavBtn.innerHTML = '<span>❤️ 已標註喜好</span>';
-  } else {
-    modalFavBtn.classList.remove('active');
-    modalFavBtn.innerHTML = '<span>🤍 加入喜好</span>';
+  const btn = document.getElementById('modalHeaderFavBtn');
+  const icon = document.getElementById('modalHeaderFavIcon');
+  const text = document.getElementById('modalHeaderFavText');
+  if (btn) {
+    btn.classList.toggle('active', isFav);
+    btn.title = isFav ? '已標記心願 (點擊取消)' : '未標記心願 (點擊收藏)';
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      toggleUnifiedBookmark(id);
+    };
+  }
+  if (icon) {
+    icon.innerHTML = getBookmarkSVG(isFav);
+  }
+  if (text) {
+    text.textContent = isFav ? '已標記心願' : '標記心願';
   }
 }
 
@@ -6103,20 +6104,6 @@ function openDetailModal(act) {
   const isSelected = selectedActivityIds.has(act.id);
 
   modalBody.innerHTML = `
-    <!-- 社員心願標記操作列 (純淨無備忘錄，杜絕混淆) -->
-    <div class="modal-bookmark-bar">
-      <button 
-        type="button" 
-        id="modalBookmarkBtnWrap"
-        class="btn-action btn-modal-bookmark-toggle ${isSelected ? 'active' : ''}" 
-        onclick="toggleUnifiedBookmark('${act.id}')"
-      >
-        <span id="modalBookmarkIcon" style="display: inline-flex; align-items: center;">${getBookmarkSVG(isSelected)}</span>
-        <span id="modalBookmarkBtnText">${isSelected ? '已標記為想參加心願' : '標記此活動為想參加心願'}</span>
-      </button>
-      <span class="modal-prep-sync">✨ 點擊收藏可於右上角一鍵匯出投票</span>
-    </div>
-
     <!-- 1. 活動企劃：做甚麼與時程表 (第一順位，標題正下方，如附圖二) -->
     <div class="modal-section modal-section-lead">
       <div class="modal-section-title">
@@ -6168,20 +6155,8 @@ function openDetailModal(act) {
     </div>
   `;
 
-
-
-  const modalFavBtn = document.getElementById('modalFavBtn');
-  if (modalFavBtn) {
-    updateModalFavBtn(act.id);
-    modalFavBtn.onclick = () => {
-      toggleFavorite(act.id);
-    };
-  }
-
-  const modalCopyBtn = document.getElementById('modalCopyBtn');
-  if (modalCopyBtn) {
-    modalCopyBtn.onclick = () => copyFullActivityPlan(act);
-  }
+  // 同步右上方喜好標籤按鈕狀態
+  updateModalFavBtn(act.id);
 
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -6370,3 +6345,4 @@ window.openPrizeModal = openPrizeModal;
 window.closePrizeModal = closePrizeModal;
 window.togglePrizeSelection = togglePrizeSelection;
 window.updatePrizeBadge = updatePrizeBadge;
+window.updateModalFavBtn = updateModalFavBtn;

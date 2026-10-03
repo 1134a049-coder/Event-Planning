@@ -1426,6 +1426,52 @@ body::before {
   flex-shrink: 0;
 }
 
+/* 彈窗右上方喜好標籤 (原有書籤標誌按鈕，融合標籤造型) */
+.modal-fav-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  height: 36px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.modal-fav-badge:hover {
+  transform: translateY(-1px);
+  border-color: #f59e0b;
+  color: #d97706;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15);
+}
+
+.modal-fav-badge.active {
+  background: rgba(244, 114, 182, 0.12);
+  border-color: #f472b6;
+  color: #e11d48;
+  box-shadow: 0 3px 8px rgba(244, 114, 182, 0.2);
+}
+
+.modal-fav-badge .modal-fav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-fav-badge .card-bookmark-svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
 .btn-modal-close {
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
@@ -1829,14 +1875,91 @@ body::before {
   color: #fbbf24;
 }
 
+/* 彈窗底部欄位佈局：三欄等寬置中（左側佔位、中間前後切換箭頭、右側關閉按鍵） */
 .modal-footer {
-  padding: 14px 24px;
+  padding: 12px 24px;
   border-top: 1px solid var(--border-color);
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   background: var(--bg-subtle);
+}
+
+.modal-footer-left {
+  /* 保持中間箭頭精確置中 */
+}
+
+.modal-footer-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.modal-footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* 簡單圓形前後切換箭頭圖標按鈕 (替代文字) */
+.btn-modal-nav-arrow {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  padding: 0;
+}
+
+.btn-modal-nav-arrow:hover {
+  transform: scale(1.1);
+  background: var(--bg-subtle-hover);
+  border-color: #f59e0b;
+  color: #d97706;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.18);
+}
+
+.btn-modal-nav-arrow:active {
+  transform: scale(0.96);
+}
+
+/* 彈窗右下角關閉按鍵 */
+.btn-modal-close-action {
+  padding: 0 20px;
+  height: 38px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-modal-close-action:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+[data-theme="dark"] .btn-modal-close-action:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
 }
 
 .btn-modal-nav {
@@ -2737,21 +2860,55 @@ body::before {
     white-space: nowrap;
   }
 
-  /* 手機版彈窗底部操作按鈕：兩欄工整排版，每顆按鈕均等高度與點擊區域 */
+  /* 手機版彈窗底部操作欄位：前後箭頭置中，關閉按鈕置放於右下方 */
   .modal-footer {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr auto 1fr !important;
     gap: 8px !important;
     padding: 10px 14px !important;
+    align-items: center !important;
   }
 
-  .modal-footer .btn-action {
-    width: 100% !important;
-    min-width: 0 !important;
-    padding: 0 6px !important;
-    font-size: 0.78rem !important;
+  .modal-footer-left {
+    display: block !important;
+  }
+
+  .modal-footer-center {
+    display: flex !important;
+    align-items: center !important;
     justify-content: center !important;
+    gap: 12px !important;
+  }
+
+  .btn-modal-nav-arrow {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+  }
+
+  .modal-footer-right {
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  .btn-modal-close-action {
     height: 36px !important;
+    padding: 0 16px !important;
+    font-size: 0.82rem !important;
+    width: auto !important;
+  }
+
+  .modal-fav-badge {
+    padding: 5px 10px !important;
+    height: 32px !important;
+    font-size: 0.78rem !important;
+    gap: 5px !important;
+  }
+
+  .modal-fav-badge .card-bookmark-svg {
+    width: 17px !important;
+    height: 17px !important;
   }
 
   /* 手機版長條圖比例優化：保留足夠進度條視覺長度 */

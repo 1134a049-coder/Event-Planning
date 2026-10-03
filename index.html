@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>米哈遊社團活動企劃庫 - 北商ACG研究社 米遊同好會</title>
   <meta name="description" content="北商ACG研究社 米哈遊同好會專用活動企劃書庫，以便利貼卡盒方式整理 95 份原神、星鐵、絕區零活動企劃，支援休閒、衝分、動手製作雙層篩選、喜好標註收藏與隨機抽卡。">
-  <link rel="stylesheet" href="style.css?v=20261003_14">
+  <link rel="stylesheet" href="style.css?v=20261003_15">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 </head>
 <body>
@@ -436,12 +436,17 @@
             <span id="modalNavCounter" class="modal-nav-counter">(1 / 95)</span>
           </p>
         </div>
-        <div class="modal-header-actions" style="display: flex; align-items: center; gap: 8px;">
-          <div class="modal-nav-controls">
-            <button class="btn-modal-nav" id="btnModalPrev" type="button" title="上一項活動 (鍵盤 ← 鍵)">◀ 上一項</button>
-            <button class="btn-modal-nav" id="btnModalNext" type="button" title="下一項活動 (鍵盤 → 鍵)">下一項 ▶</button>
-          </div>
-          <button class="btn-modal-close" id="modalClose" type="button" title="關閉">✕</button>
+        <div class="modal-header-actions">
+          <!-- 右上方放置喜好標籤（替代原有加入喜好，採用原有標誌按鍵） -->
+          <button 
+            class="modal-fav-badge" 
+            id="modalHeaderFavBtn" 
+            type="button" 
+            title="標記心願 (點擊切換)"
+          >
+            <span class="modal-fav-icon" id="modalHeaderFavIcon"></span>
+            <span class="modal-fav-text" id="modalHeaderFavText">標記心願</span>
+          </button>
         </div>
       </div>
 
@@ -449,43 +454,26 @@
         <!-- 詳細企劃內容動態注入 -->
       </div>
 
+      <!-- 下方欄位：前後切換置中（箭頭圖標替代文字），關閉按鍵置放於右下方 -->
       <div class="modal-footer">
-        <button class="btn-action" id="btnModalNavPrevFooter" type="button">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-          <span>上一項</span>
-        </button>
-        <button class="btn-action" id="btnModalNavNextFooter" type="button">
-          <span>下一項</span>
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-        <button class="btn-action btn-modal-fav" id="modalFavBtn" type="button">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-          </svg>
-          <span>標記喜歡</span>
-        </button>
-        <button class="btn-action" id="modalCopyBtn" type="button">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-          <span>複製 Markdown</span>
-        </button>
-        <button class="btn-action" onclick="window.print()" type="button">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-          </svg>
-          <span>列印企劃</span>
-        </button>
-        <button class="btn-action btn-modal-close-action" onclick="closeModal()" type="button">
-          <span>關閉</span>
-        </button>
+        <div class="modal-footer-left"></div>
+        <div class="modal-footer-center">
+          <button class="btn-modal-nav-arrow" id="btnModalPrev" type="button" title="上一項活動 (鍵盤 ← 鍵)" aria-label="上一項">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="btn-modal-nav-arrow" id="btnModalNext" type="button" title="下一項活動 (鍵盤 → 鍵)" aria-label="下一項">
+            <svg class="mono-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-footer-right">
+          <button class="btn-modal-close-action" id="modalClose" onclick="closeModal()" type="button" title="關閉視窗 (ESC 鍵)">
+            <span>關閉</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -782,6 +770,6 @@
   <div id="toastMsg" class="toast-msg"></div>
 
   <!-- 核心邏輯載入 -->
-  <script src="app.js?v=20261003_14"></script>
+  <script src="app.js?v=20261003_15"></script>
 </body>
 </html>
