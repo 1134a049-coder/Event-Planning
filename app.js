@@ -4606,7 +4606,8 @@ function loadStoredState() {
     updatePrizeBadge();
 
     const savedCat = localStorage.getItem(STORAGE_KEYS.CATEGORY);
-    if (savedCat) currentCategory = savedCat;
+    if (savedCat && savedCat !== 'stats') currentCategory = savedCat;
+    else currentCategory = 'all';
 
     const savedSub = localStorage.getItem(STORAGE_KEYS.SUBTYPE);
     if (savedSub) currentSubType = savedSub;
@@ -4919,6 +4920,10 @@ function handleCategoryTabSwitch(cat) {
   const btnMemberStatsToggle = document.getElementById('btnMemberStatsToggle');
   const systemMainTitle = document.getElementById('systemMainTitle') || document.querySelector('.system-intro-title h2');
 
+  const btnHeaderBackToLibrary = document.getElementById('btnHeaderBackToLibrary');
+  const btnHeaderImportCode = document.getElementById('btnHeaderImportCode');
+  const btnOpenPrizeModal = document.getElementById('btnOpenPrizeModal');
+
   if (cat === 'stats') {
     if (systemMainTitle) systemMainTitle.textContent = '社員票選統計圖表';
     if (cardsContainer) cardsContainer.style.display = 'none';
@@ -4927,7 +4932,14 @@ function handleCategoryTabSwitch(cat) {
     if (subFilterRow) subFilterRow.style.display = 'none';
     if (toolbarBottom) toolbarBottom.style.display = 'none';
     if (panelMemberZone) panelMemberZone.style.display = 'block';
-    if (btnMemberStatsToggle) btnMemberStatsToggle.classList.add('active');
+    if (btnMemberStatsToggle) {
+      btnMemberStatsToggle.classList.add('active');
+      btnMemberStatsToggle.title = '返回活動企劃書庫';
+    }
+    if (btnHeaderBackToLibrary) btnHeaderBackToLibrary.style.display = 'inline-flex';
+    if (btnHeaderImportCode) btnHeaderImportCode.style.display = 'inline-flex';
+    if (btnOpenPrizeModal) btnOpenPrizeModal.style.display = 'none';
+
     if (statsContainer) {
       statsContainer.style.display = 'flex';
       renderStatsView();
@@ -4940,7 +4952,14 @@ function handleCategoryTabSwitch(cat) {
     if (subFilterRow) subFilterRow.style.display = 'flex';
     if (toolbarBottom) toolbarBottom.style.display = 'flex';
     if (panelMemberZone) panelMemberZone.style.display = 'none';
-    if (btnMemberStatsToggle) btnMemberStatsToggle.classList.remove('active');
+    if (btnMemberStatsToggle) {
+      btnMemberStatsToggle.classList.remove('active');
+      btnMemberStatsToggle.title = '切換至社員投票統計圖表';
+    }
+    if (btnHeaderBackToLibrary) btnHeaderBackToLibrary.style.display = 'none';
+    if (btnHeaderImportCode) btnHeaderImportCode.style.display = 'none';
+    if (btnOpenPrizeModal) btnOpenPrizeModal.style.display = 'inline-flex';
+
     if (statsContainer) statsContainer.style.display = 'none';
     
     // 同步活動大分類按鈕 active 樣式
@@ -5396,13 +5415,18 @@ function renderStatsView() {
 
   if (memberVotes.length === 0) {
     container.innerHTML = `
-      <div class="empty-state" style="padding: 80px 20px;">
+      <div class="empty-state" style="padding: 70px 20px;">
         <div class="empty-state-icon">📊</div>
         <h3>目前尚無任何社員投票紀錄</h3>
         <p>邀請社員勾選心儀活動並匯出分享碼，在此匯入後即可生成熱門排行與圓餅統計！</p>
-        <button class="btn-action" onclick="loadDemoVotesAction()" style="margin-top: 16px; background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff;">
-          👥 一鍵載入三位社員示範投票
-        </button>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
+          <button class="btn-action btn-primary" onclick="handleCategoryTabSwitch('all')" style="background: #f59e0b; color: #1e1b18; font-weight: 700; padding: 0 22px; height: 40px; border-radius: 9999px; cursor: pointer; border: none; font-size: 0.9rem;">
+            📋 返回活動企劃庫 (瀏覽 95 份活動)
+          </button>
+          <button class="btn-action" onclick="loadDemoVotesAction()" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; padding: 0 18px; height: 40px; border-radius: 9999px; cursor: pointer; border: none; font-size: 0.9rem;">
+            👥 一鍵載入三位社員示範投票
+          </button>
+        </div>
       </div>
     `;
     return;
