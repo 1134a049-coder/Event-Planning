@@ -1473,38 +1473,25 @@ body::before {
   padding-bottom: 6px;
 }
 
-/* 活動籌備與喜歡標記卡片方框 */
-.modal-prep-card {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 16px;
+/* 社員心願標記操作列 (乾淨俐落，徹底移除私房備忘錄輸入框) */
+.modal-bookmark-bar {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: var(--shadow-sm);
-}
-
-.modal-prep-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.modal-prep-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--text-main);
+  padding: 10px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
 }
 
 .btn-modal-bookmark-toggle {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
-  font-size: 0.8rem;
+  padding: 6px 14px;
+  font-size: 0.82rem;
   font-weight: 700;
   border-radius: 999px;
   cursor: pointer;
@@ -1527,52 +1514,184 @@ body::before {
 
 .modal-prep-sync {
   font-size: 0.78rem;
-  color: #059669;
-  font-weight: 600;
-}
-[data-theme="dark"] .modal-prep-sync {
-  color: #10b981;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
-/* 備忘錄輸入框修復：100% 寬度自適應、絕不超出容器 */
-.modal-note-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-}
-
-.modal-note-label {
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.modal-note-textarea {
-  width: 100%;
-  box-sizing: border-box;
+/* 第一順位活動企劃做什麼卡片強化 */
+.modal-section-lead {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-lead-summary {
   color: var(--text-main);
-  padding: 10px 12px;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  resize: vertical;
-  min-height: 68px;
-  font-family: inherit;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin-top: 4px;
+}
+
+.modal-subheading {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.modal-schedule-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 地點與小獎品徽章標籤 */
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  background: var(--bg-card);
+  color: var(--color-hsr);
+  border: 1px solid var(--border-color);
+}
+
+.prize-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* 橫條社團小獎品按鈕 (優化指標 8) */
+.btn-prize-list {
+  background: var(--bg-subtle) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+  font-weight: 600;
+  padding: 0 14px;
+  height: 34px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
   transition: var(--transition);
 }
 
-.modal-note-textarea:focus {
-  outline: none;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+.btn-prize-list:hover {
+  background: var(--bg-subtle-hover) !important;
+  border-color: #d97706 !important;
+  color: #d97706 !important;
+  transform: translateY(-1px);
 }
 
-.modal-note-status {
-  font-size: 0.76rem;
+.prize-pill-badge {
+  background: #d97706;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 16px;
+  height: 16px;
+}
+
+/* 獎品清單卡片選項樣式 */
+.prize-intro-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.prize-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.prize-item-card:hover {
+  border-color: #d97706;
+  background: var(--bg-subtle);
+  transform: translateY(-1px);
+}
+
+.prize-item-card.is-selected {
+  border-color: #d97706;
+  background: rgba(245, 158, 11, 0.07);
+  box-shadow: 0 0 0 1px #d97706;
+}
+
+.prize-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.prize-item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.prize-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prize-item-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-main);
+}
+
+.prize-item-desc {
+  font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+.prize-checkbox-wrap {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  background: var(--bg-card);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.prize-item-card.is-selected .prize-checkbox-wrap {
+  background: #d97706;
+  border-color: #d97706;
 }
 
 /* 活動基本資訊方框 */
