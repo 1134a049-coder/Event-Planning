@@ -5079,6 +5079,54 @@ function setupEventListeners() {
   if (btnResetFilter) btnResetFilter.addEventListener('click', resetAllFilters);
 
   // 8. 分享活動彈窗相關
+  const topShareBtn = document.getElementById('topShareBtn');
+  const shareDropdown = document.querySelector('.share-dropdown');
+  const topNavExportShare = document.getElementById('topNavExportShare');
+  const topNavImportShare = document.getElementById('topNavImportShare');
+
+  if (topShareBtn && shareDropdown) {
+    topShareBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      shareDropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!shareDropdown.contains(e.target)) {
+        shareDropdown.classList.remove('open');
+      }
+    });
+  }
+
+  if (topNavExportShare) {
+    topNavExportShare.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (shareDropdown) shareDropdown.classList.remove('open');
+      openShareModal();
+      setTimeout(() => {
+        const nickInput = document.getElementById('shareUserNickname');
+        if (nickInput) {
+          nickInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          nickInput.focus();
+        }
+      }, 150);
+    });
+  }
+
+  if (topNavImportShare) {
+    topNavImportShare.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (shareDropdown) shareDropdown.classList.remove('open');
+      openShareModal();
+      setTimeout(() => {
+        const importInput = document.getElementById('importShareCodeInput');
+        if (importInput) {
+          importInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          importInput.focus();
+        }
+      }, 150);
+    });
+  }
+
   const btnOpenShareModal = document.getElementById('btnOpenShareModal');
   const shareModalClose = document.getElementById('shareModalClose');
   const shareModalBackdrop = document.getElementById('shareModalBackdrop');
@@ -5169,6 +5217,8 @@ function setupEventListeners() {
       if (e.key === 'Escape') closeModal();
     } else if (document.getElementById('shareModalBackdrop')?.classList.contains('active')) {
       if (e.key === 'Escape') closeShareModal();
+    } else if (shareDropdown?.classList.contains('open')) {
+      if (e.key === 'Escape') shareDropdown.classList.remove('open');
     }
   });
 }
