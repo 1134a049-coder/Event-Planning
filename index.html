@@ -23,31 +23,13 @@
 
     <!-- 右側操作：看板切換、分享活動、主題日夜切換 -->
     <div class="navbar-actions">
-      <!-- 切換企劃書庫 / 統計圖表按鈕 (雙向箭頭循環切換，圓形圖標按鈕) -->
+      <!-- 切換企劃書庫 / 統計圖表按鈕 (雙向箭頭循環切換，圓形圖標按鈕，替換於此處) -->
       <button class="btn-nav-switch-stats" id="btnMemberStatsToggle" type="button" title="切換企劃書庫 / 統計圖表" aria-label="切換企劃書庫與統計圖表">
         <svg class="switch-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4.5 13.5V9a3.5 3.5 0 0 1 3.5-3.5h11"></path>
           <polyline points="15.5 2 19.5 5.5 15.5 9"></polyline>
           <path d="M19.5 10.5V15a3.5 3.5 0 0 1-3.5 3.5h-11"></path>
           <polyline points="8.5 22 4.5 18.5 8.5 15"></polyline>
-        </svg>
-      </button>
-
-      <!-- 主題切換按鈕 (預設白底 / 切換深色，優雅單色日月圖示) -->
-      <button class="btn-nav-theme-toggle" id="btnThemeToggle" type="button" title="切換淺色 / 深色主題" aria-label="切換淺色 / 深色主題">
-        <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
 
@@ -769,6 +751,6 @@
   <div id="toastMsg" class="toast-msg"></div>
 
   <!-- 核心邏輯載入 -->
-  <script src="app.js?v=20261009_04"></script>
+  <script src="app.js?v=20261009_05"></script>
 </body>
 </html>

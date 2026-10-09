@@ -240,28 +240,7 @@ body::before {
   gap: 10px;
 }
 
-/* 主題日夜模式切換按鈕 (目標 2: 獨立切換鈕) */
-.btn-nav-theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 0;
-  transition: var(--transition);
-}
 
-.btn-nav-theme-toggle:hover {
-  background: var(--bg-subtle-hover);
-  color: var(--text-main);
-  border-color: var(--border-focus);
-  transform: rotate(15deg);
-}
 
 /* 切換企劃書庫 / 統計圖表按鈕 (正圓形圖標按鈕，無人數計數) */
 .btn-nav-switch-stats {

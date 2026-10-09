@@ -5025,35 +5025,9 @@ function setupEventListeners() {
     });
   }
 
-  // 0.1 主題深淺切換 (日夜模式)
-  const btnThemeToggle = document.getElementById('btnThemeToggle');
-  if (btnThemeToggle) {
-    const sunIcon = btnThemeToggle.querySelector('.theme-icon-sun');
-    const moonIcon = btnThemeToggle.querySelector('.theme-icon-moon');
-
-    const applyTheme = (theme) => {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        if (sunIcon) sunIcon.style.display = 'none';
-        if (moonIcon) moonIcon.style.display = 'inline-block';
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        if (sunIcon) sunIcon.style.display = 'inline-block';
-        if (moonIcon) moonIcon.style.display = 'none';
-      }
-      try {
-        localStorage.setItem('mihoyo_theme', theme);
-      } catch (e) {}
-    };
-
-    const savedTheme = localStorage.getItem('mihoyo_theme') || 'light';
-    applyTheme(savedTheme);
-
-    btnThemeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      applyTheme(isDark ? 'light' : 'dark');
-    });
-  }
+  // 0.1 依需求移除深淺切換功能，重設並鎖定為標準主題
+  document.documentElement.removeAttribute('data-theme');
+  try { localStorage.removeItem('mihoyo_theme'); } catch (e) {}
 
   // 1. 第一層：大分類標籤切換 (全部 / 星鐵 / 原神 / 絕區零 / 喜好)
   const filterBtns = document.querySelectorAll('.filter-btn');
