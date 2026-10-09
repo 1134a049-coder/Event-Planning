@@ -263,21 +263,19 @@ body::before {
   transform: rotate(15deg);
 }
 
-/* 切換企劃書庫 / 統計圖表按鈕 */
+/* 切換企劃書庫 / 統計圖表按鈕 (正圓形圖標按鈕，無人數計數) */
 .btn-nav-switch-stats {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 36px;
-  width: auto;
+  width: 36px;
   height: 36px;
-  border-radius: 9999px;
+  border-radius: 50%;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 0 8px;
-  gap: 5px;
+  padding: 0;
   transition: var(--transition);
   position: relative;
 }
@@ -286,7 +284,7 @@ body::before {
   background: var(--bg-subtle-hover);
   border-color: var(--border-focus);
   color: var(--text-main);
-  transform: translateY(-1px);
+  transform: rotate(-15deg);
 }
 
 .btn-nav-switch-stats.active {
@@ -296,16 +294,7 @@ body::before {
 }
 
 .btn-nav-switch-stats #statsTabVotesCount {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #f59e0b;
-  color: #1e1b18;
-  font-size: 0.72rem;
-  font-weight: 800;
-  border-radius: 999px;
-  padding: 1px 7px;
-  line-height: 1.2;
+  display: none !important;
 }
 
 /* 社員快篩標籤按鈕 */

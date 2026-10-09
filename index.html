@@ -23,7 +23,7 @@
 
     <!-- 右側操作：看板切換、分享活動、主題日夜切換 -->
     <div class="navbar-actions">
-      <!-- 切換企劃書庫 / 統計圖表按鈕 (雙向箭頭循環切換) -->
+      <!-- 切換企劃書庫 / 統計圖表按鈕 (雙向箭頭循環切換，圓形圖標按鈕) -->
       <button class="btn-nav-switch-stats" id="btnMemberStatsToggle" type="button" title="切換企劃書庫 / 統計圖表" aria-label="切換企劃書庫與統計圖表">
         <svg class="switch-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4.5 13.5V9a3.5 3.5 0 0 1 3.5-3.5h11"></path>
@@ -31,7 +31,6 @@
           <path d="M19.5 10.5V15a3.5 3.5 0 0 1-3.5 3.5h-11"></path>
           <polyline points="8.5 22 4.5 18.5 8.5 15"></polyline>
         </svg>
-        <span id="statsTabVotesCount" style="display: none;">0人</span>
       </button>
 
       <!-- 主題切換按鈕 (預設白底 / 切換深色，優雅單色日月圖示) -->
@@ -243,30 +242,30 @@
           <div class="main-filter-row" id="mainFilterRow">
             <div class="filter-tabs game-app-tabs" id="gameFilterTabs">
               <!-- ALL 全部宇宙 (深暖金石底色 + 柔和金黃文字 + 金光光暈) -->
-              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (95 份完整企劃)">
+              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (72 份完整企劃)">
                 <span class="app-all-text">ALL</span>
-                <span class="app-corner-badge" id="appBadgeAll">95</span>
+                <span class="app-corner-badge" id="appBadgeAll">72</span>
               </button>
 
               <!-- 崩壞：星穹鐵道 (三月七 App 圖示) -->
-              <button class="filter-btn app-icon-btn app-icon-hsr" data-category="hsr" type="button" title="崩壞：星穹鐵道 (35 份企劃)">
+              <button class="filter-btn app-icon-btn app-icon-hsr" data-category="hsr" type="button" title="崩壞：星穹鐵道 (22 份企劃)">
                 <img src="./images/hsr_icon.webp" alt="崩壞：星穹鐵道" class="app-icon-img">
                 <span class="app-hover-name">星鐵</span>
-                <span class="app-corner-badge" id="appBadgeHsr">35</span>
+                <span class="app-corner-badge" id="appBadgeHsr">22</span>
               </button>
 
               <!-- 原神 (派蒙 App 圖示) -->
-              <button class="filter-btn app-icon-btn app-icon-genshin" data-category="genshin" type="button" title="原神 (30 份企劃)">
+              <button class="filter-btn app-icon-btn app-icon-genshin" data-category="genshin" type="button" title="原神 (27 份企劃)">
                 <img src="./images/genshin_icon.webp" alt="原神" class="app-icon-img">
                 <span class="app-hover-name">原神</span>
-                <span class="app-corner-badge" id="appBadgeGenshin">30</span>
+                <span class="app-corner-badge" id="appBadgeGenshin">27</span>
               </button>
 
               <!-- 絕區零 (安比 App 圖示) -->
-              <button class="filter-btn app-icon-btn app-icon-zzz" data-category="zzz" type="button" title="絕區零 (30 份企劃)">
+              <button class="filter-btn app-icon-btn app-icon-zzz" data-category="zzz" type="button" title="絕區零 (23 份企劃)">
                 <img src="./images/zzz_icon.jpg" alt="絕區零" class="app-icon-img">
                 <span class="app-hover-name">絕區零</span>
-                <span class="app-corner-badge" id="appBadgeZzz">30</span>
+                <span class="app-corner-badge" id="appBadgeZzz">23</span>
               </button>
 
               <!-- 我的喜好收藏 (直接呈現參考圖樣式：無外部方形方框、1:1 正方形書籤比例，恢復原狀) -->
@@ -343,7 +342,7 @@
                   <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
                 </svg>
                 <span>全部</span>
-                <span class="pill-badge" id="badgeAll">95</span>
+                <span class="pill-badge" id="badgeAll">72</span>
               </button>
               <button class="sub-pill-btn" data-subtype="casual" type="button">
                 <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -354,7 +353,7 @@
                   <line x1="14" y1="1" x2="14" y2="4"></line>
                 </svg>
                 <span>休閒</span>
-                <span class="pill-badge" id="badgeCasual">35</span>
+                <span class="pill-badge" id="badgeCasual">27</span>
               </button>
               <button class="sub-pill-btn" data-subtype="score" type="button">
                 <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -365,7 +364,7 @@
                   <path d="M17 6h3a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4h-1"></path>
                 </svg>
                 <span>競技</span>
-                <span class="pill-badge" id="badgeScore">30</span>
+                <span class="pill-badge" id="badgeScore">29</span>
               </button>
               <button class="sub-pill-btn" data-subtype="craft" type="button">
                 <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -376,7 +375,7 @@
                   <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
                 </svg>
                 <span>手作</span>
-                <span class="pill-badge" id="badgeCraft">30</span>
+                <span class="pill-badge" id="badgeCraft">16</span>
               </button>
             </div>
 
@@ -770,6 +769,6 @@
   <div id="toastMsg" class="toast-msg"></div>
 
   <!-- 核心邏輯載入 -->
-  <script src="app.js?v=20261008_18"></script>
+  <script src="app.js?v=20261009_04"></script>
 </body>
 </html>

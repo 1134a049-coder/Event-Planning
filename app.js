@@ -4556,13 +4556,13 @@ const DEMO_VOTES = [
     id: "demo-you",
     name: "悠悠 (佛系休閒黨)",
     time: "2026/09/25 18:45",
-    selectedIds: ["hsr-c-11", "gen-c-11", "gen-c-12", "zzz-c-11", "hsr-c-06", "hsr-c-02"]
+    selectedIds: ["hsr-c-11", "gen-c-11", "gen-c-12", "zzz-c-11", "hsr-c-06", "hsr-c-03"]
   },
   {
     id: "demo-qi",
     name: "奇奇 (文創手作黨)",
     time: "2026/09/25 19:10",
-    selectedIds: ["hsr-m-01", "gen-m-02", "zzz-m-01", "hsr-c-11", "gen-c-12", "zzz-c-05"]
+    selectedIds: ["hsr-m-01", "gen-m-01", "zzz-m-02", "hsr-c-11", "gen-c-12", "zzz-c-05"]
   }
 ];
 
@@ -4689,7 +4689,7 @@ function updateVoteBadges() {
   const badge = document.getElementById('statsTabVotesCount');
   if (badge) {
     badge.textContent = `${memberVotes.length}人`;
-    badge.style.display = memberVotes.length > 0 ? 'inline-flex' : 'none';
+    badge.style.display = 'none'; // 依使用者需求，切換按鈕維持純圓形圖標，不顯示人數計數
   }
   const modalBadge = document.getElementById('modalMemberVotesCount');
   if (modalBadge) {
@@ -5016,7 +5016,46 @@ function handleCategoryTabSwitch(cat) {
 
 // 事件監聽設定
 function setupEventListeners() {
-  // 1. 第一層：大分類標籤切換
+  // 0. 導航列 Logo 回到首頁
+  const navBrandHome = document.getElementById('navBrandHome');
+  if (navBrandHome) {
+    navBrandHome.addEventListener('click', () => {
+      handleCategoryTabSwitch('all');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 0.1 主題深淺切換 (日夜模式)
+  const btnThemeToggle = document.getElementById('btnThemeToggle');
+  if (btnThemeToggle) {
+    const sunIcon = btnThemeToggle.querySelector('.theme-icon-sun');
+    const moonIcon = btnThemeToggle.querySelector('.theme-icon-moon');
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (sunIcon) sunIcon.style.display = 'none';
+        if (moonIcon) moonIcon.style.display = 'inline-block';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (sunIcon) sunIcon.style.display = 'inline-block';
+        if (moonIcon) moonIcon.style.display = 'none';
+      }
+      try {
+        localStorage.setItem('mihoyo_theme', theme);
+      } catch (e) {}
+    };
+
+    const savedTheme = localStorage.getItem('mihoyo_theme') || 'light';
+    applyTheme(savedTheme);
+
+    btnThemeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+  }
+
+  // 1. 第一層：大分類標籤切換 (全部 / 星鐵 / 原神 / 絕區零 / 喜好)
   const filterBtns = document.querySelectorAll('.filter-btn');
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -5026,7 +5065,7 @@ function setupEventListeners() {
     });
   });
 
-  // 2. 第二層：活動性質小標籤
+  // 2. 第二層：活動性質小標籤 (全部 / 休閒 / 競技 / 手作)
   const subPillBtns = document.querySelectorAll('.sub-pill-btn');
   subPillBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -5038,17 +5077,105 @@ function setupEventListeners() {
     });
   });
 
-  // 3. 搜尋框
+  // 3. 搜尋框、清空按鈕與熱門關鍵字提示標籤
   const searchInput = document.getElementById('searchInput');
+  const btnSearchClear = document.getElementById('btnSearchClear');
+  const searchSuggestionsDropdown = document.getElementById('searchSuggestionsDropdown');
+  const suggestionChips = document.querySelectorAll('.suggestion-chip');
+
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim().toLowerCase();
+    const handleSearchInput = () => {
+      searchQuery = searchInput.value.trim().toLowerCase();
+      if (btnSearchClear) {
+        btnSearchClear.style.display = searchInput.value ? 'inline-flex' : 'none';
+      }
       saveFilterState();
       renderCards();
+    };
+
+    searchInput.addEventListener('input', handleSearchInput);
+
+    if (searchSuggestionsDropdown) {
+      searchInput.addEventListener('focus', () => {
+        searchSuggestionsDropdown.classList.add('show');
+      });
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !searchSuggestionsDropdown.contains(e.target)) {
+          searchSuggestionsDropdown.classList.remove('show');
+        }
+      });
+    }
+
+    if (btnSearchClear) {
+      btnSearchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        btnSearchClear.style.display = 'none';
+        handleSearchInput();
+        searchInput.focus();
+      });
+    }
+
+    suggestionChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const kw = chip.dataset.keyword || chip.textContent.trim();
+        searchInput.value = kw;
+        if (btnSearchClear) btnSearchClear.style.display = 'inline-flex';
+        if (searchSuggestionsDropdown) searchSuggestionsDropdown.classList.remove('show');
+        handleSearchInput();
+      });
     });
   }
 
-  // 4. 展開/收起/全選/清除按鈕
+  // 4. 卡片展開 / 收起切換 (極簡模式切換)
+  const btnToggleCollapse = document.getElementById('btnToggleCollapse');
+  const toggleCollapseText = document.getElementById('toggleCollapseText');
+  const toggleCollapseIcon = document.getElementById('toggleCollapseIcon');
+  const cardsContainer = document.getElementById('cardsContainer');
+
+  function setCardsCollapseState(isCollapsed) {
+    if (!cardsContainer || !btnToggleCollapse) return;
+    if (isCollapsed) {
+      cardsContainer.classList.add('cards-collapsed');
+      btnToggleCollapse.classList.add('active');
+      if (toggleCollapseText) toggleCollapseText.textContent = '收起';
+      if (toggleCollapseIcon) {
+        toggleCollapseIcon.innerHTML = `
+          <polyline points="17 11 12 6 7 11"></polyline>
+          <polyline points="17 18 12 13 7 18"></polyline>
+        `;
+      }
+      btnToggleCollapse.title = '目前為收起樣式，點擊切換為展開';
+    } else {
+      cardsContainer.classList.remove('cards-collapsed');
+      btnToggleCollapse.classList.remove('active');
+      if (toggleCollapseText) toggleCollapseText.textContent = '展開';
+      if (toggleCollapseIcon) {
+        toggleCollapseIcon.innerHTML = `
+          <polyline points="7 13 12 18 17 13"></polyline>
+          <polyline points="7 6 12 11 17 6"></polyline>
+        `;
+      }
+      btnToggleCollapse.title = '目前為展開樣式，點擊切換為收起';
+    }
+  }
+
+  if (btnToggleCollapse && cardsContainer) {
+    btnToggleCollapse.addEventListener('click', () => {
+      const isCurrentlyCollapsed = cardsContainer.classList.contains('cards-collapsed');
+      const nextCollapsed = !isCurrentlyCollapsed;
+      setCardsCollapseState(nextCollapsed);
+      try {
+        localStorage.setItem('mihoyo_cards_collapsed', nextCollapsed ? '1' : '0');
+      } catch (err) {}
+    });
+
+    const savedCollapse = localStorage.getItem('mihoyo_cards_collapsed');
+    if (savedCollapse !== null) {
+      setCardsCollapseState(savedCollapse === '1');
+    }
+  }
+
+  // 手風琴全局展開/收起 & 全選
   const btnExpandAll = document.getElementById('btnExpandAll');
   const btnCollapseAll = document.getElementById('btnCollapseAll');
   const btnSelectAllVisible = document.getElementById('btnSelectAllVisible');
@@ -5078,7 +5205,7 @@ function setupEventListeners() {
   const btnResetFilter = document.getElementById('btnResetFilter');
   if (btnResetFilter) btnResetFilter.addEventListener('click', resetAllFilters);
 
-  // 8. 分享活動彈窗相關
+  // 8. 分享活動下拉選單與彈窗相關
   const topShareBtn = document.getElementById('topShareBtn');
   const shareDropdown = document.querySelector('.share-dropdown');
   const topNavExportShare = document.getElementById('topNavExportShare');
@@ -5147,7 +5274,7 @@ function setupEventListeners() {
   const btnClearAllMemberVotes = document.getElementById('btnClearAllMemberVotes');
   if (btnClearAllMemberVotes) btnClearAllMemberVotes.addEventListener('click', clearAllMemberVotes);
 
-  // 社員活動專區：快速匯入社員活動選項
+  // 社員活動專區：快速匯入與快速匯出
   const btnQuickImportShare = document.getElementById('btnQuickImportShare');
   if (btnQuickImportShare) {
     btnQuickImportShare.addEventListener('click', () => {
@@ -5162,7 +5289,6 @@ function setupEventListeners() {
     });
   }
 
-  // 社員活動專區：快速匯出我的心願選項
   const btnQuickExportShare = document.getElementById('btnQuickExportShare');
   if (btnQuickExportShare) {
     btnQuickExportShare.addEventListener('click', () => {
@@ -5189,7 +5315,44 @@ function setupEventListeners() {
     });
   }
 
-  // 9. Modal 閱讀彈窗關閉與前後導航
+  // 9. 小獎品清單彈窗
+  const btnOpenPrizeModal = document.getElementById('btnOpenPrizeModal');
+  const prizeModalClose = document.getElementById('prizeModalClose');
+  const prizeModalBackdrop = document.getElementById('prizeModalBackdrop');
+  if (btnOpenPrizeModal) btnOpenPrizeModal.addEventListener('click', openPrizeModal);
+  if (prizeModalClose) prizeModalClose.addEventListener('click', closePrizeModal);
+  if (prizeModalBackdrop) {
+    prizeModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === prizeModalBackdrop) closePrizeModal();
+    });
+  }
+
+  // 10. 注意事項與排程彈窗
+  const noticeModalBackdrop = document.getElementById('noticeModalBackdrop');
+  const noticeModalClose = document.getElementById('noticeModalClose');
+  const noticeModalConfirmBtn = document.getElementById('noticeModalConfirmBtn');
+  const closeNotice = () => { if (noticeModalBackdrop) noticeModalBackdrop.classList.remove('active'); };
+  if (noticeModalClose) noticeModalClose.addEventListener('click', closeNotice);
+  if (noticeModalConfirmBtn) noticeModalConfirmBtn.addEventListener('click', closeNotice);
+  if (noticeModalBackdrop) {
+    noticeModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === noticeModalBackdrop) closeNotice();
+    });
+  }
+
+  const scheduleModalBackdrop = document.getElementById('scheduleModalBackdrop');
+  const scheduleModalClose = document.getElementById('scheduleModalClose');
+  const scheduleModalConfirmBtn = document.getElementById('scheduleModalConfirmBtn');
+  const closeSchedule = () => { if (scheduleModalBackdrop) scheduleModalBackdrop.classList.remove('active'); };
+  if (scheduleModalClose) scheduleModalClose.addEventListener('click', closeSchedule);
+  if (scheduleModalConfirmBtn) scheduleModalConfirmBtn.addEventListener('click', closeSchedule);
+  if (scheduleModalBackdrop) {
+    scheduleModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === scheduleModalBackdrop) closeSchedule();
+    });
+  }
+
+  // 11. Modal 閱讀彈窗關閉與前後導航
   const modalClose = document.getElementById('modalClose');
   const modalBackdrop = document.getElementById('modalBackdrop');
   if (modalClose) modalClose.addEventListener('click', closeModal);
@@ -5217,6 +5380,12 @@ function setupEventListeners() {
       if (e.key === 'Escape') closeModal();
     } else if (document.getElementById('shareModalBackdrop')?.classList.contains('active')) {
       if (e.key === 'Escape') closeShareModal();
+    } else if (document.getElementById('prizeModalBackdrop')?.classList.contains('active')) {
+      if (e.key === 'Escape') closePrizeModal();
+    } else if (noticeModalBackdrop?.classList.contains('active')) {
+      if (e.key === 'Escape') closeNotice();
+    } else if (scheduleModalBackdrop?.classList.contains('active')) {
+      if (e.key === 'Escape') closeSchedule();
     } else if (shareDropdown?.classList.contains('open')) {
       if (e.key === 'Escape') shareDropdown.classList.remove('open');
     }
@@ -5814,8 +5983,19 @@ function createDonutChartSVG(typeCounts) {
   `;
 }
 
-// 動態計算各子類型標籤數量
+// 動態計算各分類與子類型標籤數量
 function updateSubTypeBadges() {
+  // 動態更新四大遊戲分類按鈕上的徽章數字
+  const appBadgeAll = document.getElementById('appBadgeAll');
+  const appBadgeHsr = document.getElementById('appBadgeHsr');
+  const appBadgeGenshin = document.getElementById('appBadgeGenshin');
+  const appBadgeZzz = document.getElementById('appBadgeZzz');
+
+  if (appBadgeAll) appBadgeAll.textContent = activitiesData.length;
+  if (appBadgeHsr) appBadgeHsr.textContent = activitiesData.filter(a => a.categoryKey === 'hsr').length;
+  if (appBadgeGenshin) appBadgeGenshin.textContent = activitiesData.filter(a => a.categoryKey === 'genshin').length;
+  if (appBadgeZzz) appBadgeZzz.textContent = activitiesData.filter(a => a.categoryKey === 'zzz').length;
+
   let baseList = activitiesData;
 
   if (currentCategory === 'favorites') {
