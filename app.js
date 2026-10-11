@@ -413,6 +413,55 @@ const FALLBACK_ACTIVITIES = [
     "extraNotes": [
       "【附註 1：熱度最高】結合所有有趣機制的總決賽玩法，適合社課期中高潮舉辦！"
     ]
+  },
+  {
+    "id": "act-ai-01",
+    "title": "網頁應用 AI 生成教學：打造社博網站 ＆ 提示詞融合大亂鬥",
+    "subtitle": "製作社博網站與自製 App × 零門檻部署上傳 × 全員 Prompt 融合實戰",
+    "category": "米哈遊社團 / 跨界 AI",
+    "categoryKey": "all",
+    "subType": "手作",
+    "subTypeKey": "craft",
+    "badgeColor": "#a855f7",
+    "participants": "全體社員 (自備手機、平板或筆電)",
+    "duration": "2 小時",
+    "location": "電腦教室 / 多媒體社課活動室",
+    "summary": "人人都能用 AI 寫出專屬 App！解密社團博覽會展示網站與米遊企劃書系統的誕生過程，帶領社員用日常自然語言（Prompt）生成互動網頁與個人應用，並教學如何免費部署上傳至 GitHub Pages。活動最高潮為「提示詞大亂鬥」——每人匿名寫下天馬行空的對話提示詞，現場融合所有社員的提示詞餵給 AI，見證會生成出什麼超展開的生草或驚艷成果！",
+    "highlight": "解密社博網站幕後製作、零程式碼自製專屬 App、全員 Prompt 融合大合體現場實測！",
+    "schedule": [
+      {
+        "time": "18:30 - 18:50",
+        "item": "幕後大公開：社團博覽會網站與米遊企劃系統的架構介紹與成果展示"
+      },
+      {
+        "time": "18:50 - 19:25",
+        "item": "AI 網頁生成實戰：如何向 AI 下精準指令，生成卡片、彈窗、抽卡動畫等互動功能"
+      },
+      {
+        "time": "19:25 - 19:45",
+        "item": "免費上傳發布教學：介紹 GitHub / Vercel 零成本部署法，把作品變成正式網址"
+      },
+      {
+        "time": "19:45 - 20:15",
+        "item": "活動看點【提示詞大亂鬥】：全員撰寫自訂 Prompt，現場融合大合體餵給 AI 即時跑出成果"
+      },
+      {
+        "time": "20:15 - 20:30",
+        "item": "生成成果現場大螢幕品評與歡樂吐槽、儲存個人作品、交流合照"
+      }
+    ],
+    "supplies": [
+      "大螢幕投影機與同屏設備",
+      "主流 AI 生成工具示範環境 (Claude / ChatGPT / Gemini 等)",
+      "提示詞融合線上表單 (Google 表單或 Slido)",
+      "GitHub 免費上傳部署流程懶人包講義"
+    ],
+    "budget": "約 200 ~ 300 元（講義印製、現場茶水零食補貼）",
+    "rules": "1. 提示詞大亂鬥請盡情發揮想像力，但嚴禁輸入違規或攻擊性文字。\n2. 建議攜帶個人筆電操作體驗最佳，亦可使用手機瀏覽器直接參與互動。",
+    "extraNotes": [
+      "【附註 1：零程式門檻】完全不需要寫過任何一行程式碼，只要會用中文聊天就能做出完整網頁！",
+      "【附註 2：成果立即可用】當天課堂生成的個人 App 或個人作品，可直接生成網址分享到社群限動！"
+    ]
   }
 ];
 
@@ -552,6 +601,12 @@ const STORAGE_KEYS = {
   NOTES: 'mihoyo_activity_notes',
   GACHA_HISTORY: 'mihoyo_gacha_history',
   USER_NICKNAME: 'mihoyo_user_nickname',
+  USER_INTERESTS: 'mihoyo_user_interests',
+  USER_SPECIALTIES: 'mihoyo_user_specialties',
+  USER_EXPECTATION: 'mihoyo_user_expectation',
+  DEVICE_ID: 'mihoyo_club_device_id',
+  MY_SUBMISSION: 'mihoyo_my_cloud_submission',
+  CLOUD_API_URL: 'mihoyo_cloud_api_url',
   MEMBER_VOTES: 'mihoyo_member_votes'
 };
 
@@ -565,7 +620,35 @@ let gachaHistory = [];     // Array of { id, title, time, category }
 let memberVotes = [];      // Array of { id, name, time, selectedIds: [] }
 
 // 預設示範投票資料 (阿鐵、悠悠、奇奇)
-const DEMO_VOTES = [];
+const DEMO_VOTES = [
+  {
+    id: "demo-vote-1",
+    name: "阿鐵",
+    time: "10/10 14:20",
+    interests: ["動漫新番", "星鐵高難", "3D列印", "模型改裝"],
+    specialties: "3D列印機操作與切片軟體、星鐵排軸計算",
+    expectation: "希望能認識更多崩鐵同好，學會用社團的 3D 列印機印出自己本命角色的專屬光錐與週邊！",
+    selectedIds: ["act-anime-02", "act-3d-01", "act-game-03"]
+  },
+  {
+    id: "demo-vote-2",
+    name: "悠悠",
+    time: "10/10 15:45",
+    interests: ["原神深淵", "二創繪圖", "Cosplay", "動漫新番"],
+    specialties: "角色二創插畫、文案企劃、日文日常會話",
+    expectation: "最期待新番同樂會跟帳號健檢！每次深淵都卡 11 層，想讓社長幫忙看看聖遺物怎麼配，也想跟社友交流繪畫！",
+    selectedIds: ["act-anime-01", "act-game-01", "act-ai-01"]
+  },
+  {
+    id: "demo-vote-3",
+    name: "奇奇",
+    time: "10/10 16:10",
+    interests: ["絕區零動作", "AI詠唱", "影片剪輯", "競技闖關"],
+    specialties: "Shorts 短影音剪輯、AI 提示詞工程、節奏格鬥手操",
+    expectation: "超想玩一人鍵盤一人滑鼠的雙人挑戰！還有 AI 提示詞大亂鬥，想看看大家 Prompt 融合後會生出什麼超展開的畫面！",
+    selectedIds: ["act-anime-03", "act-game-02", "act-ai-01"]
+  }
+];
 
 // 載入所有本機儲存紀錄
 function loadStoredState() {
@@ -1421,8 +1504,45 @@ function handleBackupFileUpload(e) {
 function openShareModal() {
   const modal = document.getElementById('shareModalBackdrop');
   if (!modal) return;
+  
+  // 恢復已儲存之個人資訊
+  const nameInput = document.getElementById('shareUserNickname');
+  const interestsInput = document.getElementById('shareUserInterests');
+  const specialtiesInput = document.getElementById('shareUserSpecialties');
+  const expectationInput = document.getElementById('shareUserExpectation');
+  
+  // 若本裝置已有上傳回覆，自動帶入回覆紀錄以便隨時「修改回覆」
+  const mySubRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+  let mySub = null;
+  if (mySubRaw) {
+    try { mySub = JSON.parse(mySubRaw); } catch(e) {}
+  }
+
+  if (mySub) {
+    if (nameInput) nameInput.value = mySub.name || '';
+    if (interestsInput) interestsInput.value = Array.isArray(mySub.interests) ? mySub.interests.join(', ') : (mySub.interests || '');
+    if (specialtiesInput) specialtiesInput.value = mySub.specialties || '';
+    if (expectationInput) expectationInput.value = mySub.expectation || '';
+  } else {
+    if (nameInput) nameInput.value = localStorage.getItem(STORAGE_KEYS.USER_NICKNAME) || '';
+    if (interestsInput) interestsInput.value = localStorage.getItem(STORAGE_KEYS.USER_INTERESTS) || '';
+    if (specialtiesInput) specialtiesInput.value = localStorage.getItem(STORAGE_KEYS.USER_SPECIALTIES) || '';
+    if (expectationInput) expectationInput.value = localStorage.getItem(STORAGE_KEYS.USER_EXPECTATION) || '';
+  }
+
+  if (typeof setupQuickTagButtons === 'function') {
+    setupQuickTagButtons();
+  }
+
+  // 綁定設定按鈕事件
+  const configBtn = document.getElementById('btnConfigureCloudUrl');
+  if (configBtn) {
+    configBtn.onclick = configureCloudApiUrl;
+  }
+
   updateSharePreviewList();
   updateVoteBadges();
+  updateDeviceUploadStatusUI();
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -1460,52 +1580,235 @@ function updateSharePreviewList() {
   `;
 }
 
-// 產生並複製分享碼 (健全的 UTF-8 Base64 編碼)
-function generateAndCopyShareCode() {
+// 取得或產生此裝置的唯一識別碼 (限制一裝置僅一份回覆)
+function getOrCreateDeviceId() {
+  let devId = localStorage.getItem(STORAGE_KEYS.DEVICE_ID);
+  if (!devId) {
+    devId = 'dev_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 8);
+    localStorage.setItem(STORAGE_KEYS.DEVICE_ID, devId);
+  }
+  return devId;
+}
+
+// 取得當前設定之雲端 API 網址 (Google Apps Script Web App URL)
+function getCloudApiUrl() {
+  return localStorage.getItem(STORAGE_KEYS.CLOUD_API_URL) || '';
+}
+
+// 設定自訂 Google Apps Script 雲端網址
+function configureCloudApiUrl() {
+  const currentUrl = getCloudApiUrl();
+  const inputUrl = prompt(
+    '【設定 Google 試算表雲端網址】\n' +
+    '請貼上您部署好的 Google Apps Script 網頁應用程式網址 (Web App URL)：\n' +
+    '(例如：https://script.google.com/macros/s/.../exec)\n' +
+    '※ 若留空將使用本機專屬資料庫模式。',
+    currentUrl
+  );
+  if (inputUrl !== null) {
+    const trimmed = inputUrl.trim();
+    if (trimmed) {
+      localStorage.setItem(STORAGE_KEYS.CLOUD_API_URL, trimmed);
+      showToast('✅ 已成功設定 Google 試算表雲端網址！');
+      syncMemberVotesFromCloud(false);
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.CLOUD_API_URL);
+      showToast('ℹ️ 已重設為本機專屬模式。');
+    }
+    updateDeviceUploadStatusUI();
+  }
+}
+window.configureCloudApiUrl = configureCloudApiUrl;
+
+// 更新彈窗內的「裝置上傳狀態」與按鈕文字（限制一裝置一份、修改回覆提示）
+function updateDeviceUploadStatusUI() {
+  const btnText = document.getElementById('btnUploadCloudText');
+  const hintEl = document.getElementById('deviceUploadStatusHint');
+  const mySubmissionRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+
+  if (mySubmissionRaw) {
+    try {
+      const mySub = JSON.parse(mySubmissionRaw);
+      if (btnText) btnText.textContent = '🔄 修改回覆並更新雲端';
+      if (hintEl) {
+        hintEl.innerHTML = `<span style="color: #10b981;">✅ 本裝置已登錄回覆（最後更新：${mySub.time || '剛才'}）。再次點擊將「修改回覆」並覆蓋雲端紀錄！</span>`;
+      }
+      return;
+    } catch (e) {}
+  }
+
+  if (btnText) btnText.textContent = '☁️ 一鍵上傳至雲端';
+  if (hintEl) {
+    hintEl.innerHTML = `<span>📱 限制：本裝置限傳送 1 份資料，送出後可隨時在此「修改回覆」。</span>`;
+  }
+}
+
+// 雲端上傳 / 修改回覆處理函式 (限制一裝置僅一份檔案)
+async function generateAndCopyShareCode() {
   const nameInput = document.getElementById('shareUserNickname');
   let nickname = nameInput ? nameInput.value.trim() : '';
 
   if (!nickname) {
-    nickname = prompt('請輸入您的社員暱稱（例如：阿鐵、悠悠、奇奇）：');
+    nickname = prompt('請輸入您的社員姓名／暱稱（例如：阿鐵、悠悠、奇奇）：');
     if (!nickname) nickname = '熱心社員';
     if (nameInput) nameInput.value = nickname;
   }
   localStorage.setItem(STORAGE_KEYS.USER_NICKNAME, nickname);
+
+  const interestsInput = document.getElementById('shareUserInterests');
+  const rawInterests = interestsInput ? interestsInput.value.trim() : '';
+  const interestsArray = rawInterests 
+    ? rawInterests.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean)
+    : [];
+
+  const specialtiesInput = document.getElementById('shareUserSpecialties');
+  const specialties = specialtiesInput ? specialtiesInput.value.trim() : '';
+
+  const expectationInput = document.getElementById('shareUserExpectation');
+  const expectation = expectationInput ? expectationInput.value.trim() : '';
+
+  localStorage.setItem(STORAGE_KEYS.USER_INTERESTS, rawInterests);
+  localStorage.setItem(STORAGE_KEYS.USER_SPECIALTIES, specialties);
+  localStorage.setItem(STORAGE_KEYS.USER_EXPECTATION, expectation);
 
   const effectiveIds = selectedActivityIds.size > 0 
     ? Array.from(selectedActivityIds) 
     : Array.from(favoriteIds);
 
   if (effectiveIds.length === 0) {
-    alert('您尚未收藏任何活動！請先在卡片上標記想參加的活動（點擊卡片右上角愛心）後再匯出。');
+    alert('您尚未收藏任何活動！請先在卡片上標記想參加的活動（點擊卡片右上角愛心）後再上傳。');
     return;
   }
 
-  const votePayload = {
-    v: 1,
+  // 1. 取得本裝置唯一 Device ID (限制一裝置僅一份)
+  const deviceId = getOrCreateDeviceId();
+  const nowTime = new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+  const hasExisting = Boolean(localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION));
+
+  const submissionPayload = {
+    id: `vote-${deviceId}`,
+    deviceId: deviceId,
     name: nickname,
-    time: new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
-    selectedIds: effectiveIds
+    time: nowTime,
+    interests: interestsArray,
+    specialties: specialties,
+    expectation: expectation,
+    selectedIds: effectiveIds,
+    updatedAt: new Date().toISOString()
   };
 
-  try {
-    const jsonStr = JSON.stringify(votePayload);
-    // 安全的 UTF-8 編碼至 Base64
-    const base64Code = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-      return String.fromCharCode('0x' + p1);
-    }));
-    const finalCode = `MYVOTE:${base64Code}`;
+  // 2. 本地儲存本裝置的最新提交資料 (做為後續修改回覆的比對基準)
+  localStorage.setItem(STORAGE_KEYS.MY_SUBMISSION, JSON.stringify(submissionPayload));
 
-    navigator.clipboard.writeText(finalCode).then(() => {
-      showToast(`✅ 分享碼已複製！快發送給幹部或社團群組吧！`);
-    }).catch(() => {
-      prompt('請複製以下分享代碼：', finalCode);
-    });
+  // 3. 在本機 memberVotes 中執行「覆蓋修改」或「新增」（嚴格限制一裝置一份）
+  const existingIndex = memberVotes.findIndex(v => v.deviceId === deviceId || v.id === `vote-${deviceId}`);
+  if (existingIndex >= 0) {
+    memberVotes[existingIndex] = submissionPayload;
+  } else {
+    memberVotes.unshift(submissionPayload);
+  }
+  saveMemberVotes();
+  updateVoteBadges();
+  updateDeviceUploadStatusUI();
+
+  // 4. 若有設定 Google Apps Script 雲端網址，發送 HTTP POST 上傳至雲端試算表
+  const cloudUrl = getCloudApiUrl();
+  const btnEl = document.getElementById('btnGenerateShareCode');
+  const origBtnHtml = btnEl ? btnEl.innerHTML : '';
+  if (btnEl) btnEl.disabled = true;
+
+  if (cloudUrl) {
+    showToast('☁️ 正在上傳至雲端 Google 試算表...');
+    try {
+      // 使用 text/plain 避免 Google Apps Script 觸發 OPTIONS 預檢錯誤
+      const res = await fetch(cloudUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'submit',
+          deviceId: deviceId,
+          name: nickname,
+          interests: interestsArray,
+          specialties: specialties,
+          expectation: expectation,
+          selectedIds: effectiveIds,
+          time: nowTime
+        })
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        const msg = data.isUpdate || hasExisting 
+          ? `✅ 已成功修改您的回覆並更新至雲端（${nickname}）！` 
+          : `✅ 雲端上傳成功！已同步至社團試算表（${nickname}）！`;
+        showToast(msg);
+      } else {
+        showToast(`✅ 資料已在本裝置保存並同步（雲端：${data.message || '已接收'}）`);
+      }
+    } catch (netErr) {
+      console.warn('雲端上傳連線提示：', netErr);
+      showToast(hasExisting ? '✅ 本機回覆已修改成功！（已保存於本裝置）' : '✅ 本機資料已新增成功！（已限制此裝置唯一回覆）');
+    }
+  } else {
+    const actionDesc = hasExisting ? '已成功修改您的回覆！' : '已成功登錄本裝置資料！';
+    showToast(`✅ ${actionDesc}（如需連線全體社團試算表，可點擊「雲端網址設定」）`);
+  }
+
+  if (btnEl) {
+    btnEl.disabled = false;
+    btnEl.innerHTML = origBtnHtml;
+  }
+  updateDeviceUploadStatusUI();
+}
+
+// 從雲端 Google 試算表讀取所有社員回覆並載入至本機中
+async function syncMemberVotesFromCloud(silent = false) {
+  const cloudUrl = getCloudApiUrl();
+  if (!cloudUrl) return;
+
+  try {
+    const res = await fetch(cloudUrl + (cloudUrl.includes('?') ? '&' : '?') + 'action=read&t=' + Date.now());
+    const result = await res.json();
+    if (result && result.status === 'success' && Array.isArray(result.data)) {
+      const myDeviceId = getOrCreateDeviceId();
+      const myLocalSubRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+      let myLocalSub = null;
+      if (myLocalSubRaw) {
+        try { myLocalSub = JSON.parse(myLocalSubRaw); } catch(e) {}
+      }
+
+      // 合併雲端名單 (以 deviceId 唯一去重，限制一裝置一份)
+      const mergedMap = new Map();
+
+      // 先載入雲端名單
+      result.data.forEach(item => {
+        if (item && item.deviceId) {
+          mergedMap.set(item.deviceId, item);
+        }
+      });
+
+      // 若本裝置有本機修改，以本裝置最新的為主
+      if (myLocalSub && myLocalSub.deviceId) {
+        mergedMap.set(myLocalSub.deviceId, myLocalSub);
+      }
+
+      memberVotes = Array.from(mergedMap.values());
+      saveMemberVotes();
+      updateVoteBadges();
+      if (currentCategory === 'stats') {
+        renderStatsView();
+      }
+      if (!silent) {
+        showToast(`☁️ 已從雲端同步載入 ${result.data.length} 位社員的心願與卡片！`);
+      }
+    }
   } catch (err) {
-    console.error('Base64 encode error:', err);
-    alert('生成分享碼時發生錯誤，請重試。');
+    console.warn('從雲端同步失敗：', err);
+    if (!silent) {
+      showToast('⚠️ 連線雲端讀取失敗，請確認網路或 Google Apps Script 網址。');
+    }
   }
 }
+window.syncMemberVotesFromCloud = syncMemberVotesFromCloud;
 
 // 匯入社員分享碼 (支援模糊擷取與容錯)
 function importMemberShareCode() {
@@ -1543,10 +1846,20 @@ function importMemberShareCode() {
     }
 
     const existingIndex = memberVotes.findIndex(v => v.name === payload.name);
+    let parsedInterests = [];
+    if (Array.isArray(payload.interests)) {
+      parsedInterests = payload.interests;
+    } else if (typeof payload.interests === 'string' && payload.interests.trim()) {
+      parsedInterests = payload.interests.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean);
+    }
+
     const newRecord = {
       id: `vote-${Date.now()}`,
       name: payload.name,
-      time: payload.time || new Date().toLocaleString(),
+      time: payload.time || new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+      interests: parsedInterests,
+      specialties: payload.specialties || '',
+      expectation: payload.expectation || '',
       selectedIds: payload.selectedIds,
       prizes: Array.isArray(payload.prizes) ? payload.prizes : []
     };
@@ -1855,27 +2168,82 @@ function renderStatsView() {
       <div class="member-boxes-grid">
         ${memberVotes.map(vote => {
           const acts = (vote.selectedIds || []).map(id => activitiesData.find(a => a.id === id)).filter(Boolean);
+          const initial = (vote.name || '社').trim().charAt(0).toUpperCase();
+          const interestsList = Array.isArray(vote.interests) && vote.interests.length > 0 
+            ? vote.interests 
+            : (typeof vote.interests === 'string' && vote.interests ? vote.interests.split(/[,，、\s]+/).filter(Boolean) : ['米哈遊同好', '二次元交流']);
+          const specialtiesText = vote.specialties && vote.specialties.trim() 
+            ? vote.specialties 
+            : '熱情參與、各類遊戲體驗';
+          const expectationText = vote.expectation && vote.expectation.trim() 
+            ? vote.expectation 
+            : '希望能和大家一起同樂交流、參與更多有趣的社團活動！';
+
           return `
             <div class="member-box-card" id="member-card-${vote.id}">
+              <!-- 1. 基本資料：姓名與頭像 -->
               <div class="member-box-header">
-                <div class="member-name">
-                  <span>👤 ${vote.name}</span>
+                <div class="member-name-wrap">
+                  <div class="member-avatar-badge">${initial}</div>
+                  <div class="member-name-meta">
+                    <h4 class="member-name-title">${vote.name}</h4>
+                    <span class="member-time-caption">🕒 匯入時間：${vote.time || '剛才'}</span>
+                  </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="member-header-actions">
                   <span class="member-vote-count">選了 ${acts.length} 項</span>
-                  <button onclick="deleteMemberVote('${vote.id}')" style="background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem;" title="刪除此紀錄">✕</button>
+                  <button class="member-delete-btn" onclick="deleteMemberVote('${vote.id}')" title="刪除此社員紀錄">✕</button>
                 </div>
               </div>
-              <div style="font-size: 0.75rem; color: #64748b;">匯入時間：${vote.time}</div>
 
-              <!-- 底下顯示該社員選擇的活動內容 -->
-              <div class="member-activities-list">
-                ${acts.map(act => `
-                  <div class="member-activity-chip" onclick="openDetailModalById('${act.id}', 'member-${vote.id}')" title="點擊預覽此活動">
-                    <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;">${act.title}</span>
-                    <span style="font-size: 0.7rem; color: #94a3b8;">${act.subType || ''}</span>
-                  </div>
-                `).join('')}
+              <!-- 2. 興趣愛好：以標籤（Tags/Badges）形式呈現 -->
+              <div class="member-section">
+                <div class="member-section-label">
+                  <span>🏷️ 興趣愛好</span>
+                </div>
+                <div class="member-tags-wrap">
+                  ${interestsList.map(tag => `
+                    <span class="member-interest-tag">${tag}</span>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- 3. 個人專長：列出擅長的技能或領域 -->
+              <div class="member-section">
+                <div class="member-section-label">
+                  <span>⚡ 個人專長</span>
+                </div>
+                <div class="member-specialties-content">
+                  ${specialtiesText}
+                </div>
+              </div>
+
+              <!-- 4. 入社期望：引言或短文區塊呈現，強化視覺重點 -->
+              <div class="member-expectation-card">
+                <div class="member-expectation-header">
+                  <svg class="expectation-quote-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  </svg>
+                  <span class="member-expectation-prompt">「在進來社團前，你期望在社團中參與到怎樣的社團活動？」</span>
+                </div>
+                <blockquote class="member-expectation-quote">
+                  “${expectationText}”
+                </blockquote>
+              </div>
+
+              <!-- 5. 該社員選擇的心願活動清單 -->
+              <div class="member-section">
+                <div class="member-section-label">
+                  <span>📌 心願企劃 (${acts.length} 項)</span>
+                </div>
+                <div class="member-activities-list">
+                  ${acts.length > 0 ? acts.map(act => `
+                    <div class="member-activity-chip" onclick="openDetailModalById('${act.id}', 'member-${vote.id}')" title="點擊預覽此活動完整企劃">
+                      <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;">${act.title}</span>
+                      <span style="font-size: 0.7rem; color: #94a3b8;">${act.subType || ''}</span>
+                    </div>
+                  `).join('') : '<span style="font-size: 0.8rem; color: #94a3b8;">尚未勾選活動</span>'}
+                </div>
               </div>
             </div>
           `;
@@ -2003,7 +2371,7 @@ function getFilteredActivities() {
     } else if (currentCategory === 'favorites') {
       matchCat = favoriteIds.has(act.id);
     } else {
-      matchCat = (act.categoryKey === currentCategory);
+      matchCat = (act.categoryKey === currentCategory || act.categoryKey === 'all');
     }
 
     let matchSub = false;
@@ -2684,3 +3052,25 @@ window.closePrizeModal = closePrizeModal;
 window.togglePrizeSelection = togglePrizeSelection;
 window.updatePrizeBadge = updatePrizeBadge;
 window.updateModalFavBtn = updateModalFavBtn;
+
+
+// 設置分享彈窗快速推薦標籤按鈕點擊
+function setupQuickTagButtons() {
+  document.querySelectorAll('.tag-chip-btn').forEach(btn => {
+    btn.onclick = function() {
+      const field = this.getAttribute('data-field');
+      const tag = this.getAttribute('data-tag');
+      const targetInput = field === 'interests' 
+        ? document.getElementById('shareUserInterests') 
+        : document.getElementById('shareUserSpecialties');
+      if (!targetInput) return;
+      
+      const currentVal = targetInput.value.trim();
+      const existing = currentVal ? currentVal.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) : [];
+      if (!existing.includes(tag)) {
+        existing.push(tag);
+        targetInput.value = existing.join(', ');
+      }
+    };
+  });
+}

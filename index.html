@@ -33,48 +33,15 @@
         </svg>
       </button>
 
-      <!-- 分享活動匯出/匯入專屬膠囊按鈕 (單色圖標與質感膠囊) -->
-      <div class="share-dropdown">
-        <button class="btn-share-gold" id="topShareBtn" type="button" title="點擊展開活動分享與匯出入選項">
-          <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-            <polyline points="16 6 12 2 8 6"></polyline>
-            <line x1="12" y1="2" x2="12" y2="15"></line>
-          </svg>
-          <span>分享活動</span>
-          <svg class="share-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-        <div class="share-dropdown-menu">
-          <a href="javascript:void(0)" class="share-dropdown-item" id="topNavExportShare">
-            <span class="share-item-icon">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                <polyline points="16 6 12 2 8 6"></polyline>
-                <line x1="12" y1="2" x2="12" y2="15"></line>
-              </svg>
-            </span>
-            <div>
-              <div class="share-item-title">匯出代碼</div>
-              <div class="share-item-desc">分享自己有興趣的活動</div>
-            </div>
-          </a>
-          <a href="javascript:void(0)" class="share-dropdown-item" id="topNavImportShare">
-            <span class="share-item-icon">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
-                <polyline points="8 10 12 14 16 10"></polyline>
-                <line x1="12" y1="3" x2="12" y2="14"></line>
-              </svg>
-            </span>
-            <div>
-              <div class="share-item-title">匯入代碼</div>
-              <div class="share-item-desc">匯入即可生成喜好圖表</div>
-            </div>
-          </a>
-        </div>
-      </div>
+      <!-- 分享活動雲端上傳按鈕 -->
+      <button class="btn-share-gold" id="topShareBtn" type="button" title="點擊開啟社團心願雲端上傳中心" onclick="openShareModal()">
+        <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <span>上傳心願</span>
+      </button>
     </div>
   </header>
 
@@ -105,13 +72,13 @@
             <span>社團小獎品清單</span>
             <span class="prize-pill-badge" id="selectedPrizeCountBadge" style="display: none;">0</span>
           </button>
-          <button class="btn-action btn-header-import" id="btnHeaderImportCode" style="display: none;" onclick="openShareModal()">
+          <button class="btn-action btn-header-import" id="btnHeaderImportCode" style="display: none;" onclick="syncMemberVotesFromCloud(false)" title="從雲端刷新同步所有社員心願與卡片">
             <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
               <polyline points="8 10 12 14 16 10"></polyline>
               <line x1="12" y1="3" x2="12" y2="14"></line>
             </svg>
-            <span>匯入代碼</span>
+            <span>雲端同步</span>
           </button>
           <button class="btn-action btn-header-back" id="btnHeaderBackToLibrary" style="display: none;" onclick="handleCategoryTabSwitch('all')">
             <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -224,9 +191,9 @@
           <div class="main-filter-row" id="mainFilterRow">
             <div class="filter-tabs game-app-tabs" id="gameFilterTabs">
               <!-- ALL 全部宇宙 (深暖金石底色 + 柔和金黃文字 + 金光光暈) -->
-              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (9 份完整企劃)">
+              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (10 份完整企劃)">
                 <span class="app-all-text">ALL</span>
-                <span class="app-corner-badge" id="appBadgeAll">9</span>
+                <span class="app-corner-badge" id="appBadgeAll">10</span>
               </button>
 
               <!-- 崩壞：星穹鐵道 (三月七 App 圖示) -->
@@ -324,7 +291,7 @@
                   <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
                 </svg>
                 <span>全部</span>
-                <span class="pill-badge" id="badgeAll">9</span>
+                <span class="pill-badge" id="badgeAll">10</span>
               </button>
               <button class="sub-pill-btn" data-subtype="casual" type="button">
                 <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -357,7 +324,7 @@
                   <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
                 </svg>
                 <span>手作</span>
-                <span class="pill-badge" id="badgeCraft">3</span>
+                <span class="pill-badge" id="badgeCraft">4</span>
               </button>
             </div>
 
@@ -459,128 +426,146 @@
     </div>
   </div>
 
-  <!-- 分享活動與匯入分享碼彈窗 (Share & Import Modal) -->
+  <!-- 社團心願雲端上傳彈窗 (Cloud Wish Upload Modal - 精簡優化版) -->
   <div class="modal-backdrop" id="shareModalBackdrop">
-    <div class="modal-container" style="max-width: 680px;">
+    <div class="modal-container" style="max-width: 600px;">
       <div class="modal-header">
         <div class="modal-header-text">
-          <h2>社團活動分享與匯入中心</h2>
-          <p>標記心儀活動為「喜歡」生成專屬分享碼，或在底下貼入社員的分享碼加入統計</p>
+          <h2 style="display: flex; align-items: center; gap: 8px;">
+            <span>✨ 社團心願雲端上傳</span>
+          </h2>
+          <p>勾選心儀活動 ➔ 填寫個人名片 ➔ 一鍵上傳雲端，全社即時同步！</p>
         </div>
         <button class="btn-modal-close" id="shareModalClose" type="button" title="關閉">✕</button>
       </div>
 
-      <div class="modal-content-body" style="padding: 24px;">
-        <!-- 區塊 1：匯出分享碼 -->
-        <div class="share-card-block share-block-export">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <h3 class="share-block-title" style="display: flex; align-items: center; gap: 6px;">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="5" r="3"></circle>
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="19" r="3"></circle>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-              </svg>
-              <span>1. 匯出我的喜歡活動企劃</span>
-            </h3>
-            <span class="share-count-pill">已標記喜歡 <strong id="shareSelectedCount">0</strong> 項</span>
+      <div class="modal-content-body" style="padding: 20px;">
+        <!-- 步驟提示條：一眼看懂要做什麼 -->
+        <div class="upload-steps-guide">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>已標記心願：<strong id="shareSelectedCount" style="color: var(--primary);">0</strong> 項</span>
           </div>
-          
-          <div style="margin-bottom: 12px;">
-            <label for="shareUserNickname" style="display: block; font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 6px;">
-              社員暱稱：
+          <div class="step-arrow">➔</div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>填妥個人名片</span>
+          </div>
+          <div class="step-arrow">➔</div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>上傳雲端同步</span>
+          </div>
+        </div>
+
+        <div class="cloud-upload-panel">
+          <!-- 1. 基本資料：社員姓名 -->
+          <div class="share-form-group">
+            <label for="shareUserNickname" class="share-form-label">
+              <span>👤 社員姓名／暱稱：</span>
+              <span style="color: #ef4444; font-size: 0.85rem;">*</span>
             </label>
             <input 
               type="text" 
               id="shareUserNickname" 
-              class="search-input" 
+              class="share-form-input" 
               placeholder="例如：阿鐵、悠悠、奇奇、繩匠小明..." 
-              style="width: 100%; padding-left: 14px;"
             >
           </div>
 
-          <div id="shareSelectedPreview" class="share-preview-box">
-            尚未標記任何喜歡的活動，請在卡片右上角標記喜歡！
+          <!-- 2. 興趣愛好 (以標籤 Badges 形式呈現) -->
+          <div class="share-form-group">
+            <div class="share-label-row">
+              <label for="shareUserInterests" class="share-form-label">
+                <span>🏷️ 興趣愛好 (Tags)：</span>
+              </label>
+              <span class="share-form-hint">點選標籤或自行輸入 (逗號分隔)</span>
+            </div>
+            <input 
+              type="text" 
+              id="shareUserInterests" 
+              class="share-form-input" 
+              placeholder="例如：動漫新番, 原神深淵, 3D列印, Cosplay..." 
+            >
+            <div class="share-quick-tags" id="shareQuickInterests">
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="動漫新番">+ 動漫新番</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="原神深淵">+ 原神深淵</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="星鐵高難">+ 星鐵高難</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="絕區零動作">+ 絕區零動作</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="3D列印">+ 3D列印</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="二創繪圖">+ 二創繪圖</button>
+              <button type="button" class="tag-chip-btn" data-field="interests" data-tag="AI詠唱">+ AI詠唱</button>
+            </div>
           </div>
 
-          <div style="display: flex; gap: 10px;">
-            <button class="btn-action btn-generate-share" id="btnGenerateShareCode">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          <!-- 3. 個人專長 -->
+          <div class="share-form-group">
+            <div class="share-label-row">
+              <label for="shareUserSpecialties" class="share-form-label">
+                <span>⚡ 個人專長：</span>
+              </label>
+              <span class="share-form-hint">列出擅長的技能或領域</span>
+            </div>
+            <input 
+              type="text" 
+              id="shareUserSpecialties" 
+              class="share-form-input" 
+              placeholder="例如：影片剪輯、3D建模、文案策劃、美術設計..." 
+            >
+            <div class="share-quick-tags" id="shareQuickSpecialties">
+              <button type="button" class="tag-chip-btn" data-field="specialties" data-tag="影片剪輯">+ 影片剪輯</button>
+              <button type="button" class="tag-chip-btn" data-field="specialties" data-tag="3D建模">+ 3D建模</button>
+              <button type="button" class="tag-chip-btn" data-field="specialties" data-tag="文案策劃">+ 文案策劃</button>
+              <button type="button" class="tag-chip-btn" data-field="specialties" data-tag="美術設計">+ 美術設計</button>
+              <button type="button" class="tag-chip-btn" data-field="specialties" data-tag="攻略撰寫">+ 攻略撰寫</button>
+            </div>
+          </div>
+
+          <!-- 4. 入社期望 -->
+          <div class="share-form-group">
+            <label for="shareUserExpectation" class="share-form-label">
+              <span>💬 入社期望：</span>
+            </label>
+            <span class="share-expectation-prompt-text">「在進來社團前，你期望在社團中參與到怎樣的社團活動？」</span>
+            <textarea 
+              id="shareUserExpectation" 
+              class="share-form-textarea" 
+              rows="2" 
+              placeholder="分享你的心願！例如：希望能跟同好一起看新番、連線打深淵，也想學 3D 列印做自己的本命周邊！"
+            ></textarea>
+          </div>
+
+          <!-- 已標記活動即時預覽 -->
+          <div class="share-form-group" style="margin-bottom: 6px;">
+            <div class="share-label-row">
+              <span class="share-form-label" style="margin: 0;">📌 已選心願企劃預覽：</span>
+            </div>
+            <div id="shareSelectedPreview" class="share-preview-box" style="margin-top: 6px; max-height: 120px; overflow-y: auto;">
+              尚未標記任何喜歡的活動，請回到清單點擊卡片右上角「❤️」標記！
+            </div>
+          </div>
+
+          <!-- 主要操作按鈕組 (已完全移除繁瑣的匯入代碼輸入框) -->
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 8px; flex-wrap: wrap;">
+            <button class="btn-cloud-upload-primary" id="btnGenerateShareCode" type="button">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
               </svg>
-              <span>複製我的分享碼</span>
+              <span id="btnUploadCloudText">☁️ 上傳分享至雲端</span>
+            </button>
+            <button class="btn-action" id="btnConfigureCloudUrl" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.78rem; padding: 0 14px; height: 42px; border-radius: 9999px; cursor: pointer;" title="設定 Google 試算表 Apps Script 雲端網址">
+              ⚙️ 雲端網址設定
+            </button>
+            <button class="btn-action btn-load-demo" id="btnLoadDemoVotes" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.78rem; padding: 0 14px; height: 42px; border-radius: 9999px; cursor: pointer;" title="快速載入阿鐵、悠悠、奇奇的示範社員">
+              👥 示範社員
             </button>
           </div>
-        </div>
 
-        <!-- 區塊 2：匯入社員分享碼 (在分享底下) -->
-        <div class="share-card-block share-block-import">
-          <h3 class="share-block-title" style="margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-            <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>2. 匯入其他社員的分享碼</span>
-          </h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
-            在下方貼上同學或幹部傳給您的分享碼（以 <code>MYVOTE:</code> 開頭），即可自動匯入並加入全社熱門統計！
-          </p>
-
-          <textarea 
-            id="importShareCodeInput" 
-            rows="3" 
-            placeholder="貼上社員的分享代碼..." 
-            class="share-textarea"
-          ></textarea>
-
-          <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
-            <button class="btn-action btn-confirm-import" id="btnConfirmImportCode">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>解析並匯入社員名單</span>
-            </button>
-            <button class="btn-action btn-load-demo" id="btnLoadDemoVotes" type="button" title="快速載入阿鐵、悠悠、奇奇的示範投票">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              <span>載入三位社員示範投票</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- 區塊 3：已匯入社員投票紀錄管理 -->
-        <div class="share-card-block share-block-manage">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h3 class="share-block-title" style="display: flex; align-items: center; gap: 6px;">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-              <span>3. 已匯入社員紀錄管理 (<span id="modalMemberVotesCount">0</span> 人)</span>
-            </h3>
-            <button class="btn-text-sm btn-clear-records" id="btnClearAllMemberVotes" type="button" title="清空全部社員投票紀錄">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-              <span>清空所有名單</span>
-            </button>
-          </div>
-          <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">
-            此處為已匯入的單人投票紀錄。刪除某位社員後，全社統計表與上方計數將同步扣除其所選活動！
-          </p>
-          <div id="modalMemberVotesList" style="max-height: 160px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
-            <!-- 由 app.js 動態渲染 -->
+          <!-- 單一裝置唯一回覆狀態標籤 -->
+          <div id="deviceUploadStatusHint" style="font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: var(--bg-subtle); border-radius: 8px;">
+            <span>📱 限制：本裝置限傳送 1 份資料，再次上傳即自動「修改回覆」，全社即時同步！</span>
           </div>
         </div>
       </div>
@@ -751,6 +736,6 @@
   <div id="toastMsg" class="toast-msg"></div>
 
   <!-- 核心邏輯載入 -->
-  <script src="app.js?v=20261010_03"></script>
+  <script src="app.js?v=20261011_v3_clean"></script>
 </body>
 </html>
