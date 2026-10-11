@@ -3260,81 +3260,146 @@ body::before {
 }
 
 
+
 /* ==========================================================================
-   精簡化社團心願雲端上傳中心樣式 (優化4：一眼看懂要做什麼)
+   書籤外觀步驟條 (Step Bookmark Ribbons) & 彈窗介面升級
    ========================================================================== */
 
 .upload-steps-guide {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--bg-subtle);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(99, 102, 241, 0.06) 100%);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 8px 14px;
-  margin-bottom: 16px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  border-radius: 14px;
+  padding: 12px 14px 10px 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.upload-steps-guide .step-item {
+[data-theme="dark"] .upload-steps-guide {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.step-bookmark-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  flex: 1;
   gap: 6px;
-  font-weight: 600;
+  position: relative;
 }
 
-.upload-steps-guide .step-num {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: #1e1b18;
-  font-size: 0.72rem;
-  font-weight: 800;
-  display: flex;
+/* 書籤外觀標籤 (Bookmark Ribbon Tag) - 往上提高一行 */
+.step-bookmark-ribbon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 4px 12px 7px 12px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  /* 經典書籤燕尾旗凹角 (Bookmark swallowtail notch) */
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 5px), 50% 100%, 0% calc(100% - 5px));
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.35);
+  border-radius: 4px 4px 0 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
 
-.upload-steps-guide .step-arrow {
-  color: var(--text-muted);
+.step-bookmark-ribbon.step-2-ribbon {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35);
+}
+
+.step-bookmark-ribbon.step-3-ribbon {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
+}
+
+.step-bookmark-ribbon:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.step-bookmark-text {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.step-desc-label {
   font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.step-desc-label strong {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.step-guide-arrow {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+/* 快捷標籤升級 (支援點擊高光/選中狀態) */
+.tag-chip-btn {
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  user-select: none;
+}
+
+.tag-chip-btn:hover {
+  background: rgba(217, 119, 6, 0.12);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.tag-chip-btn.is-active {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.2) 0%, rgba(245, 158, 11, 0.25) 100%);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .tag-chip-btn.is-active {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.3) 0%, rgba(245, 158, 11, 0.35) 100%);
+  color: #fbbf24;
+  border-color: #f59e0b;
 }
 
 .cloud-upload-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 14px;
-  padding: 18px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-.btn-cloud-upload-primary {
-  flex: 1;
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  padding: 11px 20px;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
-  transition: all 0.2s ease;
-}
-
-.btn-cloud-upload-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.45);
-}
-
-.btn-cloud-upload-primary:active {
-  transform: translateY(0);
-}

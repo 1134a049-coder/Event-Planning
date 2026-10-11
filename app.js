@@ -3054,7 +3054,7 @@ window.updatePrizeBadge = updatePrizeBadge;
 window.updateModalFavBtn = updateModalFavBtn;
 
 
-// 設置分享彈窗快速推薦標籤按鈕點擊
+// 設置分享彈窗快速推薦標籤按鈕點擊與高光聯動 (支援加入/取消與即時選中高光)
 function setupQuickTagButtons() {
   document.querySelectorAll('.tag-chip-btn').forEach(btn => {
     btn.onclick = function() {
@@ -3066,11 +3066,66 @@ function setupQuickTagButtons() {
       if (!targetInput) return;
       
       const currentVal = targetInput.value.trim();
-      const existing = currentVal ? currentVal.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) : [];
-      if (!existing.includes(tag)) {
+      let existing = currentVal ? currentVal.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) : [];
+      
+      if (existing.includes(tag)) {
+        // 若已存在，點擊則移除（Toggle 取消選取）
+        existing = existing.filter(t => t !== tag);
+        this.classList.remove('is-active');
+      } else {
+        // 若不存在，點擊加入
         existing.push(tag);
-        targetInput.value = existing.join(', ');
+        this.classList.add('is-active');
       }
+      targetInput.value = existing.join(', ');
+      
+      // 同步所有標籤的高光狀態
+      updateQuickTagActiveStates();
     };
   });
+
+  // 當使用者手動在輸入框打字時，自動同步更新標籤高光
+  const interestsInput = document.getElementById('shareUserInterests');
+  if (interestsInput) {
+    interestsInput.oninput = updateQuickTagActiveStates;
+  }
+  const specialtiesInput = document.getElementById('shareUserSpecialties');
+  if (specialtiesInput) {
+    specialtiesInput.oninput = updateQuickTagActiveStates;
+  }
+
+  updateQuickTagActiveStates();
 }
+
+// 根據目前輸入框文字，動態點亮對應標籤按鈕
+function updateQuickTagActiveStates() {
+  const interestsInput = document.getElementById('shareUserInterests');
+  const specialtiesInput = document.getElementById('shareUserSpecialties');
+
+  const curInterests = interestsInput && interestsInput.value 
+    ? interestsInput.value.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) 
+    : [];
+
+  const curSpecialties = specialtiesInput && specialtiesInput.value 
+    ? specialtiesInput.value.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) 
+    : [];
+
+  document.querySelectorAll('#shareQuickInterests .tag-chip-btn').forEach(btn => {
+    const tag = btn.getAttribute('data-tag');
+    if (curInterests.includes(tag)) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+
+  document.querySelectorAll('#shareQuickSpecialties .tag-chip-btn').forEach(btn => {
+    const tag = btn.getAttribute('data-tag');
+    if (curSpecialties.includes(tag)) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+}
+window.updateQuickTagActiveStates = updateQuickTagActiveStates;
