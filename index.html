@@ -479,6 +479,33 @@
             >
           </div>
 
+                    <!-- 2. 平時遊玩的遊戲 (遊玩標籤選項) -->
+          <div class="share-form-group">
+            <div class="share-label-row">
+              <label for="shareUserGames" class="share-form-label">
+                <span>🎮 平時遊玩的遊戲：</span>
+              </label>
+              <span class="share-form-hint">點選標籤或自行輸入 (可複選)</span>
+            </div>
+            <input 
+              type="text" 
+              id="shareUserGames" 
+              class="share-form-input" 
+              placeholder="例如：原神, 崩鐵, 鳴潮, 決勝時刻..." 
+            >
+            <div class="share-quick-tags" id="shareQuickGames">
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="原神">🎮 原神</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="崩鐵">🎮 崩鐵</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="絕區">🎮 絕區</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="方舟">🎮 方舟</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="終末地">🎮 終末地</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="鳴潮">🎮 鳴潮</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="異環">🎮 異環</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="三角州">🎮 三角州</button>
+              <button type="button" class="tag-chip-btn tag-chip-game" data-field="games" data-tag="決勝時刻">🎮 決勝時刻</button>
+            </div>
+          </div>
+
           <!-- 2. 興趣愛好 (以標籤 Badges 形式呈現) -->
           <div class="share-form-group">
             <div class="share-label-row">
@@ -763,6 +790,6 @@
   <div id="toastMsg" class="toast-msg"></div>
 
   <!-- 核心邏輯載入 -->
-  <script src="app.js?v=20261011_bookmark_tags"></script>
+  <script src="app.js?v=20261011_games_core"></script>
 </body>
 </html>

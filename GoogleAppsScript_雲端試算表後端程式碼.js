@@ -33,17 +33,19 @@ function doGet(e) {
     
     var deviceId = String(r[0]);
     var name = String(r[1] || "社員");
+    var games = [];
+    try { games = r[2] ? JSON.parse(r[2]) : []; } catch(e) { games = String(r[2] || "").split(/[,，、\s]+/).filter(Boolean); }
     var interests = [];
     try {
       interests = r[2] ? JSON.parse(r[2]) : [];
     } catch(err) {
       interests = String(r[2] || "").split(/[,，、\s]+/).filter(Boolean);
     }
-    var specialties = String(r[3] || "");
-    var expectation = String(r[4] || "");
+    var specialties = String(r[4] || "");
+    var expectation = String(r[5] || "");
     var selectedIds = [];
     try {
-      selectedIds = r[5] ? JSON.parse(r[5]) : [];
+      selectedIds = r[6] ? JSON.parse(r[5]) : [];
     } catch(err) {
       selectedIds = [];
     }
@@ -54,6 +56,7 @@ function doGet(e) {
       id: "cloud-" + deviceId,
       deviceId: deviceId,
       name: name,
+      games: games,
       interests: interests,
       specialties: specialties,
       expectation: expectation,
@@ -90,6 +93,7 @@ function doPost(e) {
       sheet.appendRow([
         "裝置識別碼 (DeviceID)", 
         "社員姓名 (Name)", 
+        "常玩遊戲 (Games JSON)", 
         "興趣愛好 (Interests JSON)", 
         "個人專長 (Specialties)", 
         "入社期望 (Expectation)", 
@@ -113,7 +117,8 @@ function doPost(e) {
     var rowData = [
       targetDeviceId,
       data.name || "社員",
-      JSON.stringify(data.interests || []),
+      JSON.stringify(data.games || []), 
+      JSON.stringify(data.interests || []), 
       data.specialties || "",
       data.expectation || "",
       JSON.stringify(data.selectedIds || []),

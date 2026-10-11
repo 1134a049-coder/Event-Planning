@@ -3403,3 +3403,113 @@ body::before {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
+
+
+/* ==========================================================================
+   活動涵蓋遊戲與關卡標籤 & 個人常玩遊戲樣式 (優化需求)
+   ========================================================================== */
+
+/* 卡片內部的涵蓋遊戲與關卡標籤區 */
+.card-game-stages-section {
+  margin: 10px 0 12px 0;
+  padding: 8px 11px;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-color);
+  border-radius: 9px;
+}
+
+.game-stages-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.game-stages-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.game-stage-tag {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 0.71rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .game-stage-tag {
+  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.game-stage-tag:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 個人常玩遊戲快捷按鈕 (Game Chips) */
+.tag-chip-game {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+  border-color: rgba(14, 165, 233, 0.35);
+  color: #0284c7;
+}
+
+[data-theme="dark"] .tag-chip-game {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.tag-chip-game:hover {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: #0284c7;
+  color: #0284c7;
+}
+
+.tag-chip-game.is-active {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  transform: translateY(-1px);
+}
+
+/* 社員個人卡片上的常玩遊戲標籤 */
+.member-games-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.member-game-tag {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(99, 102, 241, 0.18) 100%);
+  color: #0284c7;
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .member-game-tag {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(14, 165, 233, 0.2);
+}
+
+.member-game-tag:hover {
+  transform: translateY(-1px);
+  border-color: #0284c7;
+}

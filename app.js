@@ -8,394 +8,145 @@
 // 備用內建完整資料（防止直接以 file:// 協定開啟時受限於瀏覽器 CORS）
 const FALLBACK_ACTIVITIES = [
   {
-    "id": "act-anime-01",
-    "title": "新番放映茶會 × 跨遊戲深淵通關指南 ＆ 社長帳號診療室",
-    "subtitle": "動漫放映 × 原神深境螺旋與各遊高難關卡實戰診療",
-    "category": "原神",
-    "categoryKey": "genshin",
+    "id": "act-core-01",
+    "title": "新番放映茶會 × 跨遊戲深淵高難通關 ＆ 社長一對一帳號診療室",
+    "subtitle": "動漫同樂放映 × 原神/星鐵/絕區/鳴潮各遊高難攻略 ＆ 聖遺物/配隊急救診斷",
+    "category": "米哈遊社團 / 動漫交流",
+    "categoryKey": "all",
     "subType": "休閒",
     "subTypeKey": "casual",
     "badgeColor": "#06b6d4",
-    "participants": "全體社員 (自由入座交流)",
+    "participants": "全體社員 (自由入座交流，自備零食茶水)",
     "duration": "2 小時",
-    "location": "社團活動室 / 多媒體教室",
-    "summary": "放鬆看番聊遊戲！前半場大螢幕放映當季最熱門新番與百萬二創動畫，邊吃點心邊聊動漫梗。後半場由社長親自坐鎮，以大螢幕投屏剖析當期深淵機制與元素反應軸，為社員帳號進行 1 對 1 聖遺物健檢與平民滿星配隊急救！",
-    "highlight": "零社恐吃零食看動漫、社長現場手把手健檢救急深淵滿星！",
+    "location": "社團活動室 / A540 多媒體教室",
+    "summary": "告別刮痧與高難超時！前半場以大螢幕放映當季精彩新番與同人生草短片，全場邊喝飲料邊吃點心歡樂吐槽；後半場由社長與資深幹部現場坐鎮，以大螢幕投屏剖析各熱門遊戲當期高難機制，提供一對一排軸健檢、遺器詞條清查與平民滿星配隊急救！現場加碼「社長代抽代強化」玄學體檢大會！",
+    "highlight": "吃零食看動漫零社恐交流、社長現場手把手一對一健檢調軸破防！",
+    "gameStages": [
+      "原神 - 當期深境螺旋 11~12 層滿星急救",
+      "崩壞：星穹鐵道 - 混沌回憶 / 末日幻影速度軸優化",
+      "絕區零 - 式輿防衛戰紛爭節點連攜彈刀評測",
+      "鳴潮 - 深境幽境與逆境深塔極限手操",
+      "各類二次元手遊自由攜帶帳號諮詢"
+    ],
     "schedule": [
       {
         "time": "18:30 - 19:15",
-        "item": "精選新番放映廳、同人二創名場面賞析、享用茶水點心"
+        "item": "新番同樂放映廳、經典二創神曲賞析、享用茶水點心交流"
       },
       {
         "time": "19:15 - 19:35",
-        "item": "當期深境螺旋與各遊版本深淵機制剖析、原魔弱點講解"
+        "item": "當期各遊版本環境弱點速報、機制拆解與平民戰神替換方針"
       },
       {
         "time": "19:35 - 20:20",
-        "item": "社長 1 對 1 大螢幕健檢診療（聖遺物詞條評分、平民配隊優化）"
+        "item": "社長與幹部 1 對 1 投屏診療（抓出無效詞條、速度門檻診斷）"
       },
       {
         "time": "20:20 - 20:30",
-        "item": "聖遺物玄學強化 4 升 20 現場代點同樂、自由交流"
+        "item": "全場代抽代強化玄學時刻、大合照與交流結語"
       }
     ],
     "supplies": [
-      "大螢幕投影設備與音響",
-      "低延遲手機/筆電投屏轉接器",
-      "派對餅乾點心與茶水飲料",
-      "深淵原魔機制分析速查手冊"
+      "大螢幕投影機、同屏轉接設備與音響",
+      "各遊速度軸與有效詞條對照速查手冊",
+      "茶水飲料與派對零食餅乾點心",
+      "舒適沙發椅與防傾倒杯墊"
     ],
     "budget": "約 300 ~ 450 元（零食飲料開銷）",
-    "rules": "1. 放映期間請保持環境整潔，飲料請置於防傾倒杯墊上。\n2. 帳號健檢採排隊叫號制，每人限諮詢一組核心深淵隊伍。\n3. 玄學強化代點純屬同樂，請平常心看待詞條結果。",
+    "rules": "1. 健檢採排隊叫號制，每人限諮詢一組主力挑戰陣容以保證全員時間。\n2. 諮詢前請先備妥角色面板與武器截圖。\n3. 玄學代抽強化純屬同樂交流，請平常心看待結果。",
     "extraNotes": [
-      "【附註 1：不限遊戲】健檢以原神深淵為主，但星鐵混沌、絕區零防衛戰亦可自備帳號諮詢！",
-      "【附註 2：新手友善】就算練度未滿、只打前幾層深淵的萌新社員也歡迎來喝奶茶交流。"
+      "【附註 1：不限單一遊戲】無論是原神、星鐵、絕區、鳴潮或其他各類手遊，均可攜帶設備諮詢！",
+      "【附註 2：萌新完全友善】練度不足或前幾層卡關的萌新社員亦強烈推薦前來交流配隊順序！"
     ]
   },
   {
-    "id": "act-anime-02",
-    "title": "動漫同樂夜 × 當期高難關卡速通攻略 ＆ 社長一對一配隊健檢",
-    "subtitle": "動漫熱播 × 崩壞：星穹鐵道混沌回憶與各遊弱點擊破軸優化",
-    "category": "崩壞：星穹鐵道",
-    "categoryKey": "hsr",
-    "subType": "休閒",
-    "subTypeKey": "casual",
-    "badgeColor": "#818cf8",
-    "participants": "全體社員 (自由入座交流)",
-    "duration": "2 小時",
-    "location": "社團活動室 / 隔音多媒體教室",
-    "summary": "告別刮痧與超時！一邊喝特調蘇樂達飲料看當季精彩新番，一邊由社長深入剖析星鐵當期「混沌回憶」與「末日幻影」高難弱點機制。現場提供一對一速度調軸診斷，教你用四星平民戰神替換高金陣容，手操凹過滿星！",
-    "highlight": "速度閾值無情診斷、低金手操調軸破防秘笈現場傳授！",
-    "schedule": [
-      {
-        "time": "18:30 - 19:15",
-        "item": "動漫熱播連賞、經典神曲與短片播放、點心享用"
-      },
-      {
-        "time": "19:15 - 19:35",
-        "item": "版本環境弱點速報、虛韌性機制與擊破/追擊隊調速拆解"
-      },
-      {
-        "time": "19:35 - 20:20",
-        "item": "社長一對一配隊健檢（診斷速度門檻、有效遺器詞條清查）"
-      },
-      {
-        "time": "20:20 - 20:30",
-        "item": "疑難雜症現場試打與操作指點"
-      }
-    ],
-    "supplies": [
-      "投影機與立體環繞音響",
-      "投屏同屏設備",
-      "蘇樂達氣泡水與派對炸物點心",
-      "星鐵速度軸計算對照表"
-    ],
-    "budget": "約 350 ~ 500 元",
-    "rules": "1. 自行攜帶已登入遊戲之設備（手機/平板/筆電）。\n2. 諮詢時請先備妥當前主力角色的遺器面板截圖以加快進度。",
-    "extraNotes": [
-      "【附註 1：量身打造】社長將針對社員目前擁有的角色池給予最佳化養成順序建議。"
-    ]
-  },
-  {
-    "id": "act-anime-03",
-    "title": "新番吃瓜賞析會 × 遊戲新版本解析 ＆ 社長現場玄學健檢",
-    "subtitle": "新番名場面 × 絕區零式輿防衛戰與版本趨勢吃瓜評測",
-    "category": "絕區零",
-    "categoryKey": "zzz",
-    "subType": "休閒",
-    "subTypeKey": "casual",
-    "badgeColor": "#f59e0b",
-    "participants": "全體社員 (自由入座交流)",
-    "duration": "2 小時",
-    "location": "社團活動室",
-    "summary": "打造六分街錄影帶小店般的愜意交流！放映社員票選生草新番與各家手遊新版本前瞻爆料，社長帶領全體社員評測當期式輿防衛戰紛爭節點；現場提供驅動盤詞條診斷，並加碼「社長代抽代強化」玄學體檢大會！",
-    "highlight": "絕區零失衡爆發軸健檢、新番吃瓜大吐槽、玄學強化滿堂彩！",
-    "schedule": [
-      {
-        "time": "18:30 - 19:15",
-        "item": "錄影帶店新番同樂、二創生草短片吐槽大會、享用零食"
-      },
-      {
-        "time": "19:15 - 19:35",
-        "item": "版本前瞻新角強度吃瓜評測、式輿防衛戰怪物抗性解析"
-      },
-      {
-        "time": "19:35 - 20:15",
-        "item": "驅動盤與帳號健檢（抓出無效詞條、連攜技時機點診斷）"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "全場代抽代強化玄學時刻、大合照"
-      }
-    ],
-    "supplies": [
-      "投影機、手把、音響設備",
-      "零食開箱包與特色汽水",
-      "驅動盤 4+2 詞條效益速查圖"
-    ],
-    "budget": "約 300 ~ 450 元",
-    "rules": "1. 社員可自由投屏展示自己的驅動盤極品胚子。\n2. 嚴禁引戰角色強度，保持輕鬆歡樂吃瓜氣氛。",
-    "extraNotes": [
-      "【附註 1：手速無憂】不論動作遊戲熟練度如何，都能獲得最實用的招架彈刀走位建議。"
-    ]
-  },
-  {
-    "id": "act-3d-01",
-    "title": "想要什麼自己印！自選遊戲動漫週邊 3D 列印初體驗",
-    "subtitle": "零門檻自選模型庫 × 神之眼/小公仔/吊飾 × 免費印製下次領取",
-    "category": "原神",
-    "categoryKey": "genshin",
-    "subType": "手作",
-    "subTypeKey": "craft",
-    "badgeColor": "#06b6d4",
-    "participants": "10 ~ 15 人",
-    "duration": "2 小時",
-    "location": "電腦教室 / 創客自造實驗室",
-    "summary": "帶你認識 3D 列印的魔法！零建模基礎也能輕鬆學會，帶領社員瀏覽 Thingiverse、MakerWorld 等知名免費模型庫，想印原神神之眼、蘭那羅木雕、或是任何動漫遊戲公仔吊飾任你自由挑選。現場實作切片參數，社團免費幫印，下次社課直接領取實體！",
-    "highlight": "自選喜愛動漫模型、社團全額補助耗材排程、下週拿到專屬實體周邊！",
-    "schedule": [
-      {
-        "time": "18:30 - 19:00",
-        "item": "3D 列印原理科普（FDM 熱熔沉積、PLA 環保線材、避免炒麵翻車）"
-      },
-      {
-        "time": "19:00 - 19:35",
-        "item": "模型庫尋寶實作：自選模型 STL 檔，調整縮放比例與支撐結構"
-      },
-      {
-        "time": "19:35 - 20:15",
-        "item": "實機示範切片匯出、啟動 3D 列印機噴頭、觀察第一層成型"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "登記各社員模型名稱與顏色、排定印製日程清單"
-      }
-    ],
-    "supplies": [
-      "FDM 3D 列印機 1~2 台",
-      "多色 PLA 環保線材（金、銀、白、夜光藍等）",
-      "切片軟體安裝檔 (Bambu Studio / Cura)",
-      "範例列印樣品展示箱"
-    ],
-    "budget": "約 350 ~ 500 元（耗材線材補貼）",
-    "rules": "1. 每位社員限挑選 1 款成品模型（體積限制 8x8x8 cm 內、耗材重量 50g 內）。\n2. 嚴禁挑選未授權商用或結構過於脆弱之極細模型。",
-    "extraNotes": [
-      "【附註 1：自備筆電佳】社員可自備筆電跟著操作切片，未帶者可由幹部公用電腦代為操作。",
-      "【附註 2：下週領件】印好之成品將於下次社課發放，並附贈細緻砂紙供現場打磨！"
-    ]
-  },
-  {
-    "id": "act-3d-02",
-    "title": "自訂專屬模型！桌上實用文具＆角色立體擺件 3D 列印工坊",
-    "subtitle": "兼具實用與美觀 × 折紙小鳥筆插/手機架/光錐座 × 3D 打印實作",
-    "category": "崩壞：星穹鐵道",
-    "categoryKey": "hsr",
-    "subType": "手作",
-    "subTypeKey": "craft",
-    "badgeColor": "#818cf8",
-    "participants": "10 ~ 15 人",
-    "duration": "2 小時",
-    "location": "電腦教室 / 創客自造實驗室",
-    "summary": "桌上文具不撞款，想要什麼自己印！精選高實用性模型庫——可插原子筆的立體折紙小鳥造型座、帕姆列車長手機支架、光錐卡牌展示座、或各類動漫理線器任挑。現場教導切片參數調整，下次社課發放成品並附贈斜口鉗與砂紙體驗修整樂趣！",
-    "highlight": "兼具美觀與書桌實用性、近距離觀察噴頭成型、打造專屬桌面好物！",
-    "schedule": [
-      {
-        "time": "18:30 - 19:05",
-        "item": "實用模型設計解析（壁厚、填充率強度、層高對外觀影響）"
-      },
-      {
-        "time": "19:05 - 19:40",
-        "item": "社員搜尋並挑選桌面實用週邊模型，調整自訂尺寸"
-      },
-      {
-        "time": "19:40 - 20:15",
-        "item": "檔案傳輸機台、熱床調平校準教學、機台運轉即時監控"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "登記列印顏色偏好、下次社課拆支撐與打磨技巧預告"
-      }
-    ],
-    "supplies": [
-      "3D 列印機、耗材（晴空藍、經典黃、櫻花粉 PLA）",
-      "斜口鉗、美工刀、打磨砂紙組",
-      "樣品展示件"
-    ],
-    "budget": "約 350 ~ 450 元",
-    "rules": "1. 模型列印時間預計 2~4 小時/件，社課現場展示首發件，其餘排程後印製。\n2. 下週領取實體後由幹部指導安全拆支撐。",
-    "extraNotes": [
-      "【附註 1：手殘無憂】切片軟體已預設好新手防翻車參數，人人都能一次成功。"
-    ]
-  },
-  {
-    "id": "act-3d-03",
-    "title": "動手做專屬周邊！客製化角色公仔＆潮流外殼 3D 打印實戰",
-    "subtitle": "專屬刻字客製化 × 邦布/動漫可動關節模型 × 潮流收納小物",
-    "category": "絕區零",
-    "categoryKey": "zzz",
+    "id": "act-core-02",
+    "title": "想要什麼自己印！3D 列印自選動漫遊戲週邊模型製作工坊",
+    "subtitle": "3D 列印入門實戰 × 自選本命角色/武器/道具模型 ＆ 免費列印打磨帶回家",
+    "category": "米哈遊社團 / 動手手作",
+    "categoryKey": "all",
     "subType": "手作",
     "subTypeKey": "craft",
     "badgeColor": "#f59e0b",
-    "participants": "10 ~ 15 人",
+    "participants": "12 ~ 18 人 (一人一台電腦/自備筆電)",
     "duration": "2 小時",
-    "location": "創客實驗室 / 社團活動室",
-    "summary": "化身六分街潮玩工匠！教社員在切片軟體中把自己的英文名字、社團暱稱刻在模型底座上，製作獨一無二的專屬配件。模型可選伊埃斯/鯊魚邦布公仔、指尖陀螺玩具、或客製化耳機收納硬殼，解密卡扣公差與活動關節列印秘訣！",
-    "highlight": "模型上雕刻個人專屬暱稱、學習活動關節列印原理、最潮酷桌上小物！",
-    "schedule": [
-      {
-        "time": "18:30 - 19:05",
-        "item": "潮玩 3D 模型結構解密（活動鉸鏈、卡扣公差與防拉絲調整）"
-      },
-      {
-        "time": "19:05 - 19:40",
-        "item": "切片軟體客製文字教學：在模型底座刻上個人名字/符號"
-      },
-      {
-        "time": "19:40 - 20:15",
-        "item": "傳送排程列印、第一層擠出觀察、耗材色彩搭配挑選"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "收件確認、交流心得與下次社課領取說明"
-      }
+    "location": "電腦教室 / 創客 3D 列印工坊",
+    "summary": "想要官方買不到的專屬週邊嗎？帶你零門檻認識 3D 列印機的操作原理！現場直接在開源模型庫挑選自己喜愛的動漫遊戲週邊模型（不限任何遊戲，神之眼、光錐卡磚、邦布公仔、角色武器或實用筆筒文具皆可），幹部教學使用切片軟體調整尺寸，社團免費幫你列印，印好後現場打磨組裝，實體週邊直接帶回家！",
+    "highlight": "不限遊戲自選心儀模型、社團免費印製、新手也能帶回專屬實體週邊！",
+    "gameStages": [
+      "角色 Q 版立體擺件與公仔模型",
+      "原神 - 實體神之眼掛件 / 迷你武器吊飾",
+      "崩壞：星穹鐵道 - 透光光錐卡磚 / 命途符文擺飾",
+      "絕區零 - 潮流邦布公仔 / 隨身外殼與收納盒",
+      "各類動漫道具、手機支架與桌面實用文具"
     ],
-    "supplies": [
-      "3D 列印機、多色線材（黑白灰潮黑酷色調 PLA）",
-      "刻字教學範例檔案",
-      "防燙工具與刮刀"
-    ],
-    "budget": "約 350 ~ 480 元",
-    "rules": "1. 刻字長度建議 2~8 個英數字，以確保列印字體清晰。\n2. 尊重原創設計，客製檔案僅供社團學習使用。",
-    "extraNotes": [
-      "【附註 1：質感拉滿】下次社課領件時加碼提供微量壓克力顏料進行眼睛點睛上色。"
-    ]
-  },
-  {
-    "id": "act-game-01",
-    "title": "合體神操作！「鍵鼠分離雙人同心」BOSS 挑戰賽",
-    "subtitle": "一人鍵盤一人滑鼠 × 極限走位與瞄準分離 × 雙人同心討伐戰",
-    "category": "原神",
-    "categoryKey": "genshin",
-    "subType": "競技",
-    "subTypeKey": "score",
-    "badgeColor": "#06b6d4",
-    "participants": "12 ~ 16 人 (兩人一組自由組隊)",
-    "duration": "2 小時",
-    "location": "多媒體教室 / 電腦教室",
-    "summary": "考驗神級默契與爆笑配合！兩人一組操作同一台電腦，隊員 A 只能按鍵盤（負責移動走位 WASD 與釋放技能 QE），隊員 B 只能按滑鼠（負責滑鼠視角轉向、普攻連點與右鍵閃避），嚴禁肢體接觸！挑戰討伐大世界指定週本 BOSS，比拼擊殺速度與團滅次數！",
-    "highlight": "「你快閃避啊！」「你沒轉視角我怎麼看得到！」生草爆笑默契考驗、贏取米遊盲盒！",
     "schedule": [
       {
         "time": "18:30 - 18:50",
-        "item": "分組抽籤搭檔、宣布比賽規則與禁用作弊項目"
+        "item": "3D 列印機構造解密、FDM/光固化成型原理與耗材特性講解"
       },
       {
-        "time": "18:50 - 19:10",
-        "item": "熱身練習：雙人合體在 1 分鐘內打擊木樁或清理小怪"
-      },
-      {
-        "time": "19:10 - 20:00",
-        "item": "正式淘汰賽：鍵鼠分離討伐若陀龍王 / 無相系列 BOSS"
-      },
-      {
-        "time": "20:00 - 20:15",
-        "item": "巔峰總決賽：前兩強極速通關爭奪戰（大螢幕現場解說轉播）"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "頒發「最佳默契獎」與「最快團滅搞笑獎」"
-      }
-    ],
-    "supplies": [
-      "比賽用主機 2~4 台（或社員筆電）",
-      "獨立鍵盤與滑鼠各 4 套",
-      "大螢幕投影同屏轉播器",
-      "官方角色壓克力立牌 / 實體盲盒獎品"
-    ],
-    "budget": "約 400 ~ 550 元（盲盒獎品與零食）",
-    "rules": "1. 操作鍵盤者嚴禁觸碰滑鼠，操作滑鼠者嚴禁觸碰鍵盤，違者每次罰加時 15 秒。\n2. 禁止使用巨集腳本或外部改鍵軟體。\n3. 比賽以總用時（含團滅懲罰時間）由少到多排序。",
-    "extraNotes": [
-      "【附註 1：笑果拉滿】最考驗溝通與默契，圍觀群眾歡笑聲不斷，破冰首選企劃！"
-    ]
-  },
-  {
-    "id": "act-game-02",
-    "title": "盲打聲控指揮官！「一人蒙眼一人語音導航」生存挑戰",
-    "subtitle": "戴眼罩盲打極限操作 × 指揮官喉嚨叫破聲控 × 考驗絕對信任",
-    "category": "絕區零",
-    "categoryKey": "zzz",
-    "subType": "競技",
-    "subTypeKey": "score",
-    "badgeColor": "#f59e0b",
-    "participants": "12 ~ 16 人 (兩人一組)",
-    "duration": "2 小時",
-    "location": "社團活動室",
-    "summary": "把命運交給隊友！操作者戴上全遮光眼罩完全看不見螢幕，手握手把或鍵鼠；隊友化身「戰場指揮官」，只能用口頭語音下達導航與戰鬥指令（例如：「向左翻滾！」「現在招架彈刀！」「開大招！」）。挑戰避開機關陷阱並擊敗精英怪，堅持最久者獲勝！",
-    "highlight": "指揮官聲嘶力竭咆哮導航、操作者盲人摸象極限閃避、信任度大考驗！",
-    "schedule": [
-      {
-        "time": "18:30 - 18:50",
-        "item": "規則講解、分發遮光眼罩、指令術語協調制定"
-      },
-      {
-        "time": "18:50 - 19:15",
-        "item": "第一輪【盲人走迷宮】：聲控避開燃燒地板與障礙物"
-      },
-      {
-        "time": "19:15 - 20:00",
-        "item": "第二輪【聲控獵殺】：盲打挑戰低難度怪物，比拼存活秒數"
-      },
-      {
-        "time": "20:00 - 20:15",
-        "item": "決賽【盲打雙人擂台】：堅持最久前三名爭霸"
-      },
-      {
-        "time": "20:15 - 20:30",
-        "item": "頒發「最佳聲控領航獎」與「耳背默契獎」"
-      }
-    ],
-    "supplies": [
-      "全新衛生遮光眼罩 6~8 副",
-      "遊戲手把與鍵鼠設備",
-      "計時碼錶與大螢幕投屏",
-      "米遊正版角色徽章全套獎品"
-    ],
-    "budget": "約 350 ~ 450 元",
-    "rules": "1. 操作者嚴禁偷看，眼罩移位視同違規。\n2. 指揮官嚴禁碰觸操作者之雙手或設備，只能透過說話引導。",
-    "extraNotes": [
-      "【附註 1：安全第一】現場保持走道平整，操作全程在座椅上進行。"
-    ]
-  },
-  {
-    "id": "act-game-03",
-    "title": "混亂雙人鐵人接力賽：「鍵鼠分離 × 蒙眼指揮」默契大考驗",
-    "subtitle": "合體操作 ＋ 蒙眼聲控 ＋ 禁忌詞懲罰 × 雙人三項鐵人闖關賽",
-    "category": "崩壞：星穹鐵道",
-    "categoryKey": "hsr",
-    "subType": "競技",
-    "subTypeKey": "score",
-    "badgeColor": "#818cf8",
-    "participants": "12 ~ 16 人 (2~3 人一隊)",
-    "duration": "2 小時",
-    "location": "多媒體教室",
-    "summary": "闖關元素集大成！每隊兩人合體闖過三道高能關卡：第一棒「一人鍵盤一人滑鼠」極速清理營地；第二棒「一人蒙眼一人聲控」完成閃避與探索；第三棒挑戰特定副本時「全隊禁止說出指定字詞（如『大招』『快點』），說錯一次罰暫停 5 秒！累積積分最高隊伍榮登鐵人總冠軍！",
-    "highlight": "三段式多樣趣味接力、全員輪流上陣無冷場、冠亞軍贏取空月祝福/月卡！",
-    "schedule": [
-      {
-        "time": "18:30 - 18:45",
-        "item": "各隊抽籤點名、公布三關接力規則與禁忌詞清單"
-      },
-      {
-        "time": "18:45 - 19:25",
-        "item": "預賽第一棒【鍵鼠分離競速】＆ 第二棒【蒙眼聲控防禦】"
+        "time": "18:50 - 19:25",
+        "item": "模型上網自由挑選、切片軟體（Bambu/Cura）支撐與層厚設定實戰"
       },
       {
         "time": "19:25 - 20:05",
-        "item": "複賽第三棒【禁忌指令極限通關】（罰秒扣分制）"
+        "item": "啟動列印實況觀摩、成型展示與拆除支撐結構技巧練習"
+      },
+      {
+        "time": "20:05 - 20:30",
+        "item": "模型表面打磨拋光體驗、組裝自選配件、成果展示與大合照"
+      }
+    ],
+    "supplies": [
+      "多台高速 3D 列印機實機運作",
+      "多色 PLA 環保植物性列印耗材（黑白金銀多彩）",
+      "模型去毛刺刀、精密剪鉗與高目數打磨砂紙組",
+      "開源 3D 模型推薦下載庫精選清單"
+    ],
+    "budget": "約 350 ~ 500 元（PLA 耗材、打磨工具與五金配件）",
+    "rules": "1. 課堂期間印製體積以 8cm × 8cm 以內為限，超大模型將排程於社課後由幹部協助代印。\n2. 使用剪鉗與打磨工具時請遵從幹部安全守則。",
+    "extraNotes": [
+      "【附註 1：自選不設限】模型不限於特定作品，動漫、各家遊戲或原創模型均可自由選擇！",
+      "【附註 2：免費帶走】課堂列印之模型成品全數歸社員個人所有，無需負擔任何材料費。"
+    ]
+  },
+  {
+    "id": "act-core-03",
+    "title": "合體神操作！「鍵鼠分離 × 蒙眼聲控」雙人同心默契闖關賽",
+    "subtitle": "一人鍵盤一人滑鼠 ＋ 一人蒙眼一人語音導航 ＆ 默契挑戰冠軍月卡爭霸",
+    "category": "米哈遊社團 / 趣味競技",
+    "categoryKey": "all",
+    "subType": "競技",
+    "subTypeKey": "score",
+    "badgeColor": "#818cf8",
+    "participants": "16 ~ 24 人 (2 人一組搭檔，現場抽籤或自由組隊)",
+    "duration": "2 小時",
+    "location": "A540 多媒體教室 / 視聽教室",
+    "summary": "引爆全場歡笑的終極默契挑戰！兩大高能玩法輪番上陣：第一棒【鍵鼠分離競速】——兩人合體操控同一部電腦，一人只碰鍵盤走位放招，一人只碰滑鼠轉視角普攻，限時擊倒精英關卡；第二棒【蒙眼盲打聲控】——操作者戴上全黑眼罩盲打，由指揮官坐在身後僅能透過語音導航走位躲避致命招式！累積積分最高前三名榮獲正版週邊與小月卡大獎！",
+    "highlight": "鍵鼠合體神走位笑料百出、蒙眼盲打極限生存、冠亞軍贏取空月祝福/月卡！",
+    "gameStages": [
+      "原神 - 大世界 BOSS / 周本極速討伐（鍵鼠分離極限配合）",
+      "崩壞：星穹鐵道 - 差分宇宙/模擬宇宙手操技能釋放",
+      "絕區零 - 紛爭節點/獵犬任務盲打極限彈刀閃避",
+      "派對動作/雙人連線闖關賽（不限遊戲）"
+    ],
+    "schedule": [
+      {
+        "time": "18:30 - 18:45",
+        "item": "分組抽籤點名、公布計分規則、鍵鼠分離操作熱身試機"
+      },
+      {
+        "time": "18:45 - 19:25",
+        "item": "預賽第一輪【鍵鼠合體競速】：計時挑戰清理目標營地與精英首領"
+      },
+      {
+        "time": "19:25 - 20:05",
+        "item": "複賽第二輪【蒙眼盲打聲控防禦】：眼罩盲操＋指揮官語音生存戰"
       },
       {
         "time": "20:05 - 20:20",
-        "item": "總積分結算、各關亮點重播剪輯"
+        "item": "決賽【總擂台爭霸】：各組最佳高光精華重播與歡樂重評"
       },
       {
         "time": "20:20 - 20:30",
@@ -403,31 +154,38 @@ const FALLBACK_ACTIVITIES = [
       }
     ],
     "supplies": [
-      "計時器、眼罩、鍵鼠設備",
-      "禁忌詞號碼牌與犯規鈴",
-      "冠軍獎品（現場自選空月祝福 / 小月卡或實體周邊）",
-      "社團特製雷射紀念票根"
+      "雙人鍵盤滑鼠延長集線器與手把",
+      "全新親膚透氣遮光眼罩 12 副",
+      "大螢幕實時轉播投屏與計時碼錶",
+      "冠亞軍獎品（自選空月祝福 / 小月卡或實體正版立牌）"
     ],
-    "budget": "約 450 ~ 600 元",
-    "rules": "1. 每隊隊員必須輪流擔任操作者與指揮官，不得由同一人獨攬。\n2. 禁忌詞由裁判在場邊隨機監控鳴鈴。",
+    "budget": "約 400 ~ 550 元（小月卡獎品補貼、眼罩與紀念票根）",
+    "rules": "1. 鍵鼠分離賽中，操作鍵盤者嚴禁碰觸滑鼠，違者該局罰秒 5 秒。\n2. 盲打賽中，指揮官嚴禁碰觸操作者的手部或設備，只能透過口頭下指令。\n3. 每輪賽事隊員必須互換角色（操作與指揮），全員皆有上陣體驗。",
     "extraNotes": [
-      "【附註 1：熱度最高】結合所有有趣機制的總決賽玩法，適合社課期中高潮舉辦！"
+      "【附註 1：娛樂第一】本賽事重在同好默契與爆笑互動，手殘萌新與高難手操玩家皆能享受純粹樂趣！",
+      "【附註 2：自由選角】允許各組使用自己最熟悉的遊戲角色，發揮最天馬行空的連招！"
     ]
   },
   {
-    "id": "act-ai-01",
+    "id": "act-core-04",
     "title": "網頁應用 AI 生成教學：打造社博網站 ＆ 提示詞融合大亂鬥",
-    "subtitle": "製作社博網站與自製 App × 零門檻部署上傳 × 全員 Prompt 融合實戰",
-    "category": "米哈遊社團 / 跨界 AI",
+    "subtitle": "製作社博專屬網站與自製個人 App × 零程式碼免費部署 × 全員 Prompt 融合實戰",
+    "category": "米哈遊社團 / 科技實作",
     "categoryKey": "all",
     "subType": "手作",
     "subTypeKey": "craft",
     "badgeColor": "#a855f7",
-    "participants": "全體社員 (自備手機、平板或筆電)",
+    "participants": "全體社員 (自備手機、平板或筆電均可)",
     "duration": "2 小時",
     "location": "電腦教室 / 多媒體社課活動室",
-    "summary": "人人都能用 AI 寫出專屬 App！解密社團博覽會展示網站與米遊企劃書系統的誕生過程，帶領社員用日常自然語言（Prompt）生成互動網頁與個人應用，並教學如何免費部署上傳至 GitHub Pages。活動最高潮為「提示詞大亂鬥」——每人匿名寫下天馬行空的對話提示詞，現場融合所有社員的提示詞餵給 AI，見證會生成出什麼超展開的生草或驚艷成果！",
-    "highlight": "解密社博網站幕後製作、零程式碼自製專屬 App、全員 Prompt 融合大合體現場實測！",
+    "summary": "人人都能用 AI 寫出專屬 App！解密社團博覽會展示網站與米遊企劃系統的幕後誕生過程，帶領社員用日常中文對話提示詞（Prompt）即時生成互動網頁、個人專屬工具與抽卡動畫，並教學如何免費部署上傳至 GitHub Pages 生成個人專屬網址。活動最高潮為「提示詞大亂鬥」——每人匿名寫下天馬行空的指令，現場融合所有社員提示詞餵給 AI，見證會跑出什麼超展開的生草或驚艷成果！",
+    "highlight": "解密社博網站幕後架構、零代碼自製個人網頁 App、全員 Prompt 融合大亂鬥現場實測！",
+    "gameStages": [
+      "社博成果展示網站幕後架構解析",
+      "零代碼自然語言生成專屬網頁 / 個人 App",
+      "GitHub Pages 零成本永久免費發布部署",
+      "全員 Prompt 提示詞匿名大亂鬥合體生成"
+    ],
     "schedule": [
       {
         "time": "18:30 - 18:50",
@@ -447,7 +205,7 @@ const FALLBACK_ACTIVITIES = [
       },
       {
         "time": "20:15 - 20:30",
-        "item": "生成成果現場大螢幕品評與歡樂吐槽、儲存個人作品、交流合照"
+        "item": "生成成果大螢幕展示與歡樂吐槽、儲存個人作品、交流合照"
       }
     ],
     "supplies": [
@@ -464,150 +222,59 @@ const FALLBACK_ACTIVITIES = [
     ]
   },
   {
-    "id": "act-art-01",
-    "title": "「靈魂畫手接力賽」× 盲盒角色二創大亂鬥 ＆ 繪師同好塗鴉會",
-    "subtitle": "一人一筆接力共繪 × 生草靈魂畫風 ＆ 當場印製專屬紀念徽章/明信片",
+    "id": "act-core-05",
+    "title": "二創同人繪圖交流會：Q版表情包速成 × 現場壓製金屬徽章 ＆ 靈魂塗鴉賽",
+    "subtitle": "萌系頭像與生草表情包創作 × 一人一筆盲盒接力 ＆ 現場壓製個人專屬徽章明信片",
     "category": "米哈遊社團 / 二創繪畫",
     "categoryKey": "all",
     "subType": "手作",
     "subTypeKey": "craft",
     "badgeColor": "#ec4899",
-    "participants": "全體社員 (3~4 人一組，零繪畫基礎亦可參加)",
+    "participants": "全體社員 (手繪/電繪均可，零繪圖基礎亦熱烈歡迎)",
     "duration": "2 小時",
     "location": "美術教室 / 社團活動室",
-    "summary": "零門檻、超好笑的繪圖狂歡！抽籤分組進行「一人一筆接力畫」：每組抽出一張米遊/動漫角色關鍵詞盲盒（如：『跳舞的鍋巴』『打哈欠的黃泉』），每人限時 45 秒繪製頭身、服飾、表情與背景，輪流交棒完成大作！後半場票選「最具靈魂畫風獎」與「神級救場大師獎」，現場提供照片印表機與壓克力透明胸章壓製器，將全員作品即刻製成個人實體週邊帶回家！",
-    "highlight": "零繪畫基礎也能玩、生草畫風全場爆笑、現場免費壓製專屬二創胸章/明信片！",
+    "summary": "動漫與遊戲畫師交流盛會！集結三大趣味元素：第一階段由繪師幹部帶領「Q版表情包速成入門」，拆解萌系二頭身神態與生草文字排版，當場產出專屬 Discord/Line 貼圖；第二階段進行「一人一筆接力畫」盲盒大亂鬥，抽籤關鍵詞限時接棒共繪名場面；現場備有手動胸章機與相片隨身印表機，所有畫作當場免費壓製成金屬胸章或印成紀念明信片實體帶回！",
+    "highlight": "零門檻產出個人表情包、接力塗鴉全場爆笑、現場免費壓製專屬二創金屬徽章帶回家！",
+    "gameStages": [
+      "自製 Discord/Line 透明背景 Q 版表情包貼圖",
+      "盲盒角色一人一筆極速接力共繪大亂鬥",
+      "現場免費壓製專屬實體金屬徽章 (44mm)",
+      "限定 3 色盤與角色跨界時裝換裝塗鴉",
+      "各家二次元手遊與動漫角色二創交流"
+    ],
     "schedule": [
       {
-        "time": "18:30 - 18:45",
-        "item": "分組抽籤盲盒關鍵詞、領取畫紙與彩色麥克筆/繪圖板"
+        "time": "18:30 - 18:50",
+        "item": "萌系二頭身比例與表情包精髓教學、領取畫紙與麥克筆/電繪線材"
       },
       {
-        "time": "18:45 - 19:25",
-        "item": "第一輪【極速接力共繪】：一人 45 秒接棒畫出名場面"
+        "time": "18:50 - 19:30",
+        "item": "第一輪【自製本命表情包】：描摹萌化神態、加上生草台詞（產出透明圖檔）"
       },
       {
-        "time": "19:25 - 19:55",
-        "item": "第二輪【靈魂畫手猜猜看】：投屏猜角色名＋全場歡樂品評"
+        "time": "19:30 - 20:00",
+        "item": "第二輪【靈魂畫手接力賽】：盲盒關鍵詞一人一筆 45 秒接棒共繪大作"
       },
       {
-        "time": "19:55 - 20:20",
+        "time": "20:00 - 20:20",
         "item": "實體週邊工作坊：現場將自製畫作剪裁、壓製金屬胸章與明信片"
       },
       {
         "time": "20:20 - 20:30",
-        "item": "票選「最佳靈魂大師」頒發小獎品、合照留念"
+        "item": "票選「最佳靈魂大師」頒發小獎品、全場合照留念"
       }
     ],
     "supplies": [
-      "專業畫紙與繪圖白板、水彩麥克筆 48 色套組 4 套",
-      "手動胸章壓製機（徽章機）與透明保護膜、徽章鐵底 40 套",
-      "高清彩色相片隨身印表機與珠光相紙",
-      "抽籤角色關鍵詞盲盒箱"
+      "專業畫紙、素描紙與 48 色雙頭水彩麥克筆 4 套",
+      "手動胸章壓製機（徽章機）與透明保護膜、金屬鐵底 50 套",
+      "彩色相片印表機與珠光相紙",
+      "電繪示範平板與零基礎練習描摹線稿"
     ],
-    "budget": "約 350 ~ 500 元（徽章耗材、相紙與彩色畫筆）",
-    "rules": "1. 無須任何專業畫技，火柴人與簡筆塗鴉皆受熱烈歡迎！\n2. 接力時禁止口頭提示隊友，只能透過上一棒的筆觸自行意會。\n3. 創作內容須健康正向，禁止不當或冒犯性筆觸。",
+    "budget": "約 350 ~ 500 元（徽章五金耗材、相紙、彩色筆材補貼）",
+    "rules": "1. 火柴人與簡筆塗鴉皆受熱烈歡迎，嚴禁批評他人畫風。\n2. 接力塗鴉時禁止口頭提示，全憑隊友靈犀意會。\n3. 每人保證至少可親手壓製 1 枚自己的實體胸章帶回家收藏！",
     "extraNotes": [
-      "【附註 1：實體帶回家】每位參與社員保證都能親手壓製至少 1 枚自己的實體二創徽章！",
-      "【附註 2：支援手繪與電繪】活動室同時備有手繪紙張與電繪板轉接線，手繪電繪社員皆可自選！"
-    ]
-  },
-  {
-    "id": "act-art-02",
-    "title": "「自製本命 Q 版表情包」：零基礎繪圖入門 ＆ 萌系頭像創作工作坊",
-    "subtitle": "手把手學會萌系線稿與神態上色 × 產出專屬 Discord/Line 貼圖頭像",
-    "category": "米哈遊社團 / 二創繪畫",
-    "categoryKey": "all",
-    "subType": "手作",
-    "subTypeKey": "craft",
-    "badgeColor": "#ec4899",
-    "participants": "12 ~ 20 人 (自備平板/手機或使用社團紙筆)",
-    "duration": "2 小時",
-    "location": "多媒體電腦教室 / 社課活動室",
-    "summary": "想自己畫出可愛的派蒙、知更鳥或邦布表情包嗎？由社內資深繪師幹部親自帶領，拆解 Q 版二頭身比例骨架、日系大眼光斑畫法與生草表情包精髓（如：『流淚貓貓頭版』『邦布得意笑』）。現場提供 Procreate / Clip Studio Paint / 剪映繪圖筆刷包與新手描摹底稿，兩小時內每位社員都能產出一套（2~4 張）高解析度專屬表情包貼圖，直接上傳到社團 Discord 或手機聊天室！",
-    "highlight": "資深繪師幹部帶領、附贈新手筆刷包與骨架範本、當天產出專屬表情包匯出上架！",
-    "schedule": [
-      {
-        "time": "18:30 - 18:50",
-        "item": "Q 版五官比例與萌系神態核心技巧講解、示範示錯"
-      },
-      {
-        "time": "18:50 - 19:25",
-        "item": "第一階段【線稿與骨架】：挑選本命角色進行萌化描繪"
-      },
-      {
-        "time": "19:25 - 20:00",
-        "item": "第二階段【賽璐璐極速上色與特效】：陰影分層與高光點綴"
-      },
-      {
-        "time": "20:00 - 20:20",
-        "item": "表情包去背與加字：加上生草文字（如『理智清零』『抽卡暴斃』）"
-      },
-      {
-        "time": "20:20 - 20:30",
-        "item": "現場作品投屏同樂會、直接匯入社團 Discord 伺服器貼圖庫！"
-      }
-    ],
-    "supplies": [
-      "大螢幕繪圖教學投屏與繪師手繪示範板",
-      "零基礎 Q 版角色線稿描摹練習紙 30 份",
-      "櫻花代針筆、色鉛筆與柔性雙頭麥克筆",
-      "免費開源電繪軟體與筆刷懶人包隨身碟"
-    ],
-    "budget": "約 250 ~ 380 元（講義紙張、練習筆材補貼）",
-    "rules": "1. 建議自備 iPad/繪圖板/手機，無電繪設備者社團提供高磅數手繪專用紙。\n2. 嚴禁抄襲未授權作品，以原創改編或 Q 版二創為主。",
-    "extraNotes": [
-      "【附註 1：立即可用】課堂完成的貼圖透明背景 PNG，幹部現場協助新增進社團專屬貼圖表情區！",
-      "【附註 2：繪師一對一指導】課堂中隨時可舉手由幹部現場協助修線與調整上色圖層。"
-    ]
-  },
-  {
-    "id": "act-art-03",
-    "title": "「色盤限制 × 元素時裝互換」：極限二創繪圖挑戰賽 ＆ 視覺評審同樂會",
-    "subtitle": "抽籤限定 3 色繪製 × 跨遊時裝身份大改造（例：賽博龐克鍾離、偶像歌手卡芙卡）",
-    "category": "米哈遊社團 / 二創繪畫",
-    "categoryKey": "all",
-    "subType": "競技",
-    "subTypeKey": "score",
-    "badgeColor": "#f59e0b",
-    "participants": "12 ~ 24 人 (個人參賽或雙人搭檔)",
-    "duration": "2 小時",
-    "location": "社團活動室 / 視聽教室",
-    "summary": "考驗無限想像力的畫師競技場！每位參賽者抽籤抽取兩道極限題目：『指定限定 3 色盤（如：霓虹紫＋青檸綠＋炭黑）』與『身份跨界換裝（如：現代街頭滑板少年鍾離、維多利亞管家卡芙卡、賽車手艾蓮）』。限時 60 分鐘完成構圖與上色，全員作品匿名投屏上牆，全社以手機即時投票評選出『神級腦洞獎』、『絕美色彩掌控獎』與『生草反差獎』，前三名可抱回正版壓克力立牌與繪圖馬克筆大禮包！",
-    "highlight": "隨機色盤與跨界腦洞碰撞、全員匿名投屏投票、前三名頒發原廠正版立牌大獎！",
-    "schedule": [
-      {
-        "time": "18:30 - 18:45",
-        "item": "抽籤抽選【限定三色色卡】與【跨界換裝主題籤筒】、規則說明"
-      },
-      {
-        "time": "18:45 - 19:45",
-        "item": "60 分鐘極限創作馬拉松（現場播放遊戲 BGM 放鬆氛圍）"
-      },
-      {
-        "time": "19:45 - 20:05",
-        "item": "作品匿名投屏展示、各畫師 30 秒發表創作理念與彩蛋"
-      },
-      {
-        "time": "20:05 - 20:20",
-        "item": "全員手機匿名掃碼投票（選出最佳腦洞、色彩與人氣獎）"
-      },
-      {
-        "time": "20:20 - 20:30",
-        "item": "頒獎典禮（頒發正版立牌與繪圖禮盒）、大合影"
-      }
-    ],
-    "supplies": [
-      "投屏設備與即時匿名投票系統（Slido / Google 雲端投屏）",
-      "專業彩繪色票卡抽籤箱與換裝題庫籤",
-      "前三名正版週邊獎品（壓克力立牌、徽章盲盒、專業色粉筆套裝）",
-      "茶水飲料與放鬆創作背景音樂"
-    ],
-    "budget": "約 400 ~ 550 元（正版立牌獎品、籤卡印製、現場茶點）",
-    "rules": "1. 畫面主體必須嚴格使用抽中的 3 種核心色彩，黑白線稿可用於輔助輪廓。\n2. 投票採匿名制，嚴禁拉票，保證公平有趣的社課交流氣氛。",
-    "extraNotes": [
-      "【附註 1：觀戰交流亦受歡迎】不繪畫的社員可擔任「特邀大眾評審團」，邊吃點心邊品評投票！",
-      "【附註 2：線上畫廊留存】課後所有參賽畫作將統一收錄至社團線上雲端畫廊與 IG 限動展示！"
+      "【附註 1：手繪電繪皆宜】無電繪設備者社團提供專業手繪紙與代針筆，亦可自備 iPad/繪圖板參與！",
+      "【附註 2：貼圖直接上架】課堂完成的透明背景表情包，幹部現場協助新增至社團 Discord 專屬貼圖庫！"
     ]
   }
 ];
@@ -751,6 +418,7 @@ const STORAGE_KEYS = {
   USER_INTERESTS: 'mihoyo_user_interests',
   USER_SPECIALTIES: 'mihoyo_user_specialties',
   USER_EXPECTATION: 'mihoyo_user_expectation',
+  USER_GAMES: 'mihoyo_user_games',
   DEVICE_ID: 'mihoyo_club_device_id',
   MY_SUBMISSION: 'mihoyo_my_cloud_submission',
   CLOUD_API_URL: 'mihoyo_cloud_api_url',
@@ -772,28 +440,31 @@ const DEMO_VOTES = [
     id: "demo-vote-1",
     name: "阿鐵",
     time: "10/10 14:20",
-    interests: ["動漫新番", "星鐵高難", "3D列印", "模型改裝"],
-    specialties: "3D列印機操作與切片軟體、星鐵排軸計算",
-    expectation: "希望能認識更多崩鐵同好，學會用社團的 3D 列印機印出自己本命角色的專屬光錐與週邊！",
-    selectedIds: ["act-anime-02", "act-3d-01", "act-game-03"]
+    games: ["崩鐵", "原神", "絕區"],
+    interests: ["動漫新番", "星鐵高難", "3D列印", "模型塗裝"],
+    specialties: "3D列印切片與建模、星鐵排軸計算",
+    expectation: "希望能認識更多二次元同好，學會用社團的 3D 列印機印出自己本命角色的專屬光錐與武器！",
+    selectedIds: ["act-core-01", "act-core-02", "act-core-03"]
   },
   {
     id: "demo-vote-2",
     name: "悠悠",
     time: "10/10 15:45",
+    games: ["原神", "鳴潮", "方舟"],
     interests: ["原神深淵", "二創繪圖", "Cosplay", "動漫新番"],
-    specialties: "角色二創插畫、文案企劃、日文日常會話",
-    expectation: "最期待新番同樂會跟帳號健檢！每次深淵都卡 11 層，想讓社長幫忙看看聖遺物怎麼配，也想跟社友交流繪畫！",
-    selectedIds: ["act-anime-01", "act-game-01", "act-ai-01"]
+    specialties: "角色二創插畫、文案策劃、日語日常會話",
+    expectation: "最期待新番同樂會跟帳號健檢！每次深淵都卡關，想讓社長幫忙看看聖遺物怎麼配，也想跟大家交流繪畫！",
+    selectedIds: ["act-core-01", "act-core-04", "act-core-05"]
   },
   {
     id: "demo-vote-3",
     name: "奇奇",
     time: "10/10 16:10",
-    interests: ["絕區零動作", "AI詠唱", "影片剪輯", "競技闖關"],
-    specialties: "Shorts 短影音剪輯、AI 提示詞工程、節奏格鬥手操",
+    games: ["絕區", "三角州", "決勝時刻"],
+    interests: ["絕區零動作", "AI詠唱", "影片剪輯", "電競賽事"],
+    specialties: "影片剪輯、AI提示詞工程、手操高難通關",
     expectation: "超想玩一人鍵盤一人滑鼠的雙人挑戰！還有 AI 提示詞大亂鬥，想看看大家 Prompt 融合後會生出什麼超展開的畫面！",
-    selectedIds: ["act-anime-03", "act-game-02", "act-ai-01"]
+    selectedIds: ["act-core-03", "act-core-04", "act-core-05"]
   }
 ];
 
@@ -853,6 +524,9 @@ function loadStoredState() {
     if (savedSearch) searchQuery = savedSearch;
 
     const savedName = localStorage.getItem(STORAGE_KEYS.USER_NICKNAME);
+    const savedGames = localStorage.getItem(STORAGE_KEYS.USER_GAMES);
+    const gamesInput = document.getElementById('shareUserGames');
+    if (gamesInput && savedGames) gamesInput.value = savedGames;
     const nicknameInput = document.getElementById('shareUserNickname');
     if (nicknameInput && savedName) nicknameInput.value = savedName;
 
@@ -1654,6 +1328,7 @@ function openShareModal() {
   
   // 恢復已儲存之個人資訊
   const nameInput = document.getElementById('shareUserNickname');
+  const gamesInput = document.getElementById('shareUserGames');
   const interestsInput = document.getElementById('shareUserInterests');
   const specialtiesInput = document.getElementById('shareUserSpecialties');
   const expectationInput = document.getElementById('shareUserExpectation');
@@ -1667,11 +1342,13 @@ function openShareModal() {
 
   if (mySub) {
     if (nameInput) nameInput.value = mySub.name || '';
+    if (gamesInput) gamesInput.value = Array.isArray(mySub.games) ? mySub.games.join(', ') : (mySub.games || '');
     if (interestsInput) interestsInput.value = Array.isArray(mySub.interests) ? mySub.interests.join(', ') : (mySub.interests || '');
     if (specialtiesInput) specialtiesInput.value = mySub.specialties || '';
     if (expectationInput) expectationInput.value = mySub.expectation || '';
   } else {
     if (nameInput) nameInput.value = localStorage.getItem(STORAGE_KEYS.USER_NICKNAME) || '';
+    if (gamesInput) gamesInput.value = localStorage.getItem(STORAGE_KEYS.USER_GAMES) || '';
     if (interestsInput) interestsInput.value = localStorage.getItem(STORAGE_KEYS.USER_INTERESTS) || '';
     if (specialtiesInput) specialtiesInput.value = localStorage.getItem(STORAGE_KEYS.USER_SPECIALTIES) || '';
     if (expectationInput) expectationInput.value = localStorage.getItem(STORAGE_KEYS.USER_EXPECTATION) || '';
@@ -1802,6 +1479,13 @@ async function generateAndCopyShareCode() {
   }
   localStorage.setItem(STORAGE_KEYS.USER_NICKNAME, nickname);
 
+  const gamesInput = document.getElementById('shareUserGames');
+  const rawGames = gamesInput ? gamesInput.value.trim() : '';
+  const gamesArray = rawGames 
+    ? rawGames.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean)
+    : [];
+  localStorage.setItem(STORAGE_KEYS.USER_GAMES, rawGames);
+
   const interestsInput = document.getElementById('shareUserInterests');
   const rawInterests = interestsInput ? interestsInput.value.trim() : '';
   const interestsArray = rawInterests 
@@ -1837,6 +1521,7 @@ async function generateAndCopyShareCode() {
     deviceId: deviceId,
     name: nickname,
     time: nowTime,
+    games: gamesArray,
     interests: interestsArray,
     specialties: specialties,
     expectation: expectation,
@@ -1875,6 +1560,7 @@ async function generateAndCopyShareCode() {
           action: 'submit',
           deviceId: deviceId,
           name: nickname,
+          games: gamesArray,
           interests: interestsArray,
           specialties: specialties,
           expectation: expectation,
@@ -1993,6 +1679,13 @@ function importMemberShareCode() {
     }
 
     const existingIndex = memberVotes.findIndex(v => v.name === payload.name);
+    let parsedGames = [];
+    if (Array.isArray(payload.games)) {
+      parsedGames = payload.games;
+    } else if (typeof payload.games === 'string' && payload.games.trim()) {
+      parsedGames = payload.games.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean);
+    }
+
     let parsedInterests = [];
     if (Array.isArray(payload.interests)) {
       parsedInterests = payload.interests;
@@ -2004,6 +1697,7 @@ function importMemberShareCode() {
       id: `vote-${Date.now()}`,
       name: payload.name,
       time: payload.time || new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+      games: parsedGames,
       interests: parsedInterests,
       specialties: payload.specialties || '',
       expectation: payload.expectation || '',
@@ -2334,7 +2028,7 @@ function renderStatsView() {
                   <div class="member-avatar-badge">${initial}</div>
                   <div class="member-name-meta">
                     <h4 class="member-name-title">${vote.name}</h4>
-                    <span class="member-time-caption">🕒 匯入時間：${vote.time || '剛才'}</span>
+                    <span class="member-time-caption">🕒 上傳時間：${vote.time || '剛才'}</span>
                   </div>
                 </div>
                 <div class="member-header-actions">
@@ -2342,6 +2036,18 @@ function renderStatsView() {
                   <button class="member-delete-btn" onclick="deleteMemberVote('${vote.id}')" title="刪除此社員紀錄">✕</button>
                 </div>
               </div>
+
+              <!-- 1.5 平時遊玩的遊戲標籤 -->
+              ${Array.isArray(vote.games) && vote.games.length > 0 ? `
+                <div class="member-section">
+                  <div class="member-section-label">
+                    <span>🎮 常玩遊戲</span>
+                  </div>
+                  <div class="member-games-wrap">
+                    ${vote.games.map(g => `<span class="member-game-tag">🎮 ${g}</span>`).join('')}
+                  </div>
+                </div>
+              ` : ''}
 
               <!-- 2. 興趣愛好：以標籤（Tags/Badges）形式呈現 -->
               <div class="member-section">
@@ -2770,6 +2476,15 @@ function createCardHTML(act) {
           <div><strong>亮點：</strong>${act.highlight}</div>
         </div>
 
+        ${(act.gameStages && act.gameStages.length > 0) ? `
+          <div class="card-game-stages-section">
+            <div class="game-stages-label">🎮 涵蓋遊戲與挑戰關卡：</div>
+            <div class="game-stages-tags">
+              ${act.gameStages.map(gs => `<span class="game-stage-tag">${gs}</span>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+
         <div class="accordion-container">
           <div class="accordion-item">
             <button class="accordion-toggle" type="button">
@@ -2954,6 +2669,15 @@ function openDetailModal(act) {
       <div class="modal-highlight-box">
         <strong>✨ 特色亮點：</strong>${act.highlight}
       </div>
+
+      ${(act.gameStages && act.gameStages.length > 0) ? `
+        <div style="margin-top: 14px;">
+          <div class="modal-subheading">🎮 涵蓋詳細遊戲與挑戰關卡</div>
+          <div class="game-stages-tags" style="margin-top: 8px;">
+            ${act.gameStages.map(gs => `<span class="game-stage-tag" style="font-size: 0.85rem; padding: 5px 12px;">${gs}</span>`).join('')}
+          </div>
+        </div>
+      ` : ''}
       
       <div style="margin-top: 14px;">
         <div class="modal-subheading">⏱️ 完整活動時程表</div>
@@ -3207,9 +2931,10 @@ function setupQuickTagButtons() {
     btn.onclick = function() {
       const field = this.getAttribute('data-field');
       const tag = this.getAttribute('data-tag');
-      const targetInput = field === 'interests' 
-        ? document.getElementById('shareUserInterests') 
-        : document.getElementById('shareUserSpecialties');
+      let targetInput = null;
+      if (field === 'games') targetInput = document.getElementById('shareUserGames');
+      else if (field === 'interests') targetInput = document.getElementById('shareUserInterests');
+      else targetInput = document.getElementById('shareUserSpecialties');
       if (!targetInput) return;
       
       const currentVal = targetInput.value.trim();
@@ -3232,6 +2957,10 @@ function setupQuickTagButtons() {
   });
 
   // 當使用者手動在輸入框打字時，自動同步更新標籤高光
+  const gamesInput = document.getElementById('shareUserGames');
+  if (gamesInput) {
+    gamesInput.oninput = updateQuickTagActiveStates;
+  }
   const interestsInput = document.getElementById('shareUserInterests');
   if (interestsInput) {
     interestsInput.oninput = updateQuickTagActiveStates;
@@ -3248,6 +2977,20 @@ function setupQuickTagButtons() {
 function updateQuickTagActiveStates() {
   const interestsInput = document.getElementById('shareUserInterests');
   const specialtiesInput = document.getElementById('shareUserSpecialties');
+
+  const gamesInput = document.getElementById('shareUserGames');
+  const curGames = gamesInput && gamesInput.value 
+    ? gamesInput.value.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) 
+    : [];
+
+  document.querySelectorAll('#shareQuickGames .tag-chip-btn').forEach(btn => {
+    const tag = btn.getAttribute('data-tag');
+    if (curGames.includes(tag)) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
 
   const curInterests = interestsInput && interestsInput.value 
     ? interestsInput.value.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean) 
