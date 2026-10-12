@@ -443,7 +443,7 @@ const DEMO_VOTES = [
     time: "10/10 14:20",
     games: ["崩鐵", "原神", "絕區"],
     interests: ["動漫新番", "星鐵高難", "3D列印", "模型塗裝"],
-    specialties: "3D列印切片與建模、星鐵排軸計算",
+    specialties: "3D建模、星鐵排軸計算",
     expectation: "希望能認識更多二次元同好，學會用社團的 3D 列印機印出自己本命角色的專屬光錐與武器！",
     selectedIds: ["act-core-01", "act-core-02", "act-core-03"]
   },
@@ -453,7 +453,7 @@ const DEMO_VOTES = [
     time: "10/10 15:45",
     games: ["原神", "鳴潮", "方舟"],
     interests: ["原神深淵", "二創繪圖", "Cosplay", "動漫新番"],
-    specialties: "角色二創插畫、文案策劃、日語日常會話",
+    specialties: "角色二創插畫、文案策劃、活動主持",
     expectation: "最期待新番同樂會跟帳號健檢！每次深淵都卡關，想讓社長幫忙看看聖遺物怎麼配，也想跟大家交流繪畫！",
     selectedIds: ["act-core-01", "act-core-04", "act-core-05"]
   },
@@ -462,9 +462,9 @@ const DEMO_VOTES = [
     name: "奇奇",
     time: "10/10 16:10",
     games: ["絕區", "三角州", "決勝時刻"],
-    interests: ["絕區零動作", "AI詠唱", "影片剪輯", "電競賽事"],
-    specialties: "影片剪輯、AI提示詞工程、手操高難通關",
-    expectation: "超想玩一人鍵盤一人滑鼠的雙人挑戰！還有 AI 提示詞大亂鬥，想看看大家 Prompt 融合後會生出什麼超展開的畫面！",
+    interests: ["絕區零動作", "影片剪輯", "電競賽事"],
+    specialties: "影片剪輯、活動策劃、遊戲配隊攻略",
+    expectation: "超想玩一人鍵盤一人滑鼠的雙人挑戰！還有趣味挑戰賽，想看看大家融合後會生出什麼超展開的畫面！",
     selectedIds: ["act-core-03", "act-core-04", "act-core-05"]
   }
 ];
