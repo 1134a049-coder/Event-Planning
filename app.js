@@ -2125,22 +2125,22 @@ function renderStatsView() {
   const pieSVG = createDonutChartSVG(typeCounts);
 
   container.innerHTML = `
-    <!-- 統計看板頂部導航與標題 (包含圖一社員篩選條，同屬一個區塊位置中) -->
-    <div style="margin-bottom: 20px; padding: 18px 20px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(129, 140, 248, 0.25); border-radius: 12px; backdrop-filter: blur(12px);">
+    <!-- 統計看板頂部導航與標題 (質感卡片配色，告別暗灰色) -->
+    <div class="stats-header-card" style="margin-bottom: 20px; padding: 22px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; box-shadow: var(--shadow-card);">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
         <div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span style="background: rgba(99, 102, 241, 0.2); color: #c7d2fe; font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(129, 140, 248, 0.35);">
+            <span class="stats-tag-badge" style="background: rgba(217, 119, 6, 0.1); color: var(--primary); font-size: 0.78rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 1px solid rgba(217, 119, 6, 0.25);">
               👥 社員投票分析
             </span>
-            <h3 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">統計圖表</h3>
+            <h3 class="stats-header-title" style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin: 0;">統計圖表</h3>
           </div>
-          <p style="font-size: 0.82rem; color: #94a3b8; margin: 0;">
+          <p class="stats-header-subtitle" style="font-size: 0.85rem; color: var(--text-muted); margin: 4px 0 0 0; line-height: 1.5;">
             已自動彙整所有社員匯入之心願活動代碼，即時統計得票榜單、性質圓餅比例與個別社員選項方框
           </p>
         </div>
         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-          <button class="btn-action" onclick="openShareModal()" style="background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: none; cursor: pointer;">
+          <button class="btn-action" onclick="openShareModal()" style="background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: none; cursor: pointer; box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);">
             <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 6px;">
               <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
               <polyline points="8 10 12 14 16 10"></polyline>
@@ -2148,7 +2148,7 @@ function renderStatsView() {
             </svg>
             <span>匯入代碼</span>
           </button>
-          <button class="btn-action" onclick="handleCategoryTabSwitch('all')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+          <button class="btn-action btn-stats-back" onclick="handleCategoryTabSwitch('all')" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); font-weight: 600; padding: 0 18px; height: 36px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition);">
             <svg class="mono-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 6px;">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
@@ -2158,31 +2158,31 @@ function renderStatsView() {
         </div>
       </div>
       <!-- 圖一內容：移動至圖二下方，同屬一個區塊位置中 -->
-      <div class="member-quick-filter-bar" id="memberQuickFilterRow" style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: transparent; border-left: none; border-right: none; border-bottom: none; border-radius: 0; width: 100%; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <span class="member-filter-label" style="font-size: 0.82rem; color: #c7d2fe; font-weight: 700; white-space: nowrap;">👤 點開社員篩選內容：</span>
+      <div class="member-quick-filter-bar" id="memberQuickFilterRow" style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-subtle); background: transparent; border-left: none; border-right: none; border-bottom: none; border-radius: 0; width: 100%; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span class="member-filter-label" style="font-size: 0.82rem; color: var(--primary); font-weight: 700; white-space: nowrap;">👤 點開社員篩選內容：</span>
         <div class="member-filter-chips" id="memberFilterChipsContainer" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
           <!-- 由 JavaScript 動態渲染各社員專屬篩選按鈕 -->
         </div>
       </div>
     </div>
 
-    <!-- 頂部概覽看板 -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">👥 已參與社員</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">${memberVotes.length} 位</div>
+    <!-- 頂部概覽指標看板 (高質感典雅卡片排版) -->
+    <div class="stats-overview-grid-top" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+      <div class="stat-top-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 14px; text-align: center; box-shadow: var(--shadow-sm);">
+        <span class="stat-top-label" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">👥 已參與社員</span>
+        <div class="stat-top-val" style="font-size: 1.8rem; font-weight: 800; color: #0284c7; margin-top: 6px;">${memberVotes.length} 位</div>
       </div>
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🎟️ 累計總選票數</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #10b981; margin-top: 4px;">${totalVotesCast} 票</div>
+      <div class="stat-top-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 14px; text-align: center; box-shadow: var(--shadow-sm);">
+        <span class="stat-top-label" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">🎟️ 累計總選票數</span>
+        <div class="stat-top-val" style="font-size: 1.8rem; font-weight: 800; color: #059669; margin-top: 6px;">${totalVotesCast} 票</div>
       </div>
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🔥 最熱門活動票數</span>
-        <div style="font-size: 1.8rem; font-weight: 800; color: #f59e0b; margin-top: 4px;">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
+      <div class="stat-top-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 14px; text-align: center; box-shadow: var(--shadow-sm);">
+        <span class="stat-top-label" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">🔥 最熱門活動票數</span>
+        <div class="stat-top-val" style="font-size: 1.8rem; font-weight: 800; color: #d97706; margin-top: 6px;">${rankedActivities[0] ? rankedActivities[0].count + ' 票' : '0 票'}</div>
       </div>
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; text-align: center;">
-        <span style="font-size: 0.85rem; color: #94a3b8;">🏆 最高人氣企劃</span>
-        <div style="font-size: 0.95rem; font-weight: 700; color: #fbbf24; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}">
+      <div class="stat-top-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 14px; text-align: center; box-shadow: var(--shadow-sm);">
+        <span class="stat-top-label" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">🏆 最高人氣企劃</span>
+        <div class="stat-top-val stat-top-title" style="font-size: 1.05rem; font-weight: 700; color: #b45309; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;" title="${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}">
           ${rankedActivities[0] ? rankedActivities[0].act.title : '暫無'}
         </div>
       </div>
