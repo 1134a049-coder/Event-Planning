@@ -407,55 +407,61 @@ const FALLBACK_ACTIVITIES = [
     ]
   },
   {
-    "id": "act-craft-03",
-    "title": "🚀 3. 零程式 AI 建站體驗",
-    "subtitle": "想做網站卻不會寫程式？只要會打字就能辦到！現場帶你體驗最新 AI 網頁生成軟體，下指令秒出精美畫面，社團手把手教你輕鬆上手！",
-    "category": "米哈遊社團 / 科技實作",
-    "categoryKey": "all",
-    "subType": "手作",
-    "subTypeKey": "craft",
-    "badgeColor": "#8b5cf6",
-    "participants": "全體社員 (自備手機、平板或筆電均可)",
-    "duration": "2 小時",
-    "location": "電腦教室 / 多功能活動室",
-    "summary": "想做網站卻不會寫程式？只要會打字就能辦到！現場帶你體驗最新 AI 網頁生成軟體，下指令就能秒出精美畫面，社團手把手教你輕鬆上手！主要是偏教學的活動內容，社團會處理好工具無須付費，且會盡量讓大家有作品可以帶回家！當天就能打造出專屬的動漫個人頁、抽卡機或作品展示庫，並教學免費部署發布網址！",
-    "highlight": "想做網站卻不會寫程式？只要會打字就能辦到！現場帶你體驗最新 AI 網頁生成軟體，下指令就能秒出精美畫面，社團手把手教你輕鬆上手！",
-    "gameStages": [
-      "自然語言提示詞（Prompt）直出精美網頁解密",
-      "自選主題製作：個人二次元名片 / 抽卡模擬器 / 攻略庫",
-      "互動效果與版面色彩個人化下指令微調",
-      "免費部署發布、生成可分享專屬網址"
-    ],
-    "schedule": [
-      {
-        "time": "18:30 - 18:50",
-        "item": "AI 網頁生成工具原理演示與精彩範例展示"
-      },
-      {
-        "time": "18:50 - 19:35",
-        "item": "下指令秒出畫面實作：手把手引導社員生成專屬網頁"
-      },
-      {
-        "time": "19:35 - 20:10",
-        "item": "個人化調整、免費部署教學並產出個人專屬網址"
-      },
-      {
-        "time": "20:10 - 20:30",
-        "item": "成果投屏展示互相體驗、交流合影"
-      }
-    ],
-    "supplies": [
-      "投影機與同屏設備",
-      "AI 網頁生成示範環境與中文提示詞範本清單",
-      "免費部署流程懶人包步驟講義"
-    ],
-    "budget": "約 150 ~ 250 元（流程講義印製、社團全額吸收）",
-    "rules": "1. 全程免付費，工具皆使用免費合法之開源或免費體驗軟體。\n2. 只要會打字、會用中文描述想法即可，完全不需要程式基礎！\n3. 當天完成的網站成果可直接儲存並帶回家線上瀏覽！",
-    "extraNotes": [
-      "【附註 1：作品帶回家】課堂生成的個人網頁可產生正式網址，直接分享至社群動態！",
-      "【附註 2：社團手把手】幹部現場一對一協助排除操作疑問，包教包會！"
-    ]
-  }
+        "id": "act-craft-03",
+        "title": "🚀 3. 零程式 AI 建站體驗",
+        "subtitle": "想做網站卻不會寫程式？只要會打字就能辦到！現場帶你體驗最新 AI 網頁生成軟體，下指令秒出精美畫面，社團手把手教你輕鬆上手！",
+        "category": "米哈遊社團 / 科技實作",
+        "categoryKey": "all",
+        "subType": "手作",
+        "subTypeKey": "craft",
+        "badgeColor": "#8b5cf6",
+        "participants": "全體社員 (自備手機、平板或筆電均可)",
+        "duration": "2 小時",
+        "location": "電腦教室 / 多功能活動室",
+        "summary": "想做網站卻不會寫程式？只要會打字就能辦到！現場帶你體驗最新 AI 網頁生成軟體，下指令就能秒出精美畫面，社團手把手教你輕鬆上手！主要是偏教學的活動內容，社團會處理好工具無須付費，且會盡量讓大家有作品可以帶回家！當天就能打造出專屬的動漫個人頁、抽卡機或作品展示庫，並教學免費部署發布網址！\n\n🎯 活動重頭戲看點：現場會讓每個社員自己寫一段提示詞，最後所有人組合在一起再看會融合出什麼東西出來！大家共同見證融合後的奇妙專屬作品！",
+        "highlight": "會讓每個社員自己寫一段提示詞，最後所有人組合在一起再看會融合出什麼東西出來！下指令秒出精美畫面，社團手把手帶你零基礎打造專屬作品帶回家！",
+        "gameStages": [
+            "自然語言提示詞（Prompt）直出精美網頁解密",
+            "🔥 全員提示詞大融合看點：每位社員自己寫一段提示詞，最後全員組合在一起看會融合出什麼東西出來！",
+            "自選主題製作：個人二次元名片 / 抽卡模擬器 / 攻略庫",
+            "互動效果與版面色彩個人化下指令微調",
+            "免費部署發布、生成可分享專屬網址"
+        ],
+        "schedule": [
+            {
+                "time": "18:30 - 18:50",
+                "item": "AI 網頁生成工具原理演示與精彩範例展示"
+            },
+            {
+                "time": "18:50 - 19:20",
+                "item": "下指令秒出畫面實作：手把手引導社員生成專屬網頁"
+            },
+            {
+                "time": "19:20 - 19:55",
+                "item": "🔥 全員提示詞大融合看點：每人各寫一段提示詞組合在一起，見證最後融合出什麼奇妙作品！"
+            },
+            {
+                "time": "19:55 - 20:15",
+                "item": "個人化調整、免費部署教學並產出個人專屬網址"
+            },
+            {
+                "time": "20:15 - 20:30",
+                "item": "成果投屏展示互相體驗、交流合影"
+            }
+        ],
+        "supplies": [
+            "投影機與同屏設備",
+            "AI 網頁生成示範環境與中文提示詞範本清單",
+            "免費部署流程懶人包步驟講義"
+        ],
+        "budget": "約 150 ~ 250 元（流程講義印製、社團全額吸收）",
+        "rules": "1. 全程免付費，工具皆使用免費合法之開源或免費體驗軟體。\n2. 只要會打字、會用中文描述想法即可，完全不需要程式基礎！\n3. 當天完成的網站成果可直接儲存並帶回家線上瀏覽！",
+        "extraNotes": [
+            "【附註 1：作品帶回家】課堂生成的個人網頁可產生正式網址，直接分享至社群動態！",
+            "【附註 2：全員提示詞大融合】每位社員自寫一段提示詞組合在一起，全社共同揭曉融合出的神奇成品！",
+            "【附註 3：社團手把手】幹部現場一對一協助排除操作疑問，包教包會！"
+        ]
+    }
 ];
 
 let activitiesData = FALLBACK_ACTIVITIES;
@@ -800,7 +806,12 @@ function renderShareModalMemberList() {
         ${isMe ? `<span class="member-me-badge" style="margin-left: 6px;">本人</span>` : ''}
         <span style="color: #38bdf8; font-size: 0.76rem; margin-left: 8px; font-weight: 600;">(投了 ${v.selectedIds ? v.selectedIds.length : 0} 項)</span>
       </div>
-      <span style="color: #94a3b8; font-size: 0.75rem;">${v.time || '已同步'}</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="color: #94a3b8; font-size: 0.75rem;">${v.time || '已同步'}</span>
+        <button type="button" class="member-delete-btn" onclick="deleteMemberVote('${v.id}', event)" title="刪除此紀錄（需二次確認）" style="padding: 2px 7px; font-size: 0.72rem;">
+          🗑️ 刪除
+        </button>
+      </div>
     </div>
   `;
   }).join('');
@@ -970,7 +981,7 @@ function restoreSavedUIState() {
 
 // 切換特定企劃的喜好狀態
 function toggleFavorite(id) {
-  const act = activitiesData.find(a => a.id === id);
+  const act = activitiesData.find(a => String(a.id) === String(id));
   const title = act ? act.title : id;
 
   if (favoriteIds.has(id)) {
@@ -1842,12 +1853,27 @@ async function syncMemberVotesFromCloud(silent = false) {
         try { myLocalSub = JSON.parse(myLocalSubRaw); } catch(e) {}
       }
 
+      // 讀取本機刪除黑名單 (避免剛刪除的項目在雲端完全刪除前被反覆拉回)
+      let deletedSet = new Set();
+      try {
+        const rawDel = localStorage.getItem('mihoyo_deleted_votes');
+        if (rawDel) {
+          const arr = JSON.parse(rawDel);
+          if (Array.isArray(arr)) deletedSet = new Set(arr);
+        }
+      } catch (e) {}
+
       // 合併雲端名單 (以 deviceId 唯一去重，限制一裝置一份)
       const mergedMap = new Map();
 
       // 先載入雲端名單
       result.data.forEach(item => {
-        if (item && item.deviceId) {
+        if (item && (item.deviceId || item.name)) {
+          // 若在黑名單中，跳過不載入
+          if (deletedSet.has(item.id) || deletedSet.has(item.deviceId) || deletedSet.has(item.name)) {
+            return;
+          }
+
           // 容錯防護：若 Apps Script 欄位位移導致 selectedIds 存於 time 欄位，自動智能修復
           if ((!item.selectedIds || item.selectedIds.length === 0) && typeof item.time === 'string' && item.time.startsWith('[')) {
             try {
@@ -1862,12 +1888,19 @@ async function syncMemberVotesFromCloud(silent = false) {
               }
             } catch(e) {}
           }
-          mergedMap.set(item.deviceId, item);
+
+          // 若為無任何選取活動、且無自訂姓名（為預設「社員」或空）、且無其他專長期望的殘留空殼，跳過
+          if ((!item.selectedIds || item.selectedIds.length === 0) && (!item.name || item.name === '社員') && !item.specialties && !item.expectation) {
+            return;
+          }
+
+          const mapKey = item.deviceId || item.name || item.id;
+          mergedMap.set(mapKey, item);
         }
       });
 
-      // 若本裝置有本機修改，以本裝置最新的為主
-      if (myLocalSub && myLocalSub.deviceId) {
+      // 若本裝置有本機修改，以本裝置最新的為主（且未被刪除）
+      if (myLocalSub && myLocalSub.deviceId && !deletedSet.has(myLocalSub.deviceId) && !deletedSet.has(myLocalSub.name)) {
         mergedMap.set(myLocalSub.deviceId, myLocalSub);
       }
 
@@ -2017,28 +2050,175 @@ function loadDemoVotesAction() {
   handleCategoryTabSwitch('stats');
 }
 
-// 刪除個別社員投票紀錄
-function deleteMemberVote(voteId) {
-  showToast("💡 為保護社員心願，公開看板不支援隨意刪除他人資料！請由該社員於「上傳心願」分享處自行撤回。");
-}
+// 刪除個別社員投票紀錄 (所有人皆具備刪除權限，點擊後會再次確認防呆)
+async function deleteMemberVote(voteId, event) {
+  if (event && event.stopPropagation) {
+    event.stopPropagation();
+  }
 
-// 清空所有社員投票紀錄
+  const target = memberVotes.find(v => v.id === voteId || v.deviceId === voteId);
+  const targetName = (target && target.name) ? target.name : '該社員';
+  const actsCount = (target && target.selectedIds) ? target.selectedIds.length : 0;
+  const isSelf = Boolean(target && target.deviceId && target.deviceId === getOrCreateDeviceId());
+
+  // 第一次詢問確認
+  const firstPrompt = actsCount === 0 
+    ? `確定要刪除「${targetName}」這筆無紀錄的空殼名單嗎？`
+    : `確定要刪除「${targetName}」的這筆活動投票紀錄嗎？（共選取 ${actsCount} 項活動）`;
+  if (!confirm(firstPrompt)) {
+    return;
+  }
+
+  // 使用者按下刪除後，還會再問一次才能刪除 (防呆二次確認)
+  const secondPrompt = `⚠️ 再次確認（防呆防誤刪）：\n\n您確定要永久刪除「${targetName}」的紀錄嗎？\n按下「確定」後，此紀錄將自公開看板與雲端試算表同步移除，無法復原！`;
+  if (!confirm(secondPrompt)) {
+    return;
+  }
+
+  // 1. 寫入本地黑名單 (避免在雲端刪除期間被 syncMemberVotesFromCloud 重新同步載入)
+  try {
+    const rawDeleted = localStorage.getItem('mihoyo_deleted_votes');
+    let deletedList = rawDeleted ? JSON.parse(rawDeleted) : [];
+    if (!Array.isArray(deletedList)) deletedList = [];
+    if (target) {
+      if (target.id) deletedList.push(target.id);
+      if (target.deviceId) deletedList.push(target.deviceId);
+      if (target.name) deletedList.push(target.name);
+    } else {
+      deletedList.push(voteId);
+    }
+    localStorage.setItem('mihoyo_deleted_votes', JSON.stringify(deletedList));
+  } catch (e) {}
+
+  // 2. 若刪除的是當前裝置登記的本人紀錄，同步清除本人暫存
+  if (isSelf) {
+    localStorage.removeItem(STORAGE_KEYS.MY_SUBMISSION);
+    updateDeviceUploadStatusUI();
+  }
+
+  // 3. 從本地 memberVotes 移除
+  memberVotes = memberVotes.filter(v => {
+    if (target) {
+      if (v.id === target.id) return false;
+      if (target.deviceId && v.deviceId === target.deviceId) return false;
+      if (!target.deviceId && target.name && v.name === target.name && (!v.selectedIds || v.selectedIds.length === actsCount)) return false;
+    }
+    return v.id !== voteId;
+  });
+
+  saveMemberVotes();
+  updateVoteBadges();
+
+  if (currentCategory === 'stats') {
+    renderStatsView();
+  } else {
+    renderCards();
+  }
+
+  showToast(`🗑️ 已成功刪除「${targetName}」的紀錄！`);
+
+  // 4. 若有設定雲端網址，向 Google Apps Script 發送刪除通知
+  const cloudUrl = getCloudApiUrl();
+  if (cloudUrl && target) {
+    try {
+      fetch(cloudUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'delete',
+          deviceId: target.deviceId || '',
+          name: target.name || ''
+        })
+      }).then(r => r.json()).then(res => {
+        console.log('雲端刪除回應：', res);
+      }).catch(err => {
+        console.warn('雲端刪除請求未完成：', err);
+      });
+    } catch(err) {
+      console.warn('發送雲端刪除異常：', err);
+    }
+  }
+}
+window.deleteMemberVote = deleteMemberVote;
+
+// 清理所有無活動紀錄之空殼名單 (一鍵清除 0 項空殼)
+async function cleanEmptyShellVotes() {
+  const emptyVotes = memberVotes.filter(v => !v.selectedIds || v.selectedIds.length === 0);
+  if (emptyVotes.length === 0) {
+    showToast('目前名單中沒有無活動紀錄的空殼！✨');
+    return;
+  }
+
+  if (!confirm(`發現名單中共有 ${emptyVotes.length} 位無活動紀錄的空殼。\n確定要刪除所有空殼資料嗎？`)) {
+    return;
+  }
+
+  // 還會再問一次才能刪除 (防呆二次確認)
+  if (!confirm(`⚠️ 再次確認（防呆防誤刪）：\n\n確定要一併清除這 ${emptyVotes.length} 筆空殼名單嗎？此動作將同步從雲端試算表清理，無法復原。`)) {
+    return;
+  }
+
+  try {
+    const rawDeleted = localStorage.getItem('mihoyo_deleted_votes');
+    let deletedList = rawDeleted ? JSON.parse(rawDeleted) : [];
+    if (!Array.isArray(deletedList)) deletedList = [];
+    emptyVotes.forEach(target => {
+      if (target.id) deletedList.push(target.id);
+      if (target.deviceId) deletedList.push(target.deviceId);
+      if (target.name) deletedList.push(target.name);
+    });
+    localStorage.setItem('mihoyo_deleted_votes', JSON.stringify(deletedList));
+  } catch (e) {}
+
+  memberVotes = memberVotes.filter(v => v.selectedIds && v.selectedIds.length > 0);
+  saveMemberVotes();
+  updateVoteBadges();
+
+  if (currentCategory === 'stats') {
+    renderStatsView();
+  } else {
+    renderCards();
+  }
+
+  showToast(`🗑️ 已成功清除 ${emptyVotes.length} 筆無紀錄空殼！`);
+
+  const cloudUrl = getCloudApiUrl();
+  if (cloudUrl) {
+    try {
+      fetch(cloudUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'delete',
+          cleanEmpty: true
+        })
+      }).catch(err => console.warn(err));
+    } catch (e) {}
+  }
+}
+window.cleanEmptyShellVotes = cleanEmptyShellVotes;
+
+// 清空所有社員投票紀錄 (需二次確認)
 function clearAllMemberVotes() {
   if (memberVotes.length === 0) {
     showToast('目前暫無任何已匯入的社員名單！');
     return;
   }
-  if (confirm('確定要清空所有已匯入的社員名單紀錄嗎？清空後統計數據將同步重設。')) {
-    memberVotes = [];
-    saveMemberVotes();
-    updateVoteBadges();
-    if (currentCategory === 'stats') {
-      renderStatsView();
-    } else {
-      renderCards();
-    }
-    showToast('已清空所有社員名單紀錄 🗑️');
+  if (!confirm('確定要清空所有已匯入的社員名單紀錄嗎？清空後統計數據將同步重設。')) {
+    return;
   }
+  if (!confirm('⚠️ 再次確認（防呆防誤刪）：確定要永久清空全部社員名單嗎？此動作將無法復原！')) {
+    return;
+  }
+  memberVotes = [];
+  saveMemberVotes();
+  updateVoteBadges();
+  if (currentCategory === 'stats') {
+    renderStatsView();
+  } else {
+    renderCards();
+  }
+  showToast('已清空所有社員名單紀錄 🗑️');
 }
 window.clearAllMemberVotes = clearAllMemberVotes;
 
@@ -2093,7 +2273,7 @@ function renderStatsView() {
   memberVotes.forEach(vote => {
     (vote.selectedIds || []).forEach(id => {
       voteCounts[id] = (voteCounts[id] || 0) + 1;
-      const act = activitiesData.find(a => a.id === id);
+      const act = activitiesData.find(a => String(a.id) === String(id));
       if (act) {
         if (gameCounts[act.categoryKey] !== undefined) {
           gameCounts[act.categoryKey]++;
@@ -2112,7 +2292,7 @@ function renderStatsView() {
     return {
       id: id,
       count: voteCounts[id],
-      act: activitiesData.find(a => a.id === id)
+      act: activitiesData.find(a => String(a.id) === String(id))
     };
   }).filter(item => item.act).sort((a, b) => b.count - a.count);
 
@@ -2278,7 +2458,7 @@ function renderStatsView() {
 
       <div class="member-boxes-grid">
         ${memberVotes.map(vote => {
-          const acts = (vote.selectedIds || []).map(id => activitiesData.find(a => a.id === id)).filter(Boolean);
+          const acts = (vote.selectedIds || []).map(id => activitiesData.find(a => String(a.id) === String(id))).filter(Boolean);
           const initial = (vote.name || '社').trim().charAt(0).toUpperCase();
           const interestsList = Array.isArray(vote.interests) && vote.interests.length > 0 
             ? vote.interests 
@@ -2302,8 +2482,15 @@ function renderStatsView() {
                   </div>
                 </div>
                 <div class="member-header-actions">
-                  <span class="member-vote-count">選了 ${acts.length} 項</span>
+                  <span class="member-vote-count ${acts.length === 0 ? 'is-zero' : ''}">${acts.length === 0 ? '無紀錄空殼' : `選了 ${acts.length} 項`}</span>
                   ${(vote.deviceId && vote.deviceId === getOrCreateDeviceId()) ? `<span class="member-me-badge" title="這是您在此裝置登記的心願回覆">⭐ 本人</span>` : ''}
+                  <button type="button" class="member-delete-btn" onclick="deleteMemberVote('${vote.id}', event)" title="刪除此紀錄（需二次確認）">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -1px; margin-right: 2px;">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>刪除</span>
+                  </button>
                 </div>
               </div>
 
@@ -2378,7 +2565,7 @@ function renderStatsView() {
   renderMemberQuickFilterChips();
 }
 
-// 渲染各社員專屬篩選按鈕
+// 渲染各社員專屬篩選按鈕 (支援右上角刪除按鈕與一鍵清除無紀錄空殼)
 function renderMemberQuickFilterChips() {
   const containers = document.querySelectorAll('#memberFilterChipsContainer');
   if (!containers || containers.length === 0) return;
@@ -2389,20 +2576,47 @@ function renderMemberQuickFilterChips() {
       return;
     }
 
-    container.innerHTML = memberVotes.map(v => {
+    const emptyCount = memberVotes.filter(v => !v.selectedIds || v.selectedIds.length === 0).length;
+
+    const chipsHtml = memberVotes.map(v => {
       const count = (v.selectedIds || []).length;
+      const isEmpty = count === 0;
       return `
-        <button 
-          type="button" 
-          class="member-chip-btn" 
-          onclick="scrollToMemberCard('${v.id}')"
-          title="點擊查看「${v.name}」所勾選的 ${count} 項活動"
-        >
-          <span>👤 ${v.name}</span>
-          <span class="chip-count">${count}</span>
-        </button>
+        <div class="member-chip-wrap ${isEmpty ? 'chip-empty' : ''}" style="display: inline-flex; align-items: center; background: var(--bg-subtle); border: 1px solid ${isEmpty ? 'rgba(239, 68, 68, 0.4)' : 'var(--border-color)'}; border-radius: 999px; padding: 2px 4px 2px 10px; gap: 4px; transition: var(--transition);">
+          <button 
+            type="button" 
+            class="member-chip-btn" 
+            onclick="scrollToMemberCard('${v.id}')"
+            style="background: transparent; border: none; padding: 0; color: var(--text-main); font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"
+            title="點擊查看「${v.name}」所勾選的 ${count} 項活動"
+          >
+            <span>👤 ${v.name}</span>
+            <span class="chip-count" style="background: ${isEmpty ? '#ef4444' : '#f59e0b'}; color: ${isEmpty ? '#fff' : '#1e1b18'}; font-size: 0.7rem; font-weight: 800; padding: 1px 7px; border-radius: 999px;">${count}</span>
+          </button>
+          <button
+            type="button"
+            class="chip-remove-btn"
+            onclick="deleteMemberVote('${v.id}', event)"
+            style="background: transparent; border: none; color: ${isEmpty ? '#ef4444' : '#94a3b8'}; cursor: pointer; padding: 2px 6px; border-radius: 999px; font-size: 0.85rem; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;"
+            title="刪除「${v.name}」紀錄（需二次確認）"
+          >✕</button>
+        </div>
       `;
     }).join('');
+
+    const cleanEmptyHtml = emptyCount > 0 ? `
+      <button 
+        type="button" 
+        class="btn-clean-empty-chips"
+        onclick="cleanEmptyShellVotes()"
+        style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #ef4444; font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;"
+        title="點擊一鍵刪除所有無活動紀錄的空殼（共 ${emptyCount} 位）"
+      >
+        🗑️ 清理 ${emptyCount} 個無紀錄空殼
+      </button>
+    ` : '';
+
+    container.innerHTML = chipsHtml + cleanEmptyHtml;
   });
 }
 
@@ -2614,7 +2828,7 @@ function renderCards() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = btn.dataset.id;
-      const act = activitiesData.find(a => a.id === id);
+      const act = activitiesData.find(a => String(a.id) === String(id));
       if (act) copyActivitySummary(act);
     });
   });
@@ -2672,7 +2886,7 @@ function updateBookmarkButtons(id, isMarked) {
 }
 
 function toggleUnifiedBookmark(id) {
-  const act = activitiesData.find(a => a.id === id);
+  const act = activitiesData.find(a => String(a.id) === String(id));
   const title = act ? act.title : id;
   const isCurrentlyMarked = favoriteIds.has(id);
   const nextMarked = !isCurrentlyMarked;
@@ -2806,7 +3020,7 @@ function createCardHTML(act) {
 // 3. 活動詳細 Modal 彈窗與自適應前後切換 (Navigation Engine)
 // ==========================================================================
 function openDetailModalById(id, contextSource) {
-  const act = activitiesData.find(a => a.id === id);
+  const act = activitiesData.find(a => String(a.id) === String(id));
   if (!act) return;
 
   // 自適應上下文池更新
@@ -3189,6 +3403,9 @@ async function removeMySubmissionAction() {
   if (!confirm(`確定要撤回並移除 ${mySubName} 嗎？\n\n移除後系統與雲端將不再保留您的投票與名片資料。\n撤回後您可以隨時重新挑選活動並重新上傳！`)) {
     return;
   }
+  if (!confirm(`⚠️ 再次確認（防呆防誤刪）：\n\n確定要永久撤回並移除 ${mySubName} 嗎？此動作將同步從雲端清除，無法復原！`)) {
+    return;
+  }
 
   const btn = document.getElementById('btnRemoveMySubmission');
   const origBtnText = btn ? btn.textContent : '';
@@ -3500,7 +3717,7 @@ function finishLotteryDraw(winner) {
 
   // 取得中獎社員的心儀活動名稱
   const matchedActivities = (winner.selectedIds || [])
-    .map(id => activitiesData.find(a => a.id === id))
+    .map(id => activitiesData.find(a => String(a.id) === String(id)))
     .filter(Boolean)
     .slice(0, 3);
 
