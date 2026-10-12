@@ -195,9 +195,9 @@
           <div class="main-filter-row" id="mainFilterRow">
             <div class="filter-tabs game-app-tabs" id="gameFilterTabs">
               <!-- ALL 全部宇宙 (深暖金石底色 + 柔和金黃文字 + 金光光暈) -->
-              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (10 份完整企劃)">
+              <button class="filter-btn app-icon-btn app-icon-all active" data-category="all" type="button" title="全部宇宙 (9 份完整企劃)">
                 <span class="app-all-text">ALL</span>
-                <span class="app-corner-badge" id="appBadgeAll">10</span>
+                <span class="app-corner-badge" id="appBadgeAll">9</span>
               </button>
 
               <!-- 崩壞：星穹鐵道 (三月七 App 圖示) -->
@@ -295,7 +295,7 @@
                   <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
                 </svg>
                 <span>全部</span>
-                <span class="pill-badge" id="badgeAll">10</span>
+                <span class="pill-badge" id="badgeAll">9</span>
               </button>
               <button class="sub-pill-btn" data-subtype="casual" type="button">
                 <svg class="mono-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -316,7 +316,7 @@
                   <path d="M7 6H4a2 2 0 0 0-2 2v1a4 4 0 0 0 4 4h1"></path>
                   <path d="M17 6h3a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4h-1"></path>
                 </svg>
-                <span>競技</span>
+                <span>遊戲</span>
                 <span class="pill-badge" id="badgeScore">3</span>
               </button>
               <button class="sub-pill-btn" data-subtype="craft" type="button">
@@ -328,7 +328,7 @@
                   <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
                 </svg>
                 <span>手作</span>
-                <span class="pill-badge" id="badgeCraft">4</span>
+                <span class="pill-badge" id="badgeCraft">3</span>
               </button>
             </div>
 
@@ -366,6 +366,18 @@
     <!-- 社員專屬篩選進行中提示橫幅 (點開該社員的篩選內容時浮現) -->
     <div class="active-member-filter-banner" id="activeMemberBanner" style="display: none;"></div>
 
+        <!-- 分類簡介專屬橫幅 (比照附圖 1:1 展示分類簡介) -->
+    <div class="category-intro-banner" id="categoryIntroBanner" style="margin-bottom: 16px; padding: 14px 18px; background: rgba(30, 41, 59, 0.6); border: 1px solid var(--border-color); border-radius: 12px; backdrop-filter: blur(8px);">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <span id="categoryIntroBadge" style="display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; background: rgba(6, 182, 212, 0.15); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.3);">
+          🌟 全部活動簡介
+        </span>
+      </div>
+      <p id="categoryIntroText" style="margin: 0; font-size: 0.88rem; line-height: 1.6; color: var(--text-muted);">
+        精選 9 大核心社團活動企劃，涵蓋【休閒】放鬆看新番開打 Switch、【遊戲】雙人合體與深淵攻略挑戰、【手作】3D列印摺紙與零程式 AI 建站體驗！
+      </p>
+    </div>
+
     <!-- 便利貼卡盒網格主展區 (Cards Grid - 預設為收起模式) -->
     <section class="cards-grid cards-collapsed" id="cardsContainer">
       <!-- 由 JavaScript (app.js) 動態渲染便利貼方塊 -->
@@ -385,7 +397,7 @@
           <h2 id="modalTitle">活動標題</h2>
           <p id="modalSubtitle">
             <span id="modalSubtitleText">分類標籤</span>
-            <span id="modalNavCounter" class="modal-nav-counter">(1 / 95)</span>
+            <span id="modalNavCounter" class="modal-nav-counter">(1 / 9)</span>
           </p>
         </div>
         <div class="modal-header-actions">
