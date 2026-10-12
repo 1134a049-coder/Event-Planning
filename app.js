@@ -1488,7 +1488,7 @@ async function generateAndCopyShareCode() {
   let nickname = nameInput ? nameInput.value.trim() : '';
 
   if (!nickname) {
-    nickname = prompt('請輸入您的社員姓名／暱稱（例如：阿鐵、悠悠、奇奇）：');
+    nickname = prompt('請輸入暱稱/名字：');
     if (!nickname) nickname = '熱心社員';
     if (nameInput) nameInput.value = nickname;
   }
