@@ -765,6 +765,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   } else {
     renderCards();
   }
+
+  // 若有設定雲端試算表網址，背景自動讀取最新全社心願
+  if (getCloudApiUrl()) {
+    syncMemberVotesFromCloud(true);
+  }
 });
 
 // 恢復儲存的按鈕與輸入框狀態
@@ -1436,9 +1441,16 @@ function getOrCreateDeviceId() {
   return devId;
 }
 
+// ==============================================================================
+// 預設全體共用之 Google Apps Script 雲端試算表 Web App 網址
+// ※ 若在此填入網址，所有造訪 GitHub Pages 的社員將「自動全體連線同一份雲端試算表」！
+//    無需每個社員在手機上手動貼上網址。
+// ==============================================================================
+const DEFAULT_CLOUD_API_URL = 'https://script.google.com/macros/s/AKfycbxUt9hQOHGCsohAzF2Pk5AjP9NgN26R84SjApqxsp4hFDs8rXiAQx8TbNt8BlOpEijU/exec';
+
 // 取得當前設定之雲端 API 網址 (Google Apps Script Web App URL)
 function getCloudApiUrl() {
-  return localStorage.getItem(STORAGE_KEYS.CLOUD_API_URL) || '';
+  return localStorage.getItem(STORAGE_KEYS.CLOUD_API_URL) || DEFAULT_CLOUD_API_URL || '';
 }
 
 // 設定自訂 Google Apps Script 雲端網址
@@ -1625,7 +1637,21 @@ async function generateAndCopyShareCode() {
 // 從雲端 Google 試算表讀取所有社員回覆並載入至本機中
 async function syncMemberVotesFromCloud(silent = false) {
   const cloudUrl = getCloudApiUrl();
-  if (!cloudUrl) return;
+  if (!cloudUrl) {
+    if (!silent) {
+      const wantSet = confirm(
+        '⚠️ 尚未連線 Google 試算表雲端資料庫！\n\n' +
+        '原因說明：\n' +
+        'GitHub Pages 為靜態網站，其他社員在手機上填寫的心願，需要透過一組共用的「Google Apps Script Web App 網址」匯集到同一個 Google 試算表。\n\n' +
+        '目前系統尚未設定該雲端網址。\n' +
+        '點擊「確定」可立即前往設定貼上您的 Google Apps Script 雲端網址！'
+      );
+      if (wantSet) configureCloudApiUrl();
+    }
+    return;
+  }
+
+  if (!silent) showToast('☁️ 正在連線 Google 試算表讀取最新資料...');
 
   try {
     const res = await fetch(cloudUrl + (cloudUrl.includes('?') ? '&' : '?') + 'action=read&t=' + Date.now());
@@ -1644,6 +1670,20 @@ async function syncMemberVotesFromCloud(silent = false) {
       // 先載入雲端名單
       result.data.forEach(item => {
         if (item && item.deviceId) {
+          // 容錯防護：若 Apps Script 欄位位移導致 selectedIds 存於 time 欄位，自動智能修復
+          if ((!item.selectedIds || item.selectedIds.length === 0) && typeof item.time === 'string' && item.time.startsWith('[')) {
+            try {
+              item.selectedIds = JSON.parse(item.time);
+              if (item.updatedAt) {
+                const d = new Date(item.updatedAt);
+                item.time = !isNaN(d.getTime())
+                  ? d.toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+                  : '剛才';
+              } else {
+                item.time = '剛才';
+              }
+            } catch(e) {}
+          }
           mergedMap.set(item.deviceId, item);
         }
       });
@@ -1660,13 +1700,27 @@ async function syncMemberVotesFromCloud(silent = false) {
         renderStatsView();
       }
       if (!silent) {
-        showToast(`☁️ 已從雲端同步載入 ${result.data.length} 位社員的心願與卡片！`);
+        if (result.data.length > 0) {
+          showToast(`☁️ 已從雲端同步載入 ${result.data.length} 位社員的心願與卡片！`);
+        } else {
+          showToast(`☁️ 雲端試算表已連線成功！目前試算表尚無社員填寫紀錄。`);
+        }
+      }
+    } else {
+      if (!silent) {
+        showToast(`⚠️ 雲端讀取異常：${(result && result.message) || '資料格式不符'}`);
       }
     }
   } catch (err) {
     console.warn('從雲端同步失敗：', err);
     if (!silent) {
-      showToast('⚠️ 連線雲端讀取失敗，請確認網路或 Google Apps Script 網址。');
+      alert(
+        '❌ 雲端試算表連線失敗！\n\n' +
+        '可能原因：\n' +
+        '1. Google Apps Script 部署作業的「誰可以存取」尚未設定為「所有人 (Anyone)」。\n' +
+        '2. 雲端網址輸入有誤或網路連線受阻。\n\n' +
+        '錯誤詳情：' + err.message
+      );
     }
   }
 }
