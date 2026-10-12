@@ -1259,6 +1259,18 @@ function setupEventListeners() {
   if (btnModalNavPrevFooter) btnModalNavPrevFooter.addEventListener('click', navigatePrevActivity);
   if (btnModalNavNextFooter) btnModalNavNextFooter.addEventListener('click', navigateNextActivity);
 
+  // 12. 社員幸運抽獎彈窗
+  const btnHeaderLottery = document.getElementById('btnHeaderLottery');
+  const lotteryModalClose = document.getElementById('lotteryModalClose');
+  const lotteryModalBackdrop = document.getElementById('lotteryModalBackdrop');
+  if (btnHeaderLottery) btnHeaderLottery.addEventListener('click', openLotteryModal);
+  if (lotteryModalClose) lotteryModalClose.addEventListener('click', closeLotteryModal);
+  if (lotteryModalBackdrop) {
+    lotteryModalBackdrop.addEventListener('click', (e) => {
+      if (e.target === lotteryModalBackdrop) closeLotteryModal();
+    });
+  }
+
   // 鍵盤左右鍵切換前後活動與 ESC 關閉
   document.addEventListener('keydown', (e) => {
     if (document.getElementById('modalBackdrop')?.classList.contains('active')) {
@@ -1267,6 +1279,8 @@ function setupEventListeners() {
       if (e.key === 'Escape') closeModal();
     } else if (document.getElementById('shareModalBackdrop')?.classList.contains('active')) {
       if (e.key === 'Escape') closeShareModal();
+    } else if (document.getElementById('lotteryModalBackdrop')?.classList.contains('active')) {
+      if (e.key === 'Escape') closeLotteryModal();
     } else if (document.getElementById('prizeModalBackdrop')?.classList.contains('active')) {
       if (e.key === 'Escape') closePrizeModal();
     } else if (noticeModalBackdrop?.classList.contains('active')) {
@@ -3068,12 +3082,22 @@ function openLotteryModal() {
 
   updateLotteryHistoryUI();
   modal.style.display = 'flex';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 window.openLotteryModal = openLotteryModal;
 
 function closeLotteryModal() {
   const modal = document.getElementById('lotteryModalBackdrop');
-  if (modal) modal.style.display = 'none';
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      if (!modal.classList.contains('active')) {
+        modal.style.display = 'none';
+      }
+    }, 250);
+  }
+  document.body.style.overflow = '';
   if (isLotteryRolling && lotteryRollingTimer) {
     clearTimeout(lotteryRollingTimer);
     isLotteryRolling = false;
