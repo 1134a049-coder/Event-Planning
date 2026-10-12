@@ -609,19 +609,25 @@
             </div>
           </div>
 
-          <!-- 主要操作按鈕組 (已完全移除繁瑣的匯入代碼輸入框) -->
+          <!-- 主要操作按鈕組：已完成按鈕功能與名稱調換 -->
           <div style="display: flex; gap: 10px; align-items: center; margin-top: 8px; flex-wrap: wrap;">
-            <button class="btn-cloud-upload-primary" id="btnGenerateShareCode" type="button">
-              <svg class="mono-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <!-- 1. 雲端網址設定 (原主要大按鈕位置) -->
+            <button class="btn-cloud-upload-primary" id="btnConfigureCloudUrl" type="button" title="設定 Google 試算表 Apps Script 雲端網址">
+              <span style="font-size: 1.05rem;">⚙️</span>
+              <span>雲端網址設定</span>
+            </button>
+
+            <!-- 2. 修改回覆 (原雲端網址設定位置，命名改為修改回覆) -->
+            <button class="btn-action" id="btnGenerateShareCode" type="button" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(236, 72, 153, 0.18)); border: 1px solid rgba(245, 158, 11, 0.45); color: var(--text-main); font-size: 0.84rem; font-weight: 700; padding: 0 16px; height: 42px; border-radius: 9999px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="送出並更新本裝置的心願紀錄">
+              <svg class="mono-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="17 8 12 3 7 8"></polyline>
                 <line x1="12" y1="3" x2="12" y2="15"></line>
               </svg>
-              <span id="btnUploadCloudText">☁️ 上傳分享至雲端</span>
+              <span id="btnUploadCloudText">修改回覆</span>
             </button>
-            <button class="btn-action" id="btnConfigureCloudUrl" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.78rem; padding: 0 14px; height: 42px; border-radius: 9999px; cursor: pointer;" title="設定 Google 試算表 Apps Script 雲端網址">
-              ⚙️ 雲端網址設定
-            </button>
+
+            <!-- 3. 示範社員 -->
             <button class="btn-action btn-load-demo" id="btnLoadDemoVotes" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.78rem; padding: 0 14px; height: 42px; border-radius: 9999px; cursor: pointer;" title="快速載入阿鐵、悠悠、奇奇的示範社員">
               👥 示範社員
             </button>

@@ -1463,7 +1463,7 @@ function updateDeviceUploadStatusUI() {
   if (mySubmissionRaw) {
     try {
       const mySub = JSON.parse(mySubmissionRaw);
-      if (btnText) btnText.textContent = '🔄 修改回覆並更新雲端';
+      if (btnText) btnText.textContent = '🔄 修改回覆';
       if (hintEl) {
         hintEl.innerHTML = `<span style="color: #10b981;">✅ 本裝置已登錄回覆（最後更新：${mySub.time || '剛才'}）。再次點擊將「修改回覆」並覆蓋雲端紀錄！</span>`;
       }
@@ -1475,7 +1475,7 @@ function updateDeviceUploadStatusUI() {
     } catch (e) {}
   }
 
-  if (btnText) btnText.textContent = '☁️ 一鍵上傳至雲端';
+  if (btnText) btnText.textContent = '☁️ 上傳心願';
   if (hintEl) {
     hintEl.innerHTML = `<span>📱 限制：本裝置限傳送 1 份資料，送出後可隨時在此「修改回覆」或「自行撤回」。</span>`;
   }
