@@ -2085,10 +2085,10 @@ function renderStatsView() {
                 </div>
               </div>
 
-              <!-- 3. 個人專長：列出擅長的技能或領域 -->
+              <!-- 3. 個人擅長：列出擅長的技能或領域 -->
               <div class="member-section">
                 <div class="member-section-label">
-                  <span>⚡ 個人專長</span>
+                  <span>⚡ 個人擅長</span>
                 </div>
                 <div class="member-specialties-content">
                   ${specialtiesText}
@@ -3007,14 +3007,55 @@ function openLotteryModal() {
   const modal = document.getElementById('lotteryModalBackdrop');
   if (!modal) return;
 
+  // 支援一人測試：若本機已有登記回覆但尚未合併至 memberVotes，自動即時納入
+  const mySubRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+  if (mySubRaw) {
+    try {
+      const mySub = JSON.parse(mySubRaw);
+      if (mySub && mySub.name) {
+        const exists = memberVotes.some(v => v.deviceId === mySub.deviceId || v.id === mySub.id);
+        if (!exists) {
+          memberVotes.unshift(mySub);
+          saveMemberVotes();
+          updateVoteBadges();
+        }
+      }
+    } catch(e) {}
+  }
+
+  // 測試防呆：若尚未點擊上傳但已輸入過暱稱，自動包裝為 1 人測試候選
+  if (memberVotes.length === 0) {
+    const savedName = localStorage.getItem(STORAGE_KEYS.USER_NICKNAME);
+    if (savedName && savedName.trim()) {
+      const singleTestMember = {
+        id: `vote-${getOrCreateDeviceId()}`,
+        deviceId: getOrCreateDeviceId(),
+        name: savedName.trim(),
+        time: new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+        games: (localStorage.getItem(STORAGE_KEYS.USER_GAMES) || '原神、崩壞：星穹鐵道').split(/[,，、\s]+/).filter(Boolean),
+        interests: (localStorage.getItem(STORAGE_KEYS.USER_INTERESTS) || '').split(/[,，、\s]+/).filter(Boolean),
+        specialties: localStorage.getItem(STORAGE_KEYS.USER_SPECIALTIES) || '米遊活動熱情參與',
+        expectation: localStorage.getItem(STORAGE_KEYS.USER_EXPECTATION) || '期待更多社團連動活動',
+        selectedIds: Array.from(selectedActivityIds.size > 0 ? selectedActivityIds : favoriteIds)
+      };
+      memberVotes.unshift(singleTestMember);
+      saveMemberVotes();
+      updateVoteBadges();
+    }
+  }
+
   const countHint = document.getElementById('lotteryCandidateCountHint');
   const poolStatus = document.getElementById('lotteryPoolStatusText');
   const totalCount = memberVotes.length;
 
   if (countHint) {
-    countHint.textContent = totalCount > 0 
-      ? `目前共有 ${totalCount} 位已匯入之社員具備抽獎資格！`
-      : '目前名單中尚無任何社員，請先匯入或雲端同步社員名單！';
+    if (totalCount === 1) {
+      countHint.textContent = `🎯 測試模式已就緒：目前共有 1 位社員（${memberVotes[0].name}），可直接進行抽獎測試！`;
+    } else if (totalCount > 1) {
+      countHint.textContent = `目前共有 ${totalCount} 位已匯入之社員具備抽獎資格！`;
+    } else {
+      countHint.textContent = '目前名單中尚無任何社員，請先於「上傳心願」填寫暱稱送出或載入示範名單！';
+    }
   }
   if (poolStatus) {
     poolStatus.textContent = `👥 候選社員：${totalCount} 位`;
@@ -3061,8 +3102,42 @@ function resetLotteryStageUI() {
 
 function startLotteryDraw() {
   if (isLotteryRolling) return;
+  // 支援 1 人抽獎測試：若名單暫為空但本機已有提交或暱稱資料，即時自動納入
   if (!memberVotes || memberVotes.length === 0) {
-    alert('目前名單中尚無任何社員！\n請先邀請社員於頂部「上傳心願」或點擊「📥 雲端同步 / 👥 示範社員」後再進行抽獎。');
+    const mySubRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+    if (mySubRaw) {
+      try {
+        const mySub = JSON.parse(mySubRaw);
+        if (mySub && mySub.name) {
+          memberVotes.unshift(mySub);
+          saveMemberVotes();
+          updateVoteBadges();
+        }
+      } catch(e) {}
+    }
+  }
+  if (!memberVotes || memberVotes.length === 0) {
+    const savedName = localStorage.getItem(STORAGE_KEYS.USER_NICKNAME);
+    if (savedName && savedName.trim()) {
+      const singleTestMember = {
+        id: `vote-${getOrCreateDeviceId()}`,
+        deviceId: getOrCreateDeviceId(),
+        name: savedName.trim(),
+        time: new Date().toLocaleString([], { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+        games: (localStorage.getItem(STORAGE_KEYS.USER_GAMES) || '原神、崩壞：星穹鐵道').split(/[,，、\s]+/).filter(Boolean),
+        interests: (localStorage.getItem(STORAGE_KEYS.USER_INTERESTS) || '').split(/[,，、\s]+/).filter(Boolean),
+        specialties: localStorage.getItem(STORAGE_KEYS.USER_SPECIALTIES) || '米遊活動熱情參與',
+        expectation: localStorage.getItem(STORAGE_KEYS.USER_EXPECTATION) || '期待更多社團連動活動',
+        selectedIds: Array.from(selectedActivityIds.size > 0 ? selectedActivityIds : favoriteIds)
+      };
+      memberVotes.unshift(singleTestMember);
+      saveMemberVotes();
+      updateVoteBadges();
+    }
+  }
+
+  if (!memberVotes || memberVotes.length === 0) {
+    alert('目前名單中尚無任何社員！\n請先於「上傳心願」填寫暱稱送出或載入示範名單後再進行抽獎。');
     return;
   }
 
@@ -3076,8 +3151,14 @@ function startLotteryDraw() {
   }
 
   if (candidates.length === 0) {
-    alert('所有社員均已中獎過一輪！\n請點擊「🔄 重設中獎紀錄」或取消勾選「排除已中獎者」以重新開始抽獎。');
-    return;
+    // 為了測試用，如果名單中只有 1 人，自動重置中獎記錄，允許重複測試抽獎
+    if (memberVotes.length === 1) {
+      lotteryWonMemberIds.clear();
+      candidates = memberVotes.slice();
+    } else {
+      alert('所有社員均已中獎過一輪！\n請點擊「🔄 重設中獎紀錄」或取消勾選「排除已中獎者」以重新開始抽獎。');
+      return;
+    }
   }
 
   isLotteryRolling = true;
@@ -3104,9 +3185,19 @@ function startLotteryDraw() {
   const startTime = Date.now();
   const rollDuration = 2600; // 總滾動時間 2.6 秒
 
+  // 動畫輪播池 (若只有 1 人，加入動態轉動候選展示，最終必定 100% 抽中該社員)
+  const rollAnimationPool = candidates.length === 1 
+    ? [
+        candidates[0],
+        { name: '🎲 幸運輪盤轉動中...', games: ['專屬心願'], initial: '✨' },
+        { name: '🌟 命運星光鎖定中...', games: ['米哈遊活動'], initial: '⭐' },
+        { name: '🎉 即將揭曉幸運得主...', games: ['社團大獎'], initial: '🎁' }
+      ]
+    : candidates;
+
   function rollStep() {
     const elapsed = Date.now() - startTime;
-    const randomDisplayMember = candidates[currentIndex % candidates.length];
+    const randomDisplayMember = rollAnimationPool[currentIndex % rollAnimationPool.length];
     currentIndex++;
 
     const initial = (randomDisplayMember.name || '社').trim().charAt(0).toUpperCase();
@@ -3172,7 +3263,7 @@ function finishLotteryDraw(winner) {
     winnerDetails.innerHTML = `
       <div style="background: rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
         <div style="margin-bottom: 4px;"><strong>🎮 常玩遊戲：</strong> <span style="color: #38bdf8;">${gamesText}</span></div>
-        <div style="margin-bottom: 4px;"><strong>⚡ 個人專長：</strong> <span style="color: #a7f3d0;">${specialtiesText}</span></div>
+        <div style="margin-bottom: 4px;"><strong>⚡ 個人擅長：</strong> <span style="color: #a7f3d0;">${specialtiesText}</span></div>
         <div style="margin-bottom: 6px;"><strong>💬 入社期望：</strong> <span style="color: #fde047;">${expectationText}</span></div>
         ${matchedActivities.length > 0 ? `
           <div style="border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 6px; margin-top: 6px;">
