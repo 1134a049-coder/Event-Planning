@@ -9,8 +9,8 @@
 const FALLBACK_ACTIVITIES = [
   {
     "id": "act-core-01",
-    "title": "新番放映茶會 × 跨遊戲深淵高難通關 ＆ 社長一對一帳號診療室",
-    "subtitle": "動漫同樂放映 × 原神/星鐵/絕區/鳴潮各遊高難攻略 ＆ 聖遺物/配隊急救診斷",
+    "title": "新番茶會 × 吃零食打遊戲 ＆ 社長親自看帳號給建議",
+    "subtitle": "放鬆看動漫吃零食 × 遊戲關卡同樂 ＆ 聖遺物配隊一對一建議",
     "category": "米哈遊社團 / 動漫交流",
     "categoryKey": "all",
     "subType": "休閒",
@@ -19,8 +19,8 @@ const FALLBACK_ACTIVITIES = [
     "participants": "全體社員 (自由入座交流，自備零食茶水)",
     "duration": "2 小時",
     "location": "社團活動室 / A540 多媒體教室",
-    "summary": "告別刮痧與高難超時！前半場以大螢幕放映當季精彩新番與同人生草短片，全場邊喝飲料邊吃點心歡樂吐槽；後半場由社長與資深幹部現場坐鎮，以大螢幕投屏剖析各熱門遊戲當期高難機制，提供一對一排軸健檢、遺器詞條清查與平民滿星配隊急救！現場加碼「社長代抽代強化」玄學體檢大會！",
-    "highlight": "吃零食看動漫零社恐交流、社長現場手把手一對一健檢調軸破防！",
+    "summary": "放鬆交流無壓力！現場備有豐富茶水點心，大家一起用大螢幕看當季新番動漫、連線挑戰遊戲關卡；社長更會親自下場，一對一幫大家看帳號、健檢聖遺物與配隊，給出最實用的通關建議！",
+    "highlight": "吃零食放鬆看動漫、連線打遊戲關卡、社長親自一對一看帳號給建議！",
     "gameStages": [
       "原神 - 當期深境螺旋 11~12 層滿星急救",
       "崩壞：星穹鐵道 - 混沌回憶 / 末日幻影速度軸優化",
@@ -59,10 +59,10 @@ const FALLBACK_ACTIVITIES = [
       "【附註 2：萌新完全友善】練度不足或前幾層卡關的萌新社員亦強烈推薦前來交流配隊順序！"
     ]
   },
-  {
+    {
     "id": "act-core-02",
-    "title": "想要什麼自己印！3D 列印自選動漫遊戲週邊模型製作工坊",
-    "subtitle": "3D 列印入門實戰 × 自選本命角色/武器/道具模型 ＆ 免費列印打磨帶回家",
+    "title": "想要什麼自己印！3D 列印自選動漫遊戲模型切片與後製工坊",
+    "subtitle": "模型切片軟體實戰 × 事先印製模型拆支撐教學 ＆ 樣品修件補土與打磨工序講解",
     "category": "米哈遊社團 / 動手手作",
     "categoryKey": "all",
     "subType": "手作",
@@ -71,8 +71,8 @@ const FALLBACK_ACTIVITIES = [
     "participants": "12 ~ 18 人 (一人一台電腦/自備筆電)",
     "duration": "2 小時",
     "location": "電腦教室 / 創客 3D 列印工坊",
-    "summary": "想要官方買不到的專屬週邊嗎？帶你零門檻認識 3D 列印機的操作原理！現場直接在開源模型庫挑選自己喜愛的動漫遊戲週邊模型（不限任何遊戲，神之眼、光錐卡磚、邦布公仔、角色武器或實用筆筒文具皆可），幹部教學使用切片軟體調整尺寸，社團免費幫你列印，印好後現場打磨組裝，實體週邊直接帶回家！",
-    "highlight": "不限遊戲自選心儀模型、社團免費印製、新手也能帶回專屬實體週邊！",
+    "summary": "帶你零門檻搞懂 3D 列印！現場自由挑選動漫遊戲開源模型、實戰操作切片軟體調整參數。因列印耗時較長，課堂特別發放事先印好的樣品模型，帶大家親自上手練習拆除支撐結構；幹部更會現場演示如何修件與補土，並講解乾燥後的打磨技巧。社員切片好的專屬模型則登記由社團於課後代印！",
+    "highlight": "模型切片實戰、樣品模型拆支撐實作、幹部現場演示修件補土與打磨工序！",
     "gameStages": [
       "角色 Q 版立體擺件與公仔模型",
       "原神 - 實體神之眼掛件 / 迷你武器吊飾",
@@ -91,24 +91,25 @@ const FALLBACK_ACTIVITIES = [
       },
       {
         "time": "19:25 - 20:05",
-        "item": "啟動列印實況觀摩、成型展示與拆除支撐結構技巧練習"
+        "item": "機台運作觀摩、發放事先印製樣品進行拆除支撐結構技巧練習"
       },
       {
         "time": "20:05 - 20:30",
-        "item": "模型表面打磨拋光體驗、組裝自選配件、成果展示與大合照"
+        "item": "樣品模型修件與補土技巧演示、課後打磨工序與注意事項講解、交流大合照"
       }
     ],
     "supplies": [
-      "多台高速 3D 列印機實機運作",
-      "多色 PLA 環保植物性列印耗材（黑白金銀多彩）",
-      "模型去毛刺刀、精密剪鉗與高目數打磨砂紙組",
+      "3D 列印機實機運作展示",
+      "事先印製之樣品模型（供全員拆除支撐練習使用）",
+      "模型專用剪鉗、去毛刺筆刀與修件刮刀",
+      "模型補土、填縫膏與各目數打磨砂紙示範組",
       "開源 3D 模型推薦下載庫精選清單"
     ],
-    "budget": "約 350 ~ 500 元（PLA 耗材、打磨工具與五金配件）",
-    "rules": "1. 課堂期間印製體積以 8cm × 8cm 以內為限，超大模型將排程於社課後由幹部協助代印。\n2. 使用剪鉗與打磨工具時請遵從幹部安全守則。",
+    "budget": "約 350 ~ 500 元（樣品耗材、修件補土工具組與五金配件）",
+    "rules": "1. 課堂時間有限無法即印即取，現場使用事先印製的樣品實作拆支撐；個人切片模型登記排程課後代印。\n2. 補土需等待課後完全乾燥方可打磨，課堂重點演示修件與補土手法，打磨步驟以觀念講解為主。\n3. 使用剪鉗與筆刀拆除支撐時請遵從幹部安全指導。",
     "extraNotes": [
-      "【附註 1：自選不設限】模型不限於特定作品，動漫、各家遊戲或原創模型均可自由選擇！",
-      "【附註 2：免費帶走】課堂列印之模型成品全數歸社員個人所有，無需負擔任何材料費。"
+      "【附註 1：課後代印取件】社員切片之專屬模型，社團將於課後排程代印完成並通知領取！",
+      "【附註 2：打磨技巧】待課後補土乾燥固化後，使用 400~1000 目砂紙循序打磨即可獲得光滑表面。"
     ]
   },
   {
@@ -223,8 +224,8 @@ const FALLBACK_ACTIVITIES = [
   },
   {
     "id": "act-core-05",
-    "title": "二創同人繪圖交流會：Q版表情包速成 × 現場壓製金屬徽章 ＆ 靈魂塗鴉賽",
-    "subtitle": "萌系頭像與生草表情包創作 × 一人一筆盲盒接力 ＆ 現場壓製個人專屬徽章明信片",
+    "title": "二創同人紙筆繪圖交流會：Q版萌化速成 × 實體同人周邊手繪 ＆ 靈魂接力塗鴉賽",
+    "subtitle": "零器材門檻手繪工作坊 × 梗圖明信片與厚卡杯墊手作 × 一人一筆盲盒共繪接力",
     "category": "米哈遊社團 / 二創繪畫",
     "categoryKey": "all",
     "subType": "手作",
@@ -233,8 +234,8 @@ const FALLBACK_ACTIVITIES = [
     "participants": "全體社員 (手繪/電繪均可，零繪圖基礎亦熱烈歡迎)",
     "duration": "2 小時",
     "location": "美術教室 / 社團活動室",
-    "summary": "動漫與遊戲畫師交流盛會！集結三大趣味元素：第一階段由繪師幹部帶領「Q版表情包速成入門」，拆解萌系二頭身神態與生草文字排版，當場產出專屬 Discord/Line 貼圖；第二階段進行「一人一筆接力畫」盲盒大亂鬥，抽籤關鍵詞限時接棒共繪名場面；現場備有手動胸章機與相片隨身印表機，所有畫作當場免費壓製成金屬胸章或印成紀念明信片實體帶回！",
-    "highlight": "零門檻產出個人表情包、接力塗鴉全場爆笑、現場免費壓製專屬二創金屬徽章帶回家！",
+    "summary": "動漫與遊戲畫師交流盛會！集結三大趣味元素：第一階段由繪師幹部帶領「Q版表情包速成入門」，拆解萌系二頭身神態與生草文字排版，當場產出專屬 Discord/Line 貼圖；第二階段進行「一人一筆接力畫」盲盒大亂鬥，抽籤關鍵詞限時接棒共繪名場面；現場無須任何電繪板與機器，純用紙筆產出專屬手繪梗圖明信片與厚卡杯墊，尾聲更進行同好小色紙盲抽交換！",
+    "highlight": "零門檻產出個人表情包、接力塗鴉全場爆笑、自製厚卡杯墊與明信片實體特典、一人一筆接力全場爆笑！",
     "gameStages": [
       "自製 Discord/Line 透明背景 Q 版表情包貼圖",
       "盲盒角色一人一筆極速接力共繪大亂鬥",
@@ -611,17 +612,20 @@ function renderShareModalMemberList() {
     listEl.innerHTML = `<span style="color: #94a3b8; font-size: 0.8rem; padding: 6px 0;">尚無已匯入的社員紀錄。</span>`;
     return;
   }
-  listEl.innerHTML = memberVotes.map(v => `
+  const myDeviceId = getOrCreateDeviceId();
+  listEl.innerHTML = memberVotes.map(v => {
+    const isMe = v.deviceId && v.deviceId === myDeviceId;
+    return `
     <div style="display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; font-size: 0.82rem;">
       <div>
         <strong style="color: #f1f5f9;">👤 ${v.name}</strong>
+        ${isMe ? `<span class="member-me-badge" style="margin-left: 6px;">本人</span>` : ''}
         <span style="color: #38bdf8; font-size: 0.76rem; margin-left: 8px; font-weight: 600;">(投了 ${v.selectedIds ? v.selectedIds.length : 0} 項)</span>
       </div>
-      <button onclick="deleteMemberVote('${v.id}')" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; cursor: pointer; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px;" title="刪除此紀錄">
-        ✕ 刪除
-      </button>
+      <span style="color: #94a3b8; font-size: 0.75rem;">${v.time || '已同步'}</span>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 // 勾選/取消勾選活動
@@ -884,6 +888,8 @@ function handleCategoryTabSwitch(cat) {
     }
     if (btnHeaderBackToLibrary) btnHeaderBackToLibrary.style.display = 'inline-flex';
     if (btnHeaderImportCode) btnHeaderImportCode.style.display = 'inline-flex';
+    const btnHeaderLottery = document.getElementById('btnHeaderLottery');
+    if (btnHeaderLottery) btnHeaderLottery.style.display = 'inline-flex';
     if (btnOpenPrizeModal) btnOpenPrizeModal.style.display = 'none';
 
     if (statsContainer) {
@@ -905,6 +911,8 @@ function handleCategoryTabSwitch(cat) {
     }
     if (btnHeaderBackToLibrary) btnHeaderBackToLibrary.style.display = 'none';
     if (btnHeaderImportCode) btnHeaderImportCode.style.display = 'none';
+    const btnHeaderLottery = document.getElementById('btnHeaderLottery');
+    if (btnHeaderLottery) btnHeaderLottery.style.display = 'none';
     if (btnOpenPrizeModal) btnOpenPrizeModal.style.display = 'inline-flex';
 
     if (statsContainer) statsContainer.style.display = 'none';
@@ -1448,6 +1456,8 @@ window.configureCloudApiUrl = configureCloudApiUrl;
 function updateDeviceUploadStatusUI() {
   const btnText = document.getElementById('btnUploadCloudText');
   const hintEl = document.getElementById('deviceUploadStatusHint');
+  const mySubRow = document.getElementById('mySubmissionActionRow');
+  const mySubSummary = document.getElementById('mySubmissionSummaryText');
   const mySubmissionRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
 
   if (mySubmissionRaw) {
@@ -1457,14 +1467,19 @@ function updateDeviceUploadStatusUI() {
       if (hintEl) {
         hintEl.innerHTML = `<span style="color: #10b981;">✅ 本裝置已登錄回覆（最後更新：${mySub.time || '剛才'}）。再次點擊將「修改回覆」並覆蓋雲端紀錄！</span>`;
       }
+      if (mySubRow) mySubRow.style.display = 'flex';
+      if (mySubSummary) {
+        mySubSummary.textContent = `目前登記暱稱：${mySub.name || '熱心社員'} · 標記了 ${mySub.selectedIds ? mySub.selectedIds.length : 0} 項心願企劃`;
+      }
       return;
     } catch (e) {}
   }
 
   if (btnText) btnText.textContent = '☁️ 一鍵上傳至雲端';
   if (hintEl) {
-    hintEl.innerHTML = `<span>📱 限制：本裝置限傳送 1 份資料，送出後可隨時在此「修改回覆」。</span>`;
+    hintEl.innerHTML = `<span>📱 限制：本裝置限傳送 1 份資料，送出後可隨時在此「修改回覆」或「自行撤回」。</span>`;
   }
+  if (mySubRow) mySubRow.style.display = 'none';
 }
 
 // 雲端上傳 / 修改回覆處理函式 (限制一裝置僅一份檔案)
@@ -1758,15 +1773,7 @@ function loadDemoVotesAction() {
 
 // 刪除個別社員投票紀錄
 function deleteMemberVote(voteId) {
-  const target = memberVotes.find(v => v.id === voteId);
-  const name = target ? target.name : '此社員';
-  if (!confirm(`確定要刪除「${name}」的投票紀錄嗎？`)) return;
-
-  memberVotes = memberVotes.filter(v => v.id !== voteId);
-  saveMemberVotes();
-  updateVoteBadges();
-  renderStatsView();
-  showToast(`已移除「${name}」的投票紀錄。`);
+  showToast("💡 為保護社員心願，公開看板不支援隨意刪除他人資料！請由該社員於「上傳心願」分享處自行撤回。");
 }
 
 // 清空所有社員投票紀錄
@@ -1798,6 +1805,20 @@ function renderStatsView() {
 
   if (memberVotes.length === 0) {
     container.innerHTML = `
+      <div class="lottery-hero-banner">
+        <div class="lottery-hero-left">
+          <span class="lottery-hero-icon">🎁</span>
+          <div class="lottery-hero-text">
+            <h4>社員幸運抽獎活動進行中！</h4>
+            <p>目前名單中共計 ${memberVotes.length} 位社員具備抽獎資格，點擊隨機抽出幸運得主！</p>
+          </div>
+        </div>
+        <button type="button" class="btn-lottery-hero-action" onclick="openLotteryModal()">
+          <span>🎲</span>
+          <span>開啟社員抽獎 (候選 ${memberVotes.length} 人)</span>
+        </button>
+      </div>
+
       <div class="empty-state" style="padding: 70px 20px;">
         <div class="empty-state-icon">📊</div>
         <h3>目前尚無任何社員投票紀錄</h3>
@@ -1805,6 +1826,9 @@ function renderStatsView() {
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
           <button class="btn-action btn-primary" onclick="handleCategoryTabSwitch('all')" style="background: #f59e0b; color: #1e1b18; font-weight: 700; padding: 0 22px; height: 40px; border-radius: 9999px; cursor: pointer; border: none; font-size: 0.9rem;">
             📋 返回活動企劃庫 (瀏覽 ${activitiesData.length} 份活動)
+          </button>
+          <button class="btn-action" onclick="openLotteryModal()" style="background: linear-gradient(135deg, #f59e0b, #ec4899); color: #fff; padding: 0 18px; height: 40px; border-radius: 9999px; cursor: pointer; border: none; font-size: 0.9rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            🎁 社員幸運抽獎
           </button>
           <button class="btn-action" onclick="loadDemoVotesAction()" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; padding: 0 18px; height: 40px; border-radius: 9999px; cursor: pointer; border: none; font-size: 0.9rem;">
             👥 一鍵載入三位社員示範投票
@@ -2033,7 +2057,7 @@ function renderStatsView() {
                 </div>
                 <div class="member-header-actions">
                   <span class="member-vote-count">選了 ${acts.length} 項</span>
-                  <button class="member-delete-btn" onclick="deleteMemberVote('${vote.id}')" title="刪除此社員紀錄">✕</button>
+                  ${(vote.deviceId && vote.deviceId === getOrCreateDeviceId()) ? `<span class="member-me-badge" title="這是您在此裝置登記的心願回覆">⭐ 本人</span>` : ''}
                 </div>
               </div>
 
@@ -2901,6 +2925,311 @@ window.renderStatsView = renderStatsView;
 window.renderCards = renderCards;
 window.importMemberShareCode = importMemberShareCode;
 window.loadDemoVotesAction = loadDemoVotesAction;
+
+// ==============================================================================
+// 社員自行撤回/移除回覆邏輯 (僅本人可從分享處移除，保障不影響他人資料且再傳送不遺失)
+// ==============================================================================
+async function removeMySubmissionAction() {
+  const deviceId = getOrCreateDeviceId();
+  const mySubRaw = localStorage.getItem(STORAGE_KEYS.MY_SUBMISSION);
+  let mySubName = '您的回覆';
+  if (mySubRaw) {
+    try {
+      const parsed = JSON.parse(mySubRaw);
+      if (parsed.name) mySubName = `「${parsed.name}」的個人心願回覆`;
+    } catch(e) {}
+  }
+
+  if (!confirm(`確定要撤回並移除 ${mySubName} 嗎？\n\n移除後系統與雲端將不再保留您的投票與名片資料。\n撤回後您可以隨時重新挑選活動並重新上傳！`)) {
+    return;
+  }
+
+  const btn = document.getElementById('btnRemoveMySubmission');
+  const origBtnText = btn ? btn.textContent : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = '⏳ 正在撤回移除...';
+  }
+
+  // 1. 若有設定雲端網址，發送 action: 'delete' 至 Google Apps Script 雲端試算表刪除該列
+  const cloudUrl = getCloudApiUrl();
+  if (cloudUrl) {
+    try {
+      await fetch(cloudUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'delete',
+          deviceId: deviceId
+        })
+      });
+    } catch (err) {
+      console.warn('雲端刪除通知異常（本機將同步清除）：', err);
+    }
+  }
+
+  // 2. 清除本機裝置紀錄
+  localStorage.removeItem(STORAGE_KEYS.MY_SUBMISSION);
+
+  // 3. 從本機 memberVotes 移除本人 deviceId
+  memberVotes = memberVotes.filter(v => v.deviceId !== deviceId && v.id !== `vote-${deviceId}`);
+  saveMemberVotes();
+  updateVoteBadges();
+  updateDeviceUploadStatusUI();
+
+  // 4. 重設表單名稱為空或預設
+  const nameInput = document.getElementById('shareUserNickname');
+  if (nameInput) nameInput.value = '';
+
+  if (currentCategory === 'stats') {
+    renderStatsView();
+  } else {
+    renderCards();
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = origBtnText;
+  }
+
+  showToast('✅ 已成功撤回並移除您的個人回覆！再次傳送將作為全新回覆。');
+}
+window.removeMySubmissionAction = removeMySubmissionAction;
+
+// ==============================================================================
+// 社員幸運抽獎系統 (Member Lucky Draw System)
+// ==============================================================================
+let lotteryWonMemberIds = new Set();
+let lotteryRollingTimer = null;
+let isLotteryRolling = false;
+
+function openLotteryModal() {
+  const modal = document.getElementById('lotteryModalBackdrop');
+  if (!modal) return;
+
+  const countHint = document.getElementById('lotteryCandidateCountHint');
+  const poolStatus = document.getElementById('lotteryPoolStatusText');
+  const totalCount = memberVotes.length;
+
+  if (countHint) {
+    countHint.textContent = totalCount > 0 
+      ? `目前共有 ${totalCount} 位已匯入之社員具備抽獎資格！`
+      : '目前名單中尚無任何社員，請先匯入或雲端同步社員名單！';
+  }
+  if (poolStatus) {
+    poolStatus.textContent = `👥 候選社員：${totalCount} 位`;
+  }
+
+  // 若尚未抽獎，重設舞台為預設準備狀態
+  if (!isLotteryRolling && (!lotteryWonMemberIds || lotteryWonMemberIds.size === 0)) {
+    resetLotteryStageUI();
+  }
+
+  updateLotteryHistoryUI();
+  modal.style.display = 'flex';
+}
+window.openLotteryModal = openLotteryModal;
+
+function closeLotteryModal() {
+  const modal = document.getElementById('lotteryModalBackdrop');
+  if (modal) modal.style.display = 'none';
+  if (isLotteryRolling && lotteryRollingTimer) {
+    clearTimeout(lotteryRollingTimer);
+    isLotteryRolling = false;
+  }
+}
+window.closeLotteryModal = closeLotteryModal;
+
+function resetLotteryStageUI() {
+  const stageBox = document.getElementById('lotteryStageBox');
+  const avatarCircle = document.getElementById('lotteryAvatarCircle');
+  const winnerName = document.getElementById('lotteryWinnerName');
+  const winnerMeta = document.getElementById('lotteryWinnerMeta');
+  const winnerDetails = document.getElementById('lotteryWinnerDetails');
+  const btnStartText = document.getElementById('btnStartLotteryText');
+
+  if (stageBox) stageBox.className = 'lottery-stage-box';
+  if (avatarCircle) avatarCircle.textContent = '❓';
+  if (winnerName) winnerName.textContent = '準備抽獎';
+  if (winnerMeta) winnerMeta.textContent = '點擊下方按鈕，隨機挑選一位幸運社員！';
+  if (winnerDetails) {
+    winnerDetails.style.display = 'none';
+    winnerDetails.innerHTML = '';
+  }
+  if (btnStartText) btnStartText.textContent = '開始幸運抽獎！';
+}
+
+function startLotteryDraw() {
+  if (isLotteryRolling) return;
+  if (!memberVotes || memberVotes.length === 0) {
+    alert('目前名單中尚無任何社員！\n請先邀請社員於頂部「上傳心願」或點擊「📥 雲端同步 / 👥 示範社員」後再進行抽獎。');
+    return;
+  }
+
+  const excludeWonCheck = document.getElementById('lotteryExcludeWonCheck');
+  const shouldExcludeWon = excludeWonCheck ? excludeWonCheck.checked : false;
+
+  // 篩選具備抽獎資格之候選人
+  let candidates = memberVotes.slice();
+  if (shouldExcludeWon) {
+    candidates = candidates.filter(m => !lotteryWonMemberIds.has(m.id || m.deviceId || m.name));
+  }
+
+  if (candidates.length === 0) {
+    alert('所有社員均已中獎過一輪！\n請點擊「🔄 重設中獎紀錄」或取消勾選「排除已中獎者」以重新開始抽獎。');
+    return;
+  }
+
+  isLotteryRolling = true;
+  const stageBox = document.getElementById('lotteryStageBox');
+  const avatarCircle = document.getElementById('lotteryAvatarCircle');
+  const winnerName = document.getElementById('lotteryWinnerName');
+  const winnerMeta = document.getElementById('lotteryWinnerMeta');
+  const winnerDetails = document.getElementById('lotteryWinnerDetails');
+  const btnStart = document.getElementById('btnStartLottery');
+  const btnStartText = document.getElementById('btnStartLotteryText');
+
+  if (stageBox) stageBox.className = 'lottery-stage-box rolling';
+  if (winnerDetails) winnerDetails.style.display = 'none';
+  if (btnStart) btnStart.disabled = true;
+  if (btnStartText) btnStartText.textContent = '🎲 命運轉盤轉動中...';
+
+  // 隨機抽選出最終得主 (True Random Selection)
+  const finalWinnerIndex = Math.floor(Math.random() * candidates.length);
+  const winner = candidates[finalWinnerIndex];
+
+  // 動態滾動輪播動畫 (Decelerating Slot Animation)
+  let currentIndex = 0;
+  let delay = 50;
+  const startTime = Date.now();
+  const rollDuration = 2600; // 總滾動時間 2.6 秒
+
+  function rollStep() {
+    const elapsed = Date.now() - startTime;
+    const randomDisplayMember = candidates[currentIndex % candidates.length];
+    currentIndex++;
+
+    const initial = (randomDisplayMember.name || '社').trim().charAt(0).toUpperCase();
+    if (avatarCircle) avatarCircle.textContent = initial;
+    if (winnerName) winnerName.textContent = randomDisplayMember.name;
+    if (winnerMeta) winnerMeta.textContent = `常玩：${(randomDisplayMember.games || []).join('、') || '米哈遊系列'}`;
+
+    if (elapsed < rollDuration) {
+      // 依時間進度遞增延遲，產生漸進減速震撼定格效果
+      delay = 50 + Math.pow(elapsed / rollDuration, 2.2) * 260;
+      lotteryRollingTimer = setTimeout(rollStep, delay);
+    } else {
+      // 動畫結束，正式定格揭曉中獎者
+      finishLotteryDraw(winner);
+    }
+  }
+
+  rollStep();
+}
+window.startLotteryDraw = startLotteryDraw;
+
+function finishLotteryDraw(winner) {
+  isLotteryRolling = false;
+  const stageBox = document.getElementById('lotteryStageBox');
+  const avatarCircle = document.getElementById('lotteryAvatarCircle');
+  const winnerName = document.getElementById('lotteryWinnerName');
+  const winnerMeta = document.getElementById('lotteryWinnerMeta');
+  const winnerDetails = document.getElementById('lotteryWinnerDetails');
+  const btnStart = document.getElementById('btnStartLottery');
+  const btnStartText = document.getElementById('btnStartLotteryText');
+
+  if (stageBox) stageBox.className = 'lottery-stage-box won';
+  if (btnStart) btnStart.disabled = false;
+  if (btnStartText) btnStartText.textContent = '🎲 再次幸運抽獎！';
+
+  const initial = (winner.name || '社').trim().charAt(0).toUpperCase();
+  if (avatarCircle) avatarCircle.textContent = initial;
+  if (winnerName) winnerName.innerHTML = `🎉 恭喜幸運社員：【${winner.name}】！`;
+
+  const wishCount = (winner.selectedIds || []).length;
+  if (winnerMeta) {
+    winnerMeta.innerHTML = `<span style="color: #f59e0b; font-weight: 700;">👑 天選幸運得主誕生</span> · 🕒 ${winner.time || '剛才'} 上傳 · 勾選了 ${wishCount} 項心願企劃`;
+  }
+
+  // 取得中獎社員的心儀活動名稱
+  const matchedActivities = (winner.selectedIds || [])
+    .map(id => activitiesData.find(a => a.id === id))
+    .filter(Boolean)
+    .slice(0, 3);
+
+  const gamesText = Array.isArray(winner.games) && winner.games.length > 0 
+    ? winner.games.join('、') 
+    : '米哈遊各大遊戲同好';
+  const specialtiesText = winner.specialties && winner.specialties.trim() 
+    ? winner.specialties 
+    : '熱情參與、熱愛交流';
+  const expectationText = winner.expectation && winner.expectation.trim() 
+    ? winner.expectation 
+    : '希望能和大家一起同樂交流、參與更多有趣的社團活動！';
+
+  if (winnerDetails) {
+    winnerDetails.style.display = 'flex';
+    winnerDetails.innerHTML = `
+      <div style="background: rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="margin-bottom: 4px;"><strong>🎮 常玩遊戲：</strong> <span style="color: #38bdf8;">${gamesText}</span></div>
+        <div style="margin-bottom: 4px;"><strong>⚡ 個人專長：</strong> <span style="color: #a7f3d0;">${specialtiesText}</span></div>
+        <div style="margin-bottom: 6px;"><strong>💬 入社期望：</strong> <span style="color: #fde047;">${expectationText}</span></div>
+        ${matchedActivities.length > 0 ? `
+          <div style="border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 6px; margin-top: 6px;">
+            <strong>📌 該社員心儀活動（前 ${matchedActivities.length} 項）：</strong>
+            <span style="color: #cbd5e1;">${matchedActivities.map(a => a.title).join('、')}</span>
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  // 記錄至已中獎名單
+  const winnerKey = winner.id || winner.deviceId || winner.name;
+  lotteryWonMemberIds.add(winnerKey);
+  updateLotteryHistoryUI();
+
+  showToast(`🎉 恭喜「${winner.name}」成為本次幸運得主！`);
+}
+
+function updateLotteryHistoryUI() {
+  const historyWrap = document.getElementById('lotteryHistoryWrap');
+  const historyList = document.getElementById('lotteryHistoryList');
+  const btnReset = document.getElementById('btnResetLotteryHistory');
+
+  if (!historyWrap || !historyList) return;
+
+  if (lotteryWonMemberIds.size === 0) {
+    historyWrap.style.display = 'none';
+    if (btnReset) btnReset.style.display = 'none';
+    return;
+  }
+
+  historyWrap.style.display = 'block';
+  if (btnReset) btnReset.style.display = 'inline-block';
+
+  // 渲染已中獎晶片
+  const wonNames = Array.from(lotteryWonMemberIds).map(key => {
+    const m = memberVotes.find(v => (v.id === key || v.deviceId === key || v.name === key));
+    return m ? m.name : key;
+  });
+
+  historyList.innerHTML = wonNames.map(name => `
+    <span class="lottery-history-chip">🏆 ${name}</span>
+  `).join('');
+}
+
+function resetLotteryHistory() {
+  if (lotteryWonMemberIds.size === 0) return;
+  if (!confirm('確定要重設本次的已中獎紀錄名單嗎？')) return;
+
+  lotteryWonMemberIds.clear();
+  updateLotteryHistoryUI();
+  resetLotteryStageUI();
+  showToast('已重設社員抽獎中獎紀錄！可重新開展抽獎。');
+}
+window.resetLotteryHistory = resetLotteryHistory;
+
 window.deleteMemberVote = deleteMemberVote;
 window.clearAllMemberVotes = clearAllMemberVotes;
 window.generateAndCopyShareCode = generateAndCopyShareCode;
